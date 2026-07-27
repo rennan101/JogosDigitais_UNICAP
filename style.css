@@ -807,3 +807,151 @@ body {
     .coord-card { flex-direction: column; text-align: center; }
     .footer-logos-group { justify-content: center; }
 }
+/* EESTILO PARA DESTAQUE DE LINKS NO TEXTO */
+.link-destaque, 
+.link-destaque:visited {
+    color: var(--accent-teal) !important; /* Força o Azul Esverdeado da marca */
+    font-weight: 700 !important; /* Deixa em negrito bem forte */
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.link-destaque:hover, 
+.link-destaque:active {
+    color: var(--accent-yellow) !important; /* Muda para o amarelo retrô ao passar o mouse */
+    text-shadow: 0 0 8px rgba(234, 179, 8, 0.4);
+}
+/* ESTILOS DOS BOTÕES DE EMPRESAS LOCAIS */
+.partner-btn {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o texto horizontalmente na caixa */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.partner-btn i {
+    width: 14px;
+    height: 14px;
+    opacity: 0.6;
+    transition: transform 0.2s;
+}
+
+.partner-btn:hover {
+    background: rgba(0, 194, 203, 0.15);
+    border-color: var(--accent-teal);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 194, 203, 0.2);
+}
+
+.partner-btn:hover i {
+    opacity: 1;
+    transform: translate(2px, -2px);
+    color: var(--accent-teal);
+}
+
+/* BOTÃO DE DESTAQUE NO MENU DE NAVEGAÇÃO */
+.nav-highlight {
+    color: var(--accent-teal) !important;
+    border: 1px solid var(--accent-teal);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+}
+
+.nav-highlight:hover {
+    background: var(--accent-teal);
+    color: #000 !important;
+}
+
+/* SEÇÃO DE AGENDAMENTO DE VISITA */
+.schedule-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border: 2px solid var(--accent-teal);
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 194, 203, 0.15);
+}
+
+.schedule-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-group label i {
+    color: var(--accent-teal);
+    width: 18px;
+    height: 18px;
+}
+
+.form-group input, 
+.form-group textarea {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    color: #fff;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-teal);
+    box-shadow: 0 0 10px rgba(0, 194, 203, 0.3);
+}
+
+/* Otimização para inputs de data e hora no Dark Mode */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.time-hint {
+    font-size: 0.75rem;
+    color: var(--accent-yellow);
+}
+
+.inv-cta, .form-submit {
+    text-align: center;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .schedule-container { padding: 1.5rem; }
+}

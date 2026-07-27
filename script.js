@@ -118,14 +118,299 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderCurriculum("1º SEMESTRE"); // Inicializa mostrando o 1º Período por padrão
 
-    // ----------------------------------------------------
+// ----------------------------------------------------
     // 3. PROJETOS ALUNOS (GAME BOY COLOR CARTRIDGES)
     // ----------------------------------------------------
     const gbcData = [
-        { title: "Cyber Sertão 2099", year: "2025", genre: "Action RPG 2D", desc: "Um RPG cibernético ambientado no sertão nordestino com estética pixel art de 16-bits e trilha sonora de baião sintético.", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=400", devs: "Equipe Mangangá (Lucas, Beatriz & João)" },
-        { title: "EcoGuardians VR", year: "2026", genre: "Simulação VR", desc: "Jogo de Realidade Virtual onde o jogador assume o papel de um cientista recuperando recifes de corais em Fernando de Noronha.", img: "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&q=80&w=400", devs: "VR Lab Recife (Carla & Pedro)" },
-        { title: "MangueBeat Rhythm", year: "2024", genre: "Jogo de Ritmo", desc: "Pule e lute no ritmo dos tambores maracatu e guitarras distorcidas do movimento manguebeat pelas pontes de Recife.", img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=400", devs: "Estúdio Capibaribe (Mariana & Tiago)" },
-        { title: "Batalha dos Guararapes", year: "2025", genre: "Estratégia (RTS)", desc: "Comande tropas históricas e defenda o território pernambucano num jogo de estratégia em tempo real tático.", img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=400", devs: "História & Luta Studio (Gabriel & Ana)" }
+        {
+            title: "Tap Slap Chicken",
+            year: "2022",
+            genre: "Arcade / Ritmo",
+            platform: "PC (Windows) / WebGL",
+            desc: "Um jogo de ação e ritmo caótico e divertidíssimo onde você controla uma galinha marcial que precisa distribuir tapas nos inimigos exatamente no compasso da música para sobreviver.",
+            devs: "Mateus Assis & Equipe",
+            capa: "assets/projetos/TapSlapChicken/1.png",
+            imagens: [
+                "assets/projetos/TapSlapChicken/1.png",
+                "assets/projetos/TapSlapChicken/2.png",
+                "assets/projetos/TapSlapChicken/3.png"
+            ],
+            video: "", // Coloque o link de incorporação (embed) do YouTube/Vimeo aqui
+            downloadLink: "" // Coloque o link de download ou do Itch.io aqui
+        },
+        {
+            title: "Void Arena",
+            year: "2026",
+            genre: "Ação / Arena Sci-Fi",
+            platform: "PC (Windows)",
+            desc: "Batalha espacial de alta velocidade em uma arena cibernética zero-G. Combates multiplayer locais e intensos focados em reflexos rápidos, movimentação tática e controle de território.",
+            devs: "Equipe UNICAP Jogos",
+            capa: "assets/projetos/Void_Arena/1.png",
+            imagens: [
+                "assets/projetos/Void_Arena/1.png",
+                "assets/projetos/Void_Arena/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Repaint",
+            year: "2025",
+            genre: "Plataforma / Puzzle",
+            platform: "PC / WebGL",
+            desc: "Uma aventura de plataforma criativa onde o jogador utiliza mecânicas de pintura e cores para alterar as propriedades físicas do cenário, revelando plataformas ocultas e resolvendo enigmas visuais.",
+            devs: "Equipe UNICAP Jogos",
+            capa: "assets/projetos/Repaint/1.png",
+            imagens: [
+                "assets/projetos/Repaint/1.png",
+                "assets/projetos/Repaint/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Protocolo 67: Antártica",
+            year: "2026",
+            genre: "Survival Horror",
+            platform: "PC (Windows)",
+            desc: "Jogo de terror psicológico e sobrevivência ambientado em uma estação de pesquisa isolada e congelada no polo sul. Gerencie recursos escassos enquanto descobre os segredos de uma anomalia biológica.",
+            devs: "Equipe UNICAP Jogos",
+            capa: "assets/projetos/Protocolo67/1.png",
+            imagens: [
+                "assets/projetos/Protocolo67/1.png",
+                "assets/projetos/Protocolo67/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Pollaka",
+            year: "2022",
+            genre: "Aventura / Plataforma",
+            platform: "PC / WebGL",
+            desc: "Explore um mundo místico e estilizado repleto de desafios de agilidade. Com uma arte visual encantadora, o jogador atravessa biomas perigosos desvendando segredos antigos.",
+            devs: "Lil Shopa & Equipe",
+            capa: "assets/projetos/Pollaka/1.png",
+            imagens: [
+                "assets/projetos/Pollaka/1.png",
+                "assets/projetos/Pollaka/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Pesadelo Macabro",
+            year: "2023",
+            genre: "Terror em 1ª Pessoa",
+            platform: "PC (Windows)",
+            desc: "Uma experiência imersiva de terror e suspense em primeira pessoa. Explore ambientes sombrios, resolva enigmas complexos e escape de entidades assustadoras em uma atmosfera altamente tensa.",
+            devs: "Pedro CS & Equipe",
+            capa: "assets/projetos/Pesadelo_Macabro/1.png",
+            imagens: [
+                "assets/projetos/Pesadelo_Macabro/1.png",
+                "assets/projetos/Pesadelo_Macabro/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Pedra do Rei",
+            year: "2024",
+            genre: "RPG / Aventura",
+            platform: "PC (Windows)",
+            desc: "Inspirado na cultura e folclore regional, este RPG de ação leva o jogador a explorar ruínas esquecidas e enfrentar criaturas lendárias em busca da mítica relíquias que dá nome ao jogo.",
+            devs: "Equipe UNICAP Jogos",
+            capa: "assets/projetos/Pedra_do_Rei/1.png",
+            imagens: [
+                "assets/projetos/Pedra_do_Rei/1.png",
+                "assets/projetos/Pedra_do_Rei/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "One Bullet Man",
+            year: "2022",
+            genre: "Ação Tática / Puzzle",
+            platform: "PC / WebGL",
+            desc: "Você entra em salas repletas de inimigos, mas sua arma possui apenas uma única bala. Calcule trajetórias precisas, aproveite rebotes nas paredes e reações em cadeia para eliminar todos com um só disparo.",
+            devs: "Equipe UNICAP Jogos",
+            capa: "assets/projetos/One_Bullet_Man/1.png",
+            imagens: [
+                "assets/projetos/One_Bullet_Man/1.png",
+                "assets/projetos/One_Bullet_Man/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Meowgic School",
+            year: "2024",
+            genre: "Aventura / Magia",
+            platform: "PC / WebGL",
+            desc: "Assuma o papel de um adorável gato feiticeiro em uma academia de magia! Combine feitiços elementais, resolva quebra-cabeças mágicos e proteja os corredores da escola contra criaturas travessas.",
+            devs: "GameAxis & Equipe",
+            capa: "assets/projetos/Meowgic School/1.png",
+            imagens: [
+                "assets/projetos/Meowgic School/1.png",
+                "assets/projetos/Meowgic School/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Infernal Gate",
+            year: "2021",
+            genre: "Hack and Slash / Roguelike",
+            platform: "PC (Windows)",
+            desc: "Ação frenética e combate intenso contra hordas demoníacas. Escolha melhorias estratégicas a cada rodada, domine combos de armas e lute para selar os portões do submundo antes que seja tarde.",
+            devs: "Ricardo Vitor & Equipe",
+            capa: "assets/projetos/Infernal Gate/1.png",
+            imagens: [
+                "assets/projetos/Infernal Gate/1.png",
+                "assets/projetos/Infernal Gate/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Eiffel Clue Agency",
+            year: "2024",
+            genre: "Investigação / Mistério",
+            platform: "PC / WebGL",
+            desc: "Um jogo de detetive focado em narrativa e dedução lógica. Conduza investigações na França, interrogue suspeitos excêntricos, cruze depoimentos e analise cenas de crime para desmascarar os culpados.",
+            devs: "Equipe UNICAP Jogos",
+            capa: "assets/projetos/Eiffel_Clue/1.png",
+            imagens: [
+                "assets/projetos/Eiffel_Clue/1.png",
+                "assets/projetos/Eiffel_Clue/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Cooking Guns",
+            year: "2022",
+            genre: "Ação Caótica / Co-op",
+            platform: "PC (Windows)",
+            desc: "A mistura mais insana da culinária com tiroteio! Prepare pedidos gastronômicos complexos em uma cozinha sob ataque constante, defendendo sua bancada a tiros enquanto tenta não queimar a comida.",
+            devs: "Mateus Assis & Equipe",
+            capa: "assets/projetos/Cooking_Guns/1.png",
+            imagens: [
+                "assets/projetos/Cooking_Guns/1.png",
+                "assets/projetos/Cooking_Guns/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Bob Vive",
+            year: "2026",
+            genre: "Plataforma 2D / Humor",
+            platform: "PC / WebGL",
+            desc: "Uma jornada divertida e cheia de personalidade onde você guia o carismático Bob através de níveis criativos, repletos de obstáculos inusitados, referências à cultura pop e desafios de precisão.",
+            devs: "Equipe UNICAP Jogos",
+            capa: "assets/projetos/Bob_Vive/1.png",
+            imagens: [
+                "assets/projetos/Bob_Vive/1.png",
+                "assets/projetos/Bob_Vive/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Arquivo Cronos",
+            year: "2024",
+            genre: "Sci-Fi / Puzzle Temporal",
+            platform: "PC (Windows)",
+            desc: "Um jogo de quebra-cabeça de ficção científica onde você manipula a linha do tempo. Grave ações no passado, gere clones temporais de si mesmo e trabalhe em cooperação com o seu 'eu' do futuro.",
+            devs: "Equipe UNICAP Jogos",
+            capa: "assets/projetos/Arquivo_Cronos/1.png",
+            imagens: [
+                "assets/projetos/Arquivo_Cronos/1.png",
+                "assets/projetos/Arquivo_Cronos/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Monster Meal",
+            year: "2020",
+            genre: "Gerenciamento de Tempo",
+            platform: "PC / WebGL",
+            desc: "Uma lanchonete monstruosa precisa dos seus serviços! Gerencie o tempo, misture ingredientes nojentos (mas deliciosos para eles) e sirva refeições exóticas antes que os monstros percam a paciência.",
+            devs: "Kaio & Equipe",
+            capa: "assets/projetos/Monster Meal/1.png",
+            imagens: [
+                "assets/projetos/Monster Meal/1.png",
+                "assets/projetos/Monster Meal/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Furry Fighters",
+            year: "2026",
+            genre: "Luta / Brawler 2D",
+            platform: "PC (Windows)",
+            desc: "Um jogo de luta e brawler 2D dinâmico e carismático estrelando lutadores antropomórficos! Escolha seu personagem peludo favorito, domine combos únicos, ataques especiais devastadores e enfrente seus amigos em arenas locais vibrantes e cheias de ação.",
+            devs: "Equipe UNICAP Jogos",
+            capa: "assets/projetos/FurryFighters/1.png",
+            imagens: [
+                "assets/projetos/FurryFighters/1.png",
+                "assets/projetos/FurryFighters/2.png",
+                "assets/projetos/FurryFighters/3.png"
+            ],
+            video: "", // Cole o link de Embed do YouTube/Vimeo aqui
+            downloadLink: "" // Cole o link de download ou do Itch.io aqui
+        },
+        {
+            title: "Drawn To Wonder",
+            year: "2021",
+            genre: "Plataforma / Aventura Artística",
+            platform: "PC (Windows)",
+            desc: "Uma aventura mágica de plataforma onde a arte ganha vida! Controle uma jovem artista dentro de um caderno de rascunhos, utilizando o poder do desenho e da imaginação para criar plataformas, superar obstáculos e pintar o seu próprio destino.",
+            devs: "Rafa Lopes & Equipe",
+            capa: "assets/projetos/Drawn To Wonder/1.png",
+            imagens: [
+                "assets/projetos/Drawn To Wonder/1.png",
+                "assets/projetos/Drawn To Wonder/2.png",
+                "assets/projetos/Drawn To Wonder/3.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Infernal Gate",
+            year: "2021",
+            genre: "Hack and Slash / Roguelike",
+            platform: "PC (Windows)",
+            desc: "Ação frenética e combate sombrio contra hordas demoníacas implacáveis. Domine um arsenal de armas devastadoras, escolha melhorias estratégicas a cada rodada e lute para selar os portões do submundo antes de ser consumido.",
+            devs: "Ricardo Vitor & Equipe",
+            capa: "assets/projetos/Infernal Gate/1.png",
+            imagens: [
+                "assets/projetos/Infernal Gate/1.png",
+                "assets/projetos/Infernal Gate/2.png"
+            ],
+            video: "",
+            downloadLink: ""
+        },
+        {
+            title: "Aralume",
+            year: "2024",
+            genre: "Aventura / Fantasia 2D",
+            platform: "PC (Windows)",
+            desc: "Explore um mundo de fantasia atmosférico e misterioso repleto de magia antiga e criaturas místicas. Com uma arte 2D encantadora e mecânicas imersivas de exploração, desbrave cenários interconectados e traga a luz de volta ao reino de Aralume.",
+            devs: "Equipe UNICAP Jogos",
+            capa: "assets/projetos/Aralume/1.png",
+            imagens: [
+                "assets/projetos/Aralume/1.png",
+                "assets/projetos/Aralume/2.png",
+                "assets/projetos/Aralume/3.png"
+            ],
+            video: "",
+            downloadLink: ""
+        }
     ];
 
     const gbcGrid = document.getElementById("gbc-grid");
@@ -134,7 +419,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalClose = document.getElementById("modal-close");
 
     if (gbcGrid) {
-        gbcData.forEach(game => {
+        gbcGrid.innerHTML = ""; // Limpa a grid antes de renderizar os novos
+        gbcData.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+        gbcData.forEach((game, index) => {
             const cart = document.createElement("div");
             cart.className = "gbc-cartridge";
             cart.innerHTML = `
@@ -142,21 +429,62 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span></span><span></span><span></span><span></span>
                 </div>
                 <div class="gbc-label">
-                    <img src="${game.img}" alt="${game.title}" class="gbc-image">
+                    <img src="${game.capa}" alt="${game.title}" class="gbc-image" onerror="this.src='https://placehold.co/300x160/1e293b/00C2CB?text=${encodeURIComponent(game.title)}'">
                     <h4>${game.title}</h4>
-                    <span class="year">GAME BOY COLOR • ${game.year}</span>
+                    <span class="year">GBC • ${game.year}</span>
                 </div>
                 <div class="gbc-footer">UNICAP MEMORY CARD</div>
             `;
+            
             cart.addEventListener("click", () => {
                 if (modalBody) {
+                    // Monta o player de vídeo (se o link existir)
+                    let mediaSection = "";
+                    if (game.video && game.video.trim() !== "") {
+                        mediaSection += `
+                            <div class="modal-video-container">
+                                <iframe src="${game.video}" title="${game.title} Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        `;
+                    }
+
+                    // Monta a galeria de imagens
+                    let gallerySection = `<div class="modal-gallery">`;
+                    game.imagens.forEach((imgSrc, i) => {
+                        gallerySection += `<img src="${imgSrc}" class="gallery-thumb ${i === 0 && !game.video ? 'active-main' : ''}" alt="${game.title}" onclick="document.getElementById('main-modal-img').src='${imgSrc}'" onerror="this.style.display='none'">`;
+                    });
+                    gallerySection += `</div>`;
+
+                    // Se não tiver vídeo, coloca uma imagem grande principal que muda ao clicar nas miniaturas
+                    let mainImageDisplay = "";
+                    if (!game.video || game.video.trim() === "") {
+                        mainImageDisplay = `<img src="${game.capa}" id="main-modal-img" class="modal-img-main" alt="${game.title}" onerror="this.src='https://placehold.co/600x350/1e293b/00C2CB?text=${encodeURIComponent(game.title)}'">`;
+                    }
+
+                    // Botão de Download ou Aviso
+                    let downloadBtn = "";
+                    if (game.downloadLink && game.downloadLink.trim() !== "") {
+                        downloadBtn = `<a href="${game.downloadLink}" target="_blank" class="btn-primary w-full style="margin-top:1.5rem;">BAIXAR / JOGAR AGORA <i data-lucide="download"></i></a>`;
+                    } else {
+                        downloadBtn = `<a href="#visita" class="btn-secondary w-full" style="margin-top:1.5rem; text-align:center; display:block;">EM BREVE PARA DOWNLOAD — AGENDE UMA VISITA PARA JOGAR NO LAB</a>`;
+                    }
+
                     modalBody.innerHTML = `
-                        <span class="badge-genre">${game.genre}</span>
-                        <h3>${game.title} (${game.year})</h3>
-                        <img src="${game.img}" class="modal-img" alt="${game.title}">
-                        <p>${game.desc}</p>
-                        <div class="devs"><strong>Desenvolvido por:</strong> ${game.devs}</div>
-                        <a href="https://itch.io" target="_blank" class="btn-primary w-full">JOGAR AGORA NO ITCH.IO <i data-lucide="external-link"></i></a>
+                        <div class="modal-header-meta">
+                            <span class="badge-genre">${game.genre}</span>
+                            <span class="badge-platform"><i data-lucide="monitor"></i> ${game.platform}</span>
+                        </div>
+                        <h3>${game.title} <span class="modal-year">(${game.year})</span></h3>
+                        
+                        ${mediaSection}
+                        ${mainImageDisplay}
+                        ${game.imagens.length > 1 ? gallerySection : ''}
+                        
+                        <div class="modal-desc">
+                            <p>${game.desc}</p>
+                        </div>
+                        <div class="devs"><strong>Equipe de Desenvolvimento:</strong> ${game.devs}</div>
+                        ${downloadBtn}
                     `;
                 }
                 lucide.createIcons();
@@ -175,9 +503,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // 4. DOCENTES & EGRESSOS (GRIDS INTEGRADOS NAS ABAS E SEÇÃO)
     // ----------------------------------------------------
     const docentes = [
-        { name: "Prof. Dr. Anthony Albuquerque", tag: "Inteligência Artificial & Level Design", desc: "Doutor em Ciência da Computação (UFPE). Pesquisa IA adaptativa para NPCs e geração procedural de conteúdo.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },
-        { name: "Profa. Ma. Camila Lins", tag: "Modelagem 3D & Animação", desc: "Mestre em Design. Ex-artista 3D em estúdios internacionais com foco em modelagem de personagens de games.", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150" },
-        { name: "Prof. Me. Rodrigo Holanda", tag: "Trilha Sonora & Áudio Digital", desc: "Mestre em Áudio Digital. Compositor e sound designer premiado no SBGames e atua com áudio dinâmico no FMOD.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" }
+        { name: "Prof. Dr. Anthony Lins", tag: "Programação para Jogos", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },
+        { name: "Prof. Msc. Alan Campos", tag: "Tópicos Avançados em Jogos", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },
+        { name: "Prof. Dr. Breno Carvalho", tag: "Design", desc:"", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },    
+        { name: "Profa. Msc. Cecilia da Fonte ", tag: "Processos de Design", desc: "", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150" },
+        { name: "Prof. Dr. Christiane Quaresma", tag: "Modelagem 3D, Animação 2D", desc: "", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" },
+        { name: "Prof. Msc. Danilo Lúcio", tag: "Roteiro & Som Digital", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },
+        { name: "Prof. Msc. Flávio Dias", tag: "Programação para Jogos", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },
+        { name: "Prof. Msc. Luca Pacheco", tag: "Edição de Video, Desenho & Pintura Digital", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },
+        { name: "Prof. Dr. Rennan Raffaele", tag: "Game Design & Gestão de Projetos", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"},
+        { name: "Prof. Msc. Rodrigo Duguay", tag: "Teoria dos Jogos", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" }
     ];
 
     const docentesGrid = document.getElementById("docentes-grid");
@@ -270,5 +605,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Reinicializar ícones que foram criados dinamicamente
+    lucide.createIcons();
+    // ----------------------------------------------------
+    // 7. FORMULÁRIO DE AGENDAMENTO E VALIDAÇÃO DE HORÁRIO
+    // ----------------------------------------------------
+    const scheduleForm = document.getElementById("schedule-form");
+    const horaInput = document.getElementById("hora-visita");
+    const dataInput = document.getElementById("data-visita");
+
+    // Impede selecionar datas passadas no calendário
+    if (dataInput) {
+        const hoje = new Date().toISOString().split("T")[0];
+        dataInput.setAttribute("min", hoje);
+    }
+
+    // Validação estrita para o intervalo das 14h às 18h
+    if (horaInput) {
+        horaInput.addEventListener("change", () => {
+            const hora = horaInput.value;
+            if (hora < "14:00" || hora > "18:00") {
+                alert("⚠️ Por favor, selecione um horário de atendimento válido: entre 14:00 e 18:00.");
+                horaInput.value = ""; // Limpa o campo se estiver fora do horário
+            }
+        });
+    }
+
+    if (scheduleForm) {
+        scheduleForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            const nome = document.getElementById("nome").value;
+            const zap = document.getElementById("whatsapp").value;
+            const data = document.getElementById("data-visita").value;
+            const hora = document.getElementById("hora-visita").value;
+            
+            // Verificação de segurança adicional do horário
+            if (hora < "14:00" || hora > "18:00") {
+                alert("⚠️ O horário da visita deve ser exclusivamente entre 14:00 e 18:00.");
+                return;
+            }
+
+            // Exemplo de alerta de sucesso (Você pode integrar com WhatsApp ou Email depois!)
+            alert(`✅ Solicitação enviada com sucesso, ${nome}!\n\n📅 Visita agendada para: ${data.split('-').reverse().join('/')} às ${hora}\n📱 Entraremos em contato no WhatsApp (${zap}) para confirmar.`);
+            
+            scheduleForm.reset();
+        });
+    }
+
+    // Reinicializa ícones Lucide adicionados nos novos botões e formulário
     lucide.createIcons();
 });
