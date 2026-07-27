@@ -1399,14 +1399,50 @@ html, body {
     .carousel-btn.next { right: 10px; }
 }
 
-/* 5. Cards de Egressos e Cartuchos GBC em telas pequenas */
+/* ====================================================
+   CORREÇÃO DEFINITIVA: INVESTIMENTO & CARTUCHOS GBC
+   ==================================================== */
+
+/* 1. Isolamento das Caixas de Investimento (Fim da sobreposição de bordas) */
 @media (max-width: 768px) {
-    .egressos-grid .card-generic {
-        flex: 0 0 min(85vw, 280px) !important;
+    .inv-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.8rem !important; /* Espaço bem definido e seguro entre cada caixa */
+        width: 100% !important;
     }
+    .inv-box {
+        width: 100% !important;
+        margin: 0 !important;
+        position: relative !important;
+        box-sizing: border-box !important;
+        overflow: hidden; /* Impede que sombras ou bordas invadam a caixa vizinha */
+    }
+}
+
+/* 2. Cartuchos GBC com Proporção Travada (Preserva a altura e largura retrô) */
+.gbc-image {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 10 !important; /* TRAVA A PROPORÇÃO: Se a largura mudar, a altura acompanha! */
+    object-fit: cover !important;
+}
+
+@media (max-width: 768px) {
     .gbc-grid {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
-        gap: 1.5rem !important;
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+        gap: 2.5rem !important;
+        justify-items: center !important; /* Centraliza os cartuchos na tela do celular */
+    }
+    
+    .gbc-cartridge {
+        width: 100% !important;
+        max-width: 310px !important; /* Evita que o cartucho estique na horizontal e fique esquisito */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        box-sizing: border-box !important;
     }
 }
 
