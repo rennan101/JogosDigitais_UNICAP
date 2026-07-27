@@ -371,6 +371,7 @@ document.addEventListener("DOMContentLoaded", () => {
             video: "",
             downloadLink: "https://jogos-digitais-unicap.itch.io/bichos-do-brasil"
         },
+        {
             title: "In My Room",
             year: "2021",
             genre: "Survivor Horror",
@@ -381,6 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
             video: "https://www.youtube.com/watch?v=oz_KWC1iNi4",
             downloadLink: "https://nightmarestudiosunicap.itch.io/in-my-room"
         }
+
     ];
 
     const gbcGrid = document.getElementById("gbc-grid");
