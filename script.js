@@ -551,8 +551,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const egressos = [
-        { name: "Henrique Cavalcanti", tag: "Senior Gameplay Programmer no Canada", desc: "Formado em 2021 na UNICAP. Atualmente desenvolve mecânicas AAA na Ubisoft Montreal.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150" },
-        { name: "Laura Vasconcelos", tag: "Co-fundadora do Estúdio Maracatu Games", desc: "Formada em 2022. Criou seu próprio estúdio indie incubado pelo Porto Digital, com 2 jogos na Steam.", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150" }
+{ 
+            name: "Igor Fialho", 
+            tag: "3D Character Artist / 3D Creature Artist", 
+            desc: "Formado em 2019. Trabalhou em empresas como a Kokku Games e Globant com modelagem de personagens 3D.", 
+            img: "assets/egressos/igorfialho.jpg",
+            linkedin: "https://www.linkedin.com/in/igor-fialho-380b1613a/?skipRedirect=true"         
+            },
+        { 
+            name: "Eudes Tenório", 
+            tag: "Desenvolvedor de Jogos", 
+            desc: "Formado em 2021. Trabalhou em empresas como Kokku Games, Manifesto Games e Happen.", 
+            img: "assets/egressos/eudes.png",
+            linkedin: "https://www.linkedin.com/in/eudestenorio/" // 
+        },
+           { 
+            name: "Ezio Filho", 
+            tag: "Gerente de Engenharia ", 
+            desc: "Formado em 2016. Trabalhou em empresas como Daisu Games, e Kokku Games.", 
+            img: "assets/egressos/ezio.jpeg",
+            linkedin: "https://www.linkedin.com/in/ezio-filho-793b75b5/" // 
+        }
     ];
 
     const egressosGrid = document.getElementById("egressos-grid");
