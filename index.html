@@ -416,5 +416,20 @@
     </div>
 
     <script src="script.js"></script>
+<!-- MODAL DO GAME BOY EXPANDIDO (SHOWREEL COM SUPER ZOOM) -->
+    <div id="gameboy-modal" class="modal-overlay hidden">
+        <div class="gameboy-modal-content">
+            <button class="modal-close" id="gameboy-close" title="Fechar (ESC)"><i data-lucide="x"></i></button>
+            <div class="gameboy-modal-frame">
+                <div class="gameboy-modal-wrapper">
+                    <!-- Imagem SVG do Game Boy em tamanho gigante -->
+                    <img src="assets/demo/jogosboy.svg" alt="Game Boy UNICAP Jogos" class="gameboy-modal-svg">
+                    
+                    <!-- Tela do Game Boy onde o vídeo será injetado via JS -->
+                    <div class="gameboy-modal-screen" id="gameboy-modal-screen"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

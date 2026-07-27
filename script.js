@@ -486,9 +486,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+// ====================================================
+    // FECHAMENTO INTELIGENTE DO MODAL (PARA O VÍDEO E SOM NA HORA)
+    // ====================================================
+    function fecharCartuchoModal() {
+        if (modal) {
+            modal.classList.add("hidden"); // Oculta o pop-up visualmente
+            if (modalBody) {
+                // LIMPA O HTML INTERNO: Destrói o iframe imediatamente, parando qualquer áudio ou vídeo!
+                modalBody.innerHTML = ""; 
+            }
+        }
+    }
+
     if (modalClose && modal) {
-        modalClose.addEventListener("click", () => modal.classList.add("hidden"));
-        modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
+        // Fechar ao clicar no botão "X"
+        modalClose.addEventListener("click", fecharCartuchoModal);
+        
+        // Fechar ao clicar fora da caixinha (no fundo escuro)
+        modal.addEventListener("click", (e) => { 
+            if (e.target === modal) fecharCartuchoModal(); 
+        });
+
+        // BÔNUS GAMER: Fechar ao pressionar a tecla "ESC" no teclado
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+                fecharCartuchoModal();
+            }
+        });
     }
     
     // ----------------------------------------------------
@@ -642,4 +667,56 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     lucide.createIcons();
+    // ====================================================
+    // EXPANSÃO INTERATIVA DO GAME BOY (HERO SECTION)
+    // ====================================================
+    const gameboyWrapper = document.querySelector(".gameboy-wrapper");
+    const gameboyModal = document.getElementById("gameboy-modal");
+    const gameboyModalScreen = document.getElementById("gameboy-modal-screen");
+    const gameboyClose = document.getElementById("gameboy-close");
+
+    function abrirGameboyModal() {
+        if (gameboyModal && gameboyModalScreen) {
+            // Injeta o vídeo com URL limpa e segura contra o "Erro 153" do YouTube
+            gameboyModalScreen.innerHTML = `
+                <iframe 
+                    src="https://www.youtube.com/embed/tpFPva4w9Sg?autoplay=1&rel=0" 
+                    title="Showreel Jogos UNICAP Expandido" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            `;
+            gameboyModal.classList.remove("hidden");
+            lucide.createIcons();
+        }
+    }
+
+    function fecharGameboyModal() {
+        if (gameboyModal) {
+            gameboyModal.classList.add("hidden");
+            if (gameboyModalScreen) {
+                gameboyModalScreen.innerHTML = ""; // Destrói o iframe e corta o som na hora!
+            }
+        }
+    }
+
+    // Clique no Game Boy da página inicial
+    if (gameboyWrapper) {
+        gameboyWrapper.addEventListener("click", abrirGameboyModal);
+    }
+
+    // Fechamento no "X", clique no fundo escuro ou tecla ESC
+    if (gameboyClose && gameboyModal) {
+        gameboyClose.addEventListener("click", fecharGameboyModal);
+        
+        gameboyModal.addEventListener("click", (e) => {
+            if (e.target === gameboyModal) fecharGameboyModal();
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && !gameboyModal.classList.contains("hidden")) {
+                fecharGameboyModal();
+            }
+        });
+    }
 });
