@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos Digitais | UNICAP - Nota 5 no MEC | Vestibular 2027.1</title>
+    <!-- Ícone na Aba do Navegador (Favicon) -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/jogos_icon.svg">
+    <!-- Google Fonts: Poppins (Leitura) & Press Start 2P (Retro/Arcade) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Lucide Icons Vetoriais -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER FIXO (GLASSMORPHISM) -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="#hero" class="logo">
+                <img src="assets/logos/Jogos_mec.svg" alt="Logo Jogos Digitais UNICAP" onerror="this.src='https://placehold.co/220x70/111827/00ff66?text=JOGOS+UNICAP'">
+            </a>
+            <nav class="nav" id="nav-menu">
+                <a href="#sobre">Sobre o Curso</a>
+                <a href="#matriz">Matriz Curricular</a>
+                <a href="#projetos">Projetos GBC</a>
+                <a href="#egressos">Egressos</a>
+                <a href="#infra">Infraestrutura</a>
+            </nav>
+            <a href="#investimento" class="btn-cta-pulse">Inscreva-se 2027.1</a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir Menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- SEÇÃO 1: HERO & INVESTIMENTO -->
+        <section id="hero" class="hero-section">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <div class="badges-group">
+                        <span class="badge-retro">VESTIBULAR 2027.1</span>
+                        <span class="badge-retro badge-gold">★ NOTA 5 NO MEC ★</span>
+                    </div>
+                    <h1>TRANSFORME SUA <span class="highlight-teal">PAIXÃO POR GAMES</span> NA SUA PROFISSÃO DO FUTURO.</h1>
+                    <p>O curso de <strong>Tecnologia em Jogos Digitais da UNICAP foi avaliado com Nota Máxima (5) pelo MEC</strong>, oferecendo uma formação prática, inovadora e imersiva de Tecnólogo em 3 anos com integração direta ao Porto Digital em Recife.</p>
+                    <div class="hero-actions">
+                        <a href="#investimento" class="btn-primary">INSCREVA-SE NO VESTIBULAR <i data-lucide="gamepad-2"></i></a>
+                        <a href="#matriz" class="btn-secondary">Ver Matriz Curricular</a>
+                    </div>
+                </div>
+<div class="hero-image">
+    <div class="gameboy-wrapper">
+        <!-- Imagem SVG do Game Boy -->
+        <img src="assets/demo/jogosboy.svg" alt="Game Boy UNICAP Jogos" class="gameboy-svg">
+        
+        <!-- Tela do Game Boy com o vídeo otimizado -->
+        <div class="gameboy-screen">
+            <iframe 
+                src="https://www.youtube-nocookie.com/embed/tpFPva4w9Sg?autoplay=1&mute=1&loop=1&playlist=tpFPva4w9Sg&controls=0&showinfo=0&rel=0&modestbranding=1" 
+                title="Showreel Jogos UNICAP" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>
+            </div>
+
+            <!-- CARD DE INVESTIMENTO -->
+            <div id="investimento" class="container investment-container">
+                <div class="investment-card">
+                    <div class="inv-header">
+                        <i data-lucide="award" class="icon-accent"></i>
+                        <h2>INVESTIMENTO & FINANCIAMENTO (2027.1)</h2>
+                    </div>
+                    <div class="inv-grid">
+                        <div class="inv-box highlight-box">
+                            <span class="label">Mensalidade com Desconto</span>
+                            <div class="price">R$ 958,50<span class="period">/mês</span></div>
+                            <span class="old-price">De R$ 1.065,00 (10% de pontualidade)</span>
+                        </div>
+                        <div class="inv-box">
+                            <span class="label">Matrícula 2027.1</span>
+                            <div class="price">R$ 958,50</div>
+                            <span class="desc">Equivalente à 1ª parcela, parcelável no cartão de crédito.</span>
+                        </div>
+                        <div class="inv-box benefits">
+                            <span class="label">Facilidades e Bolsas</span>
+                            <ul>
+                                <li><i data-lucide="check-circle-2"></i> <strong>Católica Investe / Pravaler / Credies:</strong> Financiamento de até 50% sem juros para pagar após formado.</li>
+                                <li><i data-lucide="check-circle-2"></i> <strong>Governamentais:</strong> Compatível com ProUni (50% e 100%) e FIES.</li>
+                                <li><i data-lucide="check-circle-2"></i> <strong>Descontos Institucionais:</strong> Para transferência externa, 2ª graduação e convênios corporativos.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="inv-cta">
+                        <a href="https://portal.unicap.br/w/jogos-digitais#presencial/sobre" target="_blank" class="btn-primary w-full">REALIZAR MINHA INSCRIÇÃO AGORA <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: SOBRE O CURSO (COM ABAS DE DOCENTES E PESQUISAS INTEGRADAS) -->
+        <section id="sobre" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <span class="badge-retro">ACADÊMICO</span>
+                    <h2>SOBRE O CURSO</h2>
+                </div>
+                
+                <div class="tabs-container">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="tab-desc">Descrição</button>
+                        <button class="tab-btn" data-tab="tab-perfil">Perfil Profissional</button>
+                        <button class="tab-btn" data-tab="tab-extensao">Extensão & Intercâmbio</button>
+                        <button class="tab-btn" data-tab="tab-avaliacao">Avaliação (PBL)</button>
+                        <button class="tab-btn" data-tab="tab-parceiros">Empresas Parceiras</button>
+                        <button class="tab-btn" data-tab="tab-docentes">Corpo Docente</button>
+                        <button class="tab-btn" data-tab="tab-pesquisas">Pesquisas & PIBIC</button>
+                    </div>
+
+                    <div class="tabs-content">
+                        <div class="tab-pane active" id="tab-desc">
+                            <h3>Formação de Excelência — Nota 5 no MEC</h3>
+                            <p>O curso de Tecnólogo em Jogos Digitais da UNICAP tem duração de 3 anos (6 semestres). Focado na prática de estúdio, design de games, programação avançada, modelagem 3D e arte digital, os alunos têm acesso a laboratórios de ponta e vivência real com os desafios da indústria global.</p>
+                        </div>
+                        
+                        <div class="tab-pane" id="tab-perfil">
+                            <h3>Competências do Egresso</h3>
+                            <p>O profissional formado pela UNICAP sai pronto para liderar nas seguintes áreas de atuação:</p>
+                            <div class="tags-grid">
+                                <span>Game Designer</span><span>Programador de Jogos</span><span>Artista Técnico (Tech Artist)</span>
+                                <span>Level Designer</span><span>Produtor Executivo</span><span>Modelador 3D / Animador</span>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="tab-extensao">
+                            <h3>Conexão Global e Impacto Social</h3>
+                            <p>Oportunidades únicas de intercâmbio com universidades parceiras na Europa e América do Norte. Atuação ativa no desenvolvimento de Serious Games, jogos educativos e soluções de gamificação para saúde no ecossistema de Recife.</p>
+                        </div>
+                        
+                        <div class="tab-pane" id="tab-avaliacao">
+                            <h3>Aprendizagem Baseada em Projetos (PBL)</h3>
+                            <p>Esqueça provas monótonas e teóricas sem aplicação. Nossa metodologia foca na produção contínua de jogos reais a cada semestre. Você é avaliado pela entrega dos seus protótipos, código funcional e direção artística, gerando um portfólio imbatível ao se formar.</p>
+                        </div>
+                        
+                        <div class="tab-pane" id="tab-parceiros">
+                            <h3>Conexão com o Porto Digital</h3>
+                            <div class="partners-grid">
+                                <div class="partner-logo">MANIFESTO GAMES</div>
+                                <div class="partner-logo">PUG DESIGNS</div>
+                                <div class="partner-logo">KOKU ASSETS</div>
+                                <div class="partner-logo">PORTO DIGITAL</div>
+                                <div class="partner-logo">ACERTE ARTE</div>
+                                <div class="partner-logo">MANGANGÁ TEAM</div>
+                            </div>
+                        </div>
+
+                        <!-- ABA DE CORPO DOCENTE INTEGRADA -->
+                        <div class="tab-pane" id="tab-docentes">
+                            <h3>Mestres e Doutores</h3>
+                            <p>Conheça os professores especialistas que guiarão sua formação acadêmica e profissional:</p>
+                            <div class="docentes-grid" id="docentes-grid">
+                                <!-- Gerado via JS -->
+                            </div>
+                        </div>
+
+                        <!-- ABA DE PESQUISAS INTEGRADA -->
+                        <div class="tab-pane" id="tab-pesquisas">
+                            <h3>Produção Científica e Iniciação (PIBIC)</h3>
+                            <p>Projetos de pesquisa liderados por nossos docentes e alunos, conectando inovação e tecnologia:</p>
+                            <div class="pesquisas-list" id="pesquisas-list">
+                                <!-- Gerado via JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COORDENAÇÃO -->
+                <div class="coord-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300" alt="Coordenador do Curso" class="coord-img">
+                    <div class="coord-info">
+                        <span class="badge-retro">COORDENAÇÃO</span>
+                        <h3>Prof. Dr. Anthony Albuquerque</h3>
+                        <p>Doutor em Ciência da Computação, especialista em Inteligência Artificial para Jogos e Level Design com mais de 15 anos de atuação acadêmica e na indústria criativa.</p>
+                        <a href="mailto:coord.jogos@unicap.br" class="btn-link"><i data-lucide="mail"></i> coord.jogos@unicap.br</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3: MATRIZ CURRICULAR INTERATIVA (POR PERÍODOS) -->
+        <section id="matriz" class="section bg-darker">
+            <div class="container">
+                <div class="section-title">
+                    <span class="badge-retro">ITINERÁRIOS FORMATIVOS</span>
+                    <h2>MATRIZ CURRICULAR INTERATIVA</h2>
+                    <p>Explore as disciplinas separadas por período. Clique no card para expandir a ementa e ver as tecnologias aplicadas.</p>
+                </div>
+
+                <!-- ABAS DE PERÍODOS -->
+                <div class="filter-pills period-tabs">
+                    <button class="pill active" data-period="1º SEMESTRE">1º Período</button>
+                    <button class="pill" data-period="2º SEMESTRE">2º Período</button>
+                    <button class="pill" data-period="3º SEMESTRE">3º Período</button>
+                    <button class="pill" data-period="4º SEMESTRE">4º Período</button>
+                    <button class="pill" data-period="5º SEMESTRE">5º Período</button>
+                    <button class="pill" data-period="all">Ver Todas as Disciplinas</button>
+                </div>
+
+                <!-- GRID ACCORDION DISCIPLINAS -->
+                <div class="curriculum-grid" id="curriculum-grid">
+                    <!-- Gerado via JavaScript de acordo com o Período selecionado -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 4: PROJETOS DOS ALUNOS (GAME BOY COLOR) -->
+        <section id="projetos" class="section">
+            <div class="container">
+                <div class="section-title text-center">
+                    <span class="badge-retro">NOSTALGIA & INOVAÇÃO</span>
+                    <h2>VITRINE DE PROJETOS</h2>
+                    <p>Clique no cartucho de Game Boy para inserir no console e jogar os jogos criados pelos nossos alunos.</p>
+                </div>
+
+                <div class="gbc-grid" id="gbc-grid">
+                    <!-- Cards inseridos via JS com formato Cartucho GBC -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 5: EGRESSOS -->
+        <section id="egressos" class="section bg-darker">
+            <div class="container">
+                <div class="section-title">
+                    <span class="badge-retro">MERCADO GLOBAL</span>
+                    <h2>SUCESSO DOS EGRESSOS</h2>
+                </div>
+                <div class="egressos-grid" id="egressos-grid">
+                    <!-- Gerado via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 6: INFRAESTRUTURA -->
+        <section id="infra" class="section">
+            <div class="container">
+                <div class="section-title text-center">
+                    <span class="badge-retro">TECNOLOGIA DE PONTA</span>
+                    <h2>INFRAESTRUTURA</h2>
+                    <p>Laboratórios gráficos, estúdios de captura de movimento (MoCap), áudio e VR à sua disposição.</p>
+                </div>
+                
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" id="carousel-prev"><i data-lucide="chevron-left"></i></button>
+                    <div class="carousel-track-wrapper">
+                        <div class="carousel-track" id="carousel-track">
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&q=80&w=800" alt="Lab Computação Gráfica"><span>Lab de Computação Gráfica (Macs & PCs RTX)</span></div>
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&q=80&w=800" alt="Sala de Realidade Virtual"><span>Estúdio de Realidade Virtual (VR) & Realidade Aumentada</span></div>
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800" alt="Estúdio de Captura"><span>Estúdio de Captura de Movimento (MoCap) & Áudio</span></div>
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" alt="Coworking"><span>Espaço de Coworking e Desenvolvimento de Jogos</span></div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" id="carousel-next"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <!-- LOGOS DO CURSO DE JOGOS E UNICAP LADO A LADO -->
+                <div class="footer-logos-group">
+                    <img src="assets/logos/Jogos_mec.svg" alt="Logo Jogos UNICAP" class="footer-logo-main" onerror="this.src='https://placehold.co/180x50/111827/00ff66?text=JOGOS+UNICAP'">
+                    <a href="https://portal.unicap.br/w/jogos-digitais#presencial/sobre" target="_blank" aria-label="Página oficial do curso na UNICAP" class="unicap-link">
+                        <img src="assets/logos/Unicap_logo.png" alt="Logo UNICAP" class="footer-logo-unicap" onerror="this.src='https://placehold.co/120x40/1f2937/ffffff?text=UNICAP'">
+                    </a>
+                </div>
+                <p>Curso de Graduação Tecnológica em Jogos Digitais da Universidade Católica de Pernambuco. <strong>Avaliado com Nota Máxima (5) pelo MEC.</strong></p>
+                
+                <!-- REDES SOCIAIS COM ÍCONES PERSONALIZADOS -->
+                <div class="social-links">
+                    <a href="https://www.instagram.com/jogosdigitais_unicap/" target="_blank" aria-label="Instagram">
+                        <img src="assets/icons/instagram_icon.svg" alt="Instagram Oficial Jogos UNICAP" class="custom-social-icon" onerror="this.src='https://placehold.co/24x24/1e293b/ffffff?text=IG'">
+                    </a>
+                    <a href="https://www.youtube.com/@jogosdigitaisunicap" target="_blank" aria-label="YouTube">
+                        <img src="assets/icons/youtube_icon.png" alt="YouTube Oficial Jogos UNICAP" class="custom-social-icon" onerror="this.src='https://placehold.co/24x24/1e293b/ffffff?text=YT'">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Navegação Rápida</h4>
+                <ul>
+                    <li><a href="#hero">Vestibular 2027.1</a></li>
+                    <li><a href="#investimento">Investimento & Descontos</a></li>
+                    <li><a href="#matriz">Matriz Curricular</a></li>
+                    <li><a href="#projetos">Projetos Alunos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <p><i data-lucide="map-pin"></i> Rua do Príncipe, 526 - Boa Vista, Recife - PE</p>
+                <p><i data-lucide="phone"></i> (81) 2119-4000</p>
+                <p><i data-lucide="mail"></i> secretaria.jogos@unicap.br</p>
+            </div>
+            
+            <!-- PARCEIROS INSTITUCIONAIS: APENAS COMBOGÓ -->
+            <div class="footer-col partners-col">
+                <h4>Parceiros Institucionais</h4>
+                <div class="footer-logos">
+                    <a href="https://www.instagram.com/combogounicap/" target="_blank" aria-label="Site Combogó">
+                        <img src="assets/logos/Combogo_logo.png" alt="Logo Combogó" class="combogo-logo" onerror="this.src='https://placehold.co/140x50/1f2937/ffffff?text=COMBOGÓ'">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026/2027 UNICAP - Jogos Digitais. Todos os direitos reservados. Processo Seletivo Vestibular 2027.1.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL POPUP PARA PROJETOS GBC -->
+    <div id="game-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close"><i data-lucide="x"></i></button>
+            <div class="modal-body" id="modal-body">
+                <!-- Conteúdo injetado via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
