@@ -100,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 </div>
             `;
-            // Efeito Accordion
             div.querySelector(".curriculum-header").addEventListener("click", () => {
                 div.classList.toggle("open");
             });
@@ -116,13 +115,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    renderCurriculum("1º SEMESTRE"); // Inicializa mostrando o 1º Período por padrão
+    renderCurriculum("1º SEMESTRE");
 
-// ----------------------------------------------------
+    // ----------------------------------------------------
     // 3. PROJETOS ALUNOS (GAME BOY COLOR CARTRIDGES)
     // ----------------------------------------------------
-    
-    // Funções globais para controlar o Carrossel do Modal
+    function converterParaEmbed(url) {
+        if (!url || url.trim() === "") return "";
+        let videoId = "";
+        if (url.includes("youtube.com/watch?v=")) {
+            videoId = url.split("v=")[1].split("&")[0];
+        } else if (url.includes("youtu.be/")) {
+            videoId = url.split("youtu.be/")[1].split("?")[0];
+        } else if (url.includes("youtube.com/embed/")) {
+            return url;
+        }
+        return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : url;
+    }
+
     window.mudarSlideModal = function(direcao) {
         const track = document.getElementById("modal-track");
         if (track) {
@@ -136,13 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const btns = document.querySelectorAll(".modal-car-btn");
         if (!track) return;
         const slides = track.querySelectorAll(".modal-slide");
-        // Se só tiver 1 imagem (ou nenhuma), esconde as setas de navegação
         if (slides.length <= 1) {
             btns.forEach(b => b.style.display = "none");
         } else {
             btns.forEach(b => b.style.display = "flex");
         }
-        // Se absolutamente nenhuma imagem carregar, mostra um placeholder
         if (slides.length === 0) {
             track.innerHTML = `<div class="modal-slide"><img src="https://placehold.co/600x360/1e293b/00C2CB?text=Sem+Imagens+Disponiveis" alt="Sem imagem"></div>`;
             btns.forEach(b => b.style.display = "none");
@@ -382,7 +390,6 @@ document.addEventListener("DOMContentLoaded", () => {
             video: "https://www.youtube.com/watch?v=oz_KWC1iNi4",
             downloadLink: "https://nightmarestudiosunicap.itch.io/in-my-room"
         }
-
     ];
 
     const gbcGrid = document.getElementById("gbc-grid");
@@ -392,7 +399,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (gbcGrid) {
         gbcGrid.innerHTML = "";
-        // Ordenação da data mais recente para a mais antiga (ex: 2026 -> 2020)
         gbcData.sort((a, b) => parseInt(b.year) - parseInt(a.year));
         
         gbcData.forEach((game) => {
@@ -409,23 +415,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     <img src="${capaInicial}" alt="${game.title}" class="gbc-image" 
                          onerror="const next = this.getAttribute('data-idx') ? parseInt(this.getAttribute('data-idx')) + 1 : 1; if(next < ${imagensPossiveis.length}) { this.setAttribute('data-idx', next); this.src='${game.pasta}/' + ['1','2','3','4','5','capa','cover','gameplay','screenshot','thumb','${game.pasta.split('/').pop()}'][Math.floor(next/5)] + '.' + ['gif','png','jpg','jpeg','svg'][next%5]; } else { this.src='https://placehold.co/300x160/1e293b/00C2CB?text=${encodeURIComponent(game.title)}'; }">
                     <h4>${game.title}</h4>
-                    <span class="year"> ${game.year}</span>
+                    <span class="year">${game.year}</span>
                 </div>
                 <div class="gbc-footer">UNICAP MEMORY CARD</div>
             `;
             
             cart.addEventListener("click", () => {
                 if (modalBody) {
-                    let mediaSection = "";
-                    if (game.video && game.video.trim() !== "") {
-                        mediaSection += `
-                            <div class="modal-video-container">
-                                <iframe src="${game.video}" title="${game.title} Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        `;
-                    }
-
-                    // MONTA O CARROSSEL (Cada imagem aparece apenas 1 vez como slide!)
                     let carouselSection = `
                         <div class="modal-carousel-container">
                             <button class="modal-car-btn prev" onclick="mudarSlideModal(-1)" title="Anterior"><i data-lucide="chevron-left"></i></button>
@@ -433,8 +429,18 @@ document.addEventListener("DOMContentLoaded", () => {
                             <div class="modal-carousel-track" id="modal-track">
                     `;
                     
+                    if (game.video && game.video.trim() !== "") {
+                        const embedUrl = converterParaEmbed(game.video);
+                        if (embedUrl) {
+                            carouselSection += `
+                                <div class="modal-slide">
+                                    <iframe src="${embedUrl}" title="${game.title} Trailer" class="modal-video-iframe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            `;
+                        }
+                    }
+
                     imagensPossiveis.forEach((imgSrc) => {
-                        // Se a imagem não existir no servidor, o onerror remove o slide inteiro e revalida as setas!
                         carouselSection += `
                             <div class="modal-slide">
                                 <img src="${imgSrc}" alt="${game.title}" onload="verificarSlidesModal()" onerror="this.parentElement.remove(); verificarSlidesModal();">
@@ -461,7 +467,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                         <h3>${game.title} <span class="modal-year">(${game.year})</span></h3>
                         
-                        ${mediaSection}
                         ${carouselSection}
                         
                         <div class="modal-desc">
@@ -474,7 +479,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 lucide.createIcons();
                 if (modal) {
                     modal.classList.remove("hidden");
-                    // Roda a verificação inicial para esconder setas caso o jogo tenha só 1 foto
                     setTimeout(window.verificarSlidesModal, 300);
                 }
             });
@@ -486,33 +490,36 @@ document.addEventListener("DOMContentLoaded", () => {
         modalClose.addEventListener("click", () => modal.classList.add("hidden"));
         modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
     }
+    
     // ----------------------------------------------------
     // 4. DOCENTES & EGRESSOS (GRIDS INTEGRADOS NAS ABAS E SEÇÃO)
     // ----------------------------------------------------
     const docentes = [
-        { name: "Prof. Dr. Anthony Lins", tag: "Programação para Jogos", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },
-        { name: "Prof. Msc. Alan Campos", tag: "Tópicos Avançados em Jogos", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },
-        { name: "Prof. Dr. Breno Carvalho", tag: "Design", desc:"", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },    
-        { name: "Profa. Msc. Cecilia da Fonte ", tag: "Processos de Design", desc: "", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150" },
-        { name: "Prof. Dr. Christiane Quaresma", tag: "Modelagem 3D, Animação 2D", desc: "", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" },
-        { name: "Prof. Msc. Danilo Lúcio", tag: "Roteiro & Som Digital", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },
-        { name: "Prof. Msc. Flávio Dias", tag: "Programação para Jogos", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },
-        { name: "Prof. Msc. Luca Pacheco", tag: "Edição de Video, Desenho & Pintura Digital", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" },
-        { name: "Prof. Dr. Rennan Raffaele", tag: "Game Design & Gestão de Projetos", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"},
-        { name: "Prof. Msc. Rodrigo Duguay", tag: "Teoria dos Jogos", desc: "", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" }
+        { name: "Prof. Dr. Anthony Lins", tag: "Programação para Jogos", desc: "", img: "assets/docentes/anthony.jpg", lattes: "http://lattes.cnpq.br/0000000000000001" },
+        { name: "Prof. Msc. Alan Campos", tag: "Tópicos Avançados em Jogos", desc: "", img: "assets/docentes/alan.jpg", lattes: "http://lattes.cnpq.br/0000000000000002" },
+        { name: "Prof. Dr. Breno Carvalho", tag: "Design", desc:"", img: "assets/docentes/breno.jpg", lattes: "http://lattes.cnpq.br/0000000000000003" },    
+        { name: "Profa. Msc. Cecilia da Fonte", tag: "Processos de Design", desc: "", img: "assets/docentes/cecilia.jpg", lattes: "http://lattes.cnpq.br/0000000000000004" },
+        { name: "Prof. Dr. Christiane Quaresma", tag: "Modelagem 3D, Animação 2D", desc: "", img: "assets/docentes/christiane.jpg", lattes: "http://lattes.cnpq.br/0000000000000005" },
+        { name: "Prof. Msc. Danilo Lúcio", tag: "Roteiro & Som Digital", desc: "", img: "assets/docentes/danilo.jpg", lattes: "http://lattes.cnpq.br/0000000000000006" },
+        { name: "Prof. Msc. Flávio Dias", tag: "Programação para Jogos", desc: "", img: "assets/docentes/flavio.jpg", lattes: "http://lattes.cnpq.br/0000000000000007" },
+        { name: "Prof. Msc. Luca Pacheco", tag: "Edição de Video, Desenho & Pintura Digital", desc: "", img: "assets/docentes/luca.jpg", lattes: "http://lattes.cnpq.br/0000000000000008" },
+        { name: "Prof. Dr. Rennan Raffaele", tag: "Game Design & Gestão de Projetos", desc: "", img: "assets/docentes/rennan.jpeg", lattes: "http://lattes.cnpq.br/1916664448861686" },
+        { name: "Prof. Msc. Rodrigo Duguay", tag: "Teoria dos Jogos", desc: "", img: "assets/docentes/rodrigo.jpg", lattes: "http://lattes.cnpq.br/0000000000000010" },
+        { name: "Profa. Msc. Graziella", tag: "Teoria dos Jogos", desc: "", img: "assets/docentes/graziella.jpg", lattes: "http://lattes.cnpq.br/0000000000000011" }
     ];
 
     const docentesGrid = document.getElementById("docentes-grid");
     if (docentesGrid) {
+        docentesGrid.innerHTML = "";
         docentes.forEach(d => {
             const card = document.createElement("div");
             card.className = "card-generic";
             card.innerHTML = `
-                <img src="${d.img}" alt="${d.name}" class="card-img">
+                <img src="${d.img}" alt="${d.name}" class="card-img" onerror="this.src='https://placehold.co/150x150/1e293b/00C2CB?text=UNICAP'">
                 <h4>${d.name}</h4>
                 <span class="sub">[${d.tag}]</span>
                 <p>${d.desc}</p>
-                <a href="http://lattes.cnpq.br" target="_blank" class="btn-link"><i data-lucide="award"></i> Currículo Lattes</a>
+                <a href="${d.lattes || 'http://lattes.cnpq.br'}" target="_blank" rel="noopener noreferrer" class="btn-link"><i data-lucide="award"></i> Currículo Lattes</a>
             `;
             docentesGrid.appendChild(card);
         });
@@ -591,8 +598,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Reinicializar ícones que foram criados dinamicamente
     lucide.createIcons();
+
     // ----------------------------------------------------
     // 7. FORMULÁRIO DE AGENDAMENTO E VALIDAÇÃO DE HORÁRIO
     // ----------------------------------------------------
@@ -600,19 +607,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const horaInput = document.getElementById("hora-visita");
     const dataInput = document.getElementById("data-visita");
 
-    // Impede selecionar datas passadas no calendário
     if (dataInput) {
         const hoje = new Date().toISOString().split("T")[0];
         dataInput.setAttribute("min", hoje);
     }
 
-    // Validação estrita para o intervalo das 14h às 18h
     if (horaInput) {
         horaInput.addEventListener("change", () => {
             const hora = horaInput.value;
             if (hora < "14:00" || hora > "18:00") {
                 alert("⚠️ Por favor, selecione um horário de atendimento válido: entre 14:00 e 18:00.");
-                horaInput.value = ""; // Limpa o campo se estiver fora do horário
+                horaInput.value = "";
             }
         });
     }
@@ -626,19 +631,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = document.getElementById("data-visita").value;
             const hora = document.getElementById("hora-visita").value;
             
-            // Verificação de segurança adicional do horário
             if (hora < "14:00" || hora > "18:00") {
                 alert("⚠️ O horário da visita deve ser exclusivamente entre 14:00 e 18:00.");
                 return;
             }
 
-            // Exemplo de alerta de sucesso (Você pode integrar com WhatsApp ou Email depois!)
             alert(`✅ Solicitação enviada com sucesso, ${nome}!\n\n📅 Visita agendada para: ${data.split('-').reverse().join('/')} às ${hora}\n📱 Entraremos em contato no WhatsApp (${zap}) para confirmar.`);
-            
             scheduleForm.reset();
         });
     }
 
-    // Reinicializa ícones Lucide adicionados nos novos botões e formulário
     lucide.createIcons();
 });
