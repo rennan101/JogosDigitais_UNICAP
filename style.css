@@ -614,12 +614,104 @@ body {
 .gbc-footer { text-align: center; margin-top: 0.8rem; font-family: var(--font-retro); font-size: 0.6rem; color: #64748b; font-weight: bold; }
 
 /* GRIDS GERAIS (DOCENTES, EGRESSOS, PESQUISAS) */
-.docentes-grid, .egressos-grid {
+.docentes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
 }
 
+/* Grade dos Egressos transformada em Carrossel Horizontal */
+.egressos-grid {
+    display: flex !important;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1.5rem;
+    scroll-snap-type: x mandatory; /* Efeito magnético ao rolar */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Suavidade em telas touch/mobile */
+}
+/* Trava a largura dos cards para não serem esmagados na tela */
+.egressos-grid .card-generic {
+    flex: 0 0 310px; /* Largura fixa e confortável para cada ex-aluno */
+    scroll-snap-align: start; /* Alinha o card no início ao parar de rolar */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Estilização da Barra de Rolagem (Scrollbar) temática em Teal */
+.egressos-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.egressos-grid::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.egressos-grid::-webkit-scrollbar-thumb {
+    background: var(--accent-teal);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 194, 203, 0.5);
+}
+
+.egressos-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-teal-hover);
+}
+/* ====================================================
+   BOTÕES DE ROLAGEM (< >) ISOLADOS NAS EXTREMIDADES
+   ==================================================== */
+.egressos-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* CRIA UM CORREDOR SEGURO DE 56PX NAS LATERAIS PARA OS BOTÕES NÃO TOCAREM NOS CARDS */
+    padding: 0 3.5rem; 
+}
+
+/* Botões flutuantes com fundo escuro reforçado, efeito Glassmorphism & Teal */
+.egressos-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background: rgba(15, 23, 42, 0.95);
+    border: 2px solid var(--accent-teal);
+    color: #fff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.egressos-btn:hover {
+    background: var(--accent-teal);
+    color: #000;
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 0 25px rgba(0, 194, 203, 0.8);
+}
+
+/* Ancorados nas extremidades exatas da margem de respiro, 100% longe dos textos! */
+.egressos-btn.prev { left: 0; }
+.egressos-btn.next { right: 0; }
+
+/* UX para Celulares e Tablets: Remove o espaçamento extra e oculta as setas,
+   pois no mobile a navegação é feita de forma nativa arrastando com o dedo */
+@media (max-width: 768px) {
+    .egressos-carousel-wrapper {
+        padding: 0; /* Devolve 100% da largura da tela no celular */
+    }
+    .egressos-btn {
+        display: none !important;
+    }
+}
 .card-generic {
     border-radius: 10px;
     padding: 1.5rem;
@@ -1223,5 +1315,152 @@ input[type="time"]::-webkit-calendar-picker-indicator {
         right: 10px;
         width: 38px;
         height: 38px;
+    }
+}
+/* ====================================================
+   BLINDAGEM RESPONSIVA TOTAL (MOBILE ANTI-PINCH OUT)
+   ==================================================== */
+
+/* 1. Trava Global: Impede qualquer elemento de vazar horizontalmente */
+html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden !important;
+}
+
+/* 2. Game Boy 100% Adaptável na Hero Section (Fim do vazamento dos 420px) */
+@media (max-width: 768px) {
+    .gameboy-wrapper {
+        width: min(100%, 340px) !important;
+        height: auto !important;
+        aspect-ratio: 420 / 680 !important;
+    }
+    .gameboy-svg {
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .hero-grid {
+        gap: 2rem !important;
+    }
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-secondary {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* 3. Ajuste Inteligente da Tipografia Retrô (Press Start 2P) */
+@media (max-width: 768px) {
+    .inv-box .price {
+        font-size: 1.3rem !important;
+        word-break: break-all;
+        line-height: 1.4;
+    }
+    .badge-retro {
+        font-size: 0.6rem !important;
+        padding: 0.4rem 0.6rem !important;
+    }
+    .partner-btn {
+        font-size: 0.65rem !important;
+        padding: 0.8rem 1rem !important;
+        width: 100%;
+        text-align: center;
+        white-space: normal !important;
+        word-break: break-word;
+    }
+}
+
+/* 4. Carrossel de Infraestrutura (Botões sobrepostos para não esmagar a foto) */
+@media (max-width: 768px) {
+    .carousel-container {
+        position: relative;
+        padding: 0 !important;
+        gap: 0 !important;
+        width: 100%;
+    }
+    .carousel-slide img {
+        height: 320px !important;
+    }
+    /* No celular, os botões flutuam sobre as bordas da foto */
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        background: rgba(15, 23, 42, 0.85) !important;
+        box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    }
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+}
+
+/* 5. Cards de Egressos e Cartuchos GBC em telas pequenas */
+@media (max-width: 768px) {
+    .egressos-grid .card-generic {
+        flex: 0 0 min(85vw, 280px) !important;
+    }
+    .gbc-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+        gap: 1.5rem !important;
+    }
+}
+
+/* 6. Abas, Formulário, Modais e Rodapé sem quebra de layout */
+@media (max-width: 768px) {
+    .tabs-header {
+        gap: 0.5rem;
+        padding-bottom: 0.8rem;
+        -webkit-overflow-scrolling: touch;
+    }
+    .tab-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+    .tab-pane {
+        padding: 1.5rem !important;
+    }
+    .schedule-container {
+        padding: 1.5rem !important;
+    }
+    .footer-logos-group {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 1.2rem !important;
+    }
+    .footer-logo-main {
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 55px !important;
+    }
+    .unicap-link img {
+        max-height: 42px !important;
+    }
+    .modal-content {
+        padding: 1.2rem !important;
+        max-height: 85vh !important;
+    }
+    .modal-carousel-container {
+        height: 240px !important;
+    }
+}
+
+/* 7. Ajustes finos para celulares ultra estreitos (320px - 380px) */
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 1.8rem !important;
+    }
+    .section-title h2 {
+        font-size: 1.6rem !important;
+    }
+    .inv-box .price {
+        font-size: 1.1rem !important;
+    }
+    .coord-card {
+        padding: 1.5rem !important;
     }
 }

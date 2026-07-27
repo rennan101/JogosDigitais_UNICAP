@@ -563,33 +563,124 @@ document.addEventListener("DOMContentLoaded", () => {
             tag: "Desenvolvedor de Jogos", 
             desc: "Formado em 2021. Trabalhou em empresas como Kokku Games, Manifesto Games e Happen.", 
             img: "assets/egressos/eudes.png",
-            linkedin: "https://www.linkedin.com/in/eudestenorio/" // 
+            linkedin: "https://www.linkedin.com/in/eudestenorio/" 
         },
            { 
             name: "Ezio Filho", 
-            tag: "Gerente de Engenharia ", 
-            desc: "Formado em 2016. Trabalhou em empresas como Daisu Games, e Kokku Games.", 
+            tag: "Engineering Manager", 
+            desc: "Formado em 2016. Trabalhou em empresas como Daisu Games e Kokku Games.", 
             img: "assets/egressos/ezio.jpeg",
-            linkedin: "https://www.linkedin.com/in/ezio-filho-793b75b5/" // 
+            linkedin: "https://www.linkedin.com/in/ezio-filho-793b75b5/" 
+        },
+           { 
+            name: "Rafael Miranda", 
+            tag: "QA Intern", 
+            desc: "Formado em 2024. Trabalhou em empresas como CESAR.", 
+            img: "assets/egressos/rafaelmiranda.png",
+            linkedin: "https://www.linkedin.com/in/rapheto/" 
+        },
+          { 
+            name: "Maria Fernanda Poletine", 
+            tag: "Game Producer", 
+            desc: "Formada em 2022. Trabalhou em empresas como Kokku Games, DX Gameworks e Osten Games.", 
+            img: "assets/egressos/mariafernanda.png",
+            linkedin: "https://www.linkedin.com/in/maria-fernanda-poletine-8303121b2/" 
+        },
+         { 
+            name: "Davi Fox", 
+            tag: "Game Designer", 
+            desc: "Formado em 2022. Trabalhou em empresas como Puga Studios, Manifesto Games, OPA Games, e Afterverse.", 
+            img: "assets/egressos/davi.jpeg",
+            linkedin: "https://www.linkedin.com/in/davi-fox" 
+        },
+         { 
+            name: "André Luna", 
+            tag: "Game Designer / Level Designer", 
+            desc: "Formado em 2022. Trabalhou em empresas como BBTV, Point'N Sheep, e Afil Games.", 
+            img: "assets/egressos/andre.jpeg",
+            linkedin: "https://www.linkedin.com/in/andreggluna/" 
+        },
+          { 
+            name: "Icaro Correia", 
+            tag: "Lead Character Artist", 
+            desc: "Formado em 2017. Trabalhou em empresas como Roarty Digital, Diorama Digital, BlackZebra studio.", 
+            img: "assets/egressos/icaro.jpeg",
+            linkedin: "https://www.linkedin.com/in/icaro-correia/" 
+        },
+         { 
+            name: "Carolina Queiroz", 
+            tag: "Game Designer", 
+            desc: "Formada em 2024. Trabalhou em empresas como Raid Hut, Obitus Games e Manifesto Games.", 
+            img: "assets/egressos/carol.jpeg",
+            linkedin: "https://www.linkedin.com/in/carolqueiroz-gd" 
+        },
+          { 
+            name: "Henrique Gonçalves", 
+            tag: "Software Enginner", 
+            desc: "Formado em 2017. Trabalhou em empresas como Rumpi, CESAR e Thorpe System", 
+            img: "assets/egressos/henrique.jpeg",
+            linkedin: "https://www.linkedin.com/in/henrique-gonçalves-71a0044b/" 
+        },
+         { 
+            name: "Matheus C. Germoglio", 
+            tag: "Team Lead/Consultant em Design de Produto", 
+            desc: "Formado em 2019. Trabalhou em empresas como Accenture Brasil", 
+            img: "assets/egressos/mateusg.png",
+            linkedin: "https://www.linkedin.com/in/henrique-gonçalves-71a0044b/" 
+        },
+         { 
+            name: "Valmir Neto", 
+            tag: "Game Designer & QA", 
+            desc: "Formado em 2019. Trabalhou em empresas como Nukearts, Manifesto Games & CodeBuddy.", 
+            img: "assets/egressos/valmir.png",
+            linkedin: "https://www.linkedin.com/in/valmirurbanneto/" 
+        },
+         { 
+            name: "Arthur Santos", 
+            tag: "Stylized 3D Characters Artist", 
+            desc: "Formado em 2019. Trabalhou em empresas como Companion Group, Room 8 Studio, PUGA Studios.", 
+            img: "assets/egressos/arthur.jpg",
+            linkedin: "https://www.linkedin.com/in/arthur-santos-66452a119/" 
         }
+        
     ];
 
-    const egressosGrid = document.getElementById("egressos-grid");
+const egressosGrid = document.getElementById("egressos-grid");
     if (egressosGrid) {
+        egressosGrid.innerHTML = ""; // Limpa a grade antes de gerar
+        
         egressos.forEach(e => {
             const card = document.createElement("div");
             card.className = "card-generic";
             card.innerHTML = `
-                <img src="${e.img}" alt="${e.name}" class="card-img">
-                <h4>${e.name}</h4>
-                <span class="sub">${e.tag}</span>
-                <p>${e.desc}</p>
-                <a href="https://linkedin.com" target="_blank" class="btn-link"><i data-lucide="linkedin"></i> LinkedIn</a>
+                <div>
+                    <img src="${e.img}" alt="${e.name}" class="card-img" onerror="this.src='https://placehold.co/150x150/1e293b/00C2CB?text=UNICAP'">
+                    <h4>${e.name}</h4>
+                    <span class="sub">[${e.tag}]</span>
+                    <p>${e.desc}</p>
+                </div>
+                <!-- AGORA PUXANDO O LINK DE CADA ALUNO DA SUA LISTA -->
+                <a href="${e.linkedin || 'https://www.linkedin.com'}" target="_blank" rel="noopener noreferrer" class="btn-link"><i data-lucide="linkedin"></i> LinkedIn</a>
             `;
             egressosGrid.appendChild(card);
         });
+        lucide.createIcons(); // Recarrega os ícones do LinkedIn para garantir a exibição
     }
+const egressosPrev = document.getElementById("egressos-prev");
+    const egressosNext = document.getElementById("egressos-next");
 
+    if (egressosPrev && egressosNext && egressosGrid) {
+        // Cada card tem 310px + 24px de gap = 334px por clique
+        const passoRolagem = 335; 
+
+        egressosPrev.addEventListener("click", () => {
+            egressosGrid.scrollBy({ left: -passoRolagem, behavior: "smooth" });
+        });
+
+        egressosNext.addEventListener("click", () => {
+            egressosGrid.scrollBy({ left: passoRolagem, behavior: "smooth" });
+        });
+    }
     // ----------------------------------------------------
     // 5. PESQUISAS (INTEGRADAS NA ABA)
     // ----------------------------------------------------
