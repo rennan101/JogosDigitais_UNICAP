@@ -121,51 +121,78 @@ document.addEventListener("DOMContentLoaded", () => {
 // ----------------------------------------------------
     // 3. PROJETOS ALUNOS (GAME BOY COLOR CARTRIDGES)
     // ----------------------------------------------------
+    
+    // Funções globais para controlar o Carrossel do Modal
+    window.mudarSlideModal = function(direcao) {
+        const track = document.getElementById("modal-track");
+        if (track) {
+            const width = track.clientWidth;
+            track.scrollBy({ left: direcao * width, behavior: 'smooth' });
+        }
+    };
+
+    window.verificarSlidesModal = function() {
+        const track = document.getElementById("modal-track");
+        const btns = document.querySelectorAll(".modal-car-btn");
+        if (!track) return;
+        const slides = track.querySelectorAll(".modal-slide");
+        // Se só tiver 1 imagem (ou nenhuma), esconde as setas de navegação
+        if (slides.length <= 1) {
+            btns.forEach(b => b.style.display = "none");
+        } else {
+            btns.forEach(b => b.style.display = "flex");
+        }
+        // Se absolutamente nenhuma imagem carregar, mostra um placeholder
+        if (slides.length === 0) {
+            track.innerHTML = `<div class="modal-slide"><img src="https://placehold.co/600x360/1e293b/00C2CB?text=Sem+Imagens+Disponiveis" alt="Sem imagem"></div>`;
+            btns.forEach(b => b.style.display = "none");
+        }
+    };
+
+    function gerarListaImagens(pasta) {
+        const nomesPossiveis = ["1", "2", "3", "4", "5", "capa", "cover", "gameplay", "screenshot", "thumb", pasta.split("/").pop()];
+        const extensoes = ["gif", "png", "jpg", "jpeg", "svg"];
+        let lista = [];
+        nomesPossiveis.forEach(nome => {
+            extensoes.forEach(ext => {
+                lista.push(`${pasta}/${nome}.${ext}`);
+            });
+        });
+        return lista;
+    }
+
     const gbcData = [
         {
             title: "Tap Slap Chicken",
             year: "2022",
-            genre: "Arcade / Ritmo",
-            platform: "PC (Windows) / WebGL",
-            desc: "Um jogo de ação e ritmo caótico e divertidíssimo onde você controla uma galinha marcial que precisa distribuir tapas nos inimigos exatamente no compasso da música para sobreviver.",
-            devs: "Mateus Assis & Equipe",
-            capa: "assets/projetos/TapSlapChicken/1.png",
-            imagens: [
-                "assets/projetos/TapSlapChicken/1.png",
-                "assets/projetos/TapSlapChicken/2.png",
-                "assets/projetos/TapSlapChicken/3.png"
-            ],
-            video: "", // Coloque o link de incorporação (embed) do YouTube/Vimeo aqui
-            downloadLink: "" // Coloque o link de download ou do Itch.io aqui
+            genre: "Clicker",
+            platform: "Web",
+            desc: "Um jogo clicker, onde seu objetivo é assar frangos na base do tapa! Construa uma fábrica de assar frango no tapa e obtenha sucesso nesse mundo capitalista!.",
+            devs: "Mateus Assis, André Luna, George Muniz, Milena, Maria Eduarda",
+            pasta: "assets/projetos/TapSlapChicken",
+            video: "", 
+            downloadLink: "https://mateuzoassis.itch.io/tap-slap-chicken"
         },
         {
             title: "Void Arena",
             year: "2026",
-            genre: "Ação / Arena Sci-Fi",
+            genre: "Survivor",
             platform: "PC (Windows)",
-            desc: "Batalha espacial de alta velocidade em uma arena cibernética zero-G. Combates multiplayer locais e intensos focados em reflexos rápidos, movimentação tática e controle de território.",
-            devs: "Equipe UNICAP Jogos",
-            capa: "assets/projetos/Void_Arena/1.png",
-            imagens: [
-                "assets/projetos/Void_Arena/1.png",
-                "assets/projetos/Void_Arena/2.png"
-            ],
-            video: "",
-            downloadLink: ""
+            desc: "Void Arena é um roguelike no qual você controla o detetive Faraday, que domina as artes ocultas e invoca um buraco negro! Ajude-o a derrotar o maior número possível de inimigos aprimorando o buraco negro.",
+            devs: "Luiz Antônio, Júlia Arruda",
+            pasta: "assets/projetos/Void_Arena",
+            video: "https://www.youtube.com/watch?v=ZPYkHOUSpZM",
+            downloadLink: "https://jogos-digitais-unicap.itch.io/void-arena"
         },
         {
             title: "Repaint",
             year: "2025",
-            genre: "Plataforma / Puzzle",
+            genre: "Ação / Aventura",
             platform: "PC / WebGL",
             desc: "Uma aventura de plataforma criativa onde o jogador utiliza mecânicas de pintura e cores para alterar as propriedades físicas do cenário, revelando plataformas ocultas e resolvendo enigmas visuais.",
             devs: "Equipe UNICAP Jogos",
-            capa: "assets/projetos/Repaint/1.png",
-            imagens: [
-                "assets/projetos/Repaint/1.png",
-                "assets/projetos/Repaint/2.png"
-            ],
-            video: "",
+            pasta: "assets/projetos/Repaint",
+            video: "https://www.youtube.com/watch?v=H6cWE63HZyk",
             downloadLink: ""
         },
         {
@@ -173,60 +200,44 @@ document.addEventListener("DOMContentLoaded", () => {
             year: "2026",
             genre: "Survival Horror",
             platform: "PC (Windows)",
-            desc: "Jogo de terror psicológico e sobrevivência ambientado em uma estação de pesquisa isolada e congelada no polo sul. Gerencie recursos escassos enquanto descobre os segredos de uma anomalia biológica.",
-            devs: "Equipe UNICAP Jogos",
-            capa: "assets/projetos/Protocolo67/1.png",
-            imagens: [
-                "assets/projetos/Protocolo67/1.png",
-                "assets/projetos/Protocolo67/2.png"
-            ],
+            desc: "Século XXII, a humanidade deixou de temer a guerras entre si, pois algo muito pior surgiu... Portais de origem desconhecidos surgiram em diversos pontos do planeta, e deles, criaturas grotescas e jamais vistas começam a invadir a Terra. Como medida de defesa, foram criadas as Torres de Batalha, estruturas colossais equipadas com tecnologia militar de alto nível projetadas para conter o avanço das criaturas e selar os portais.",
+            devs: "Oto Macabeu, Hugo Beltrão, Alexandro Cavalcanti, Yve Correia",
+            pasta: "assets/projetos/Protocolo67",
             video: "",
             downloadLink: ""
         },
         {
             title: "Pollaka",
             year: "2022",
-            genre: "Aventura / Plataforma",
-            platform: "PC / WebGL",
-            desc: "Explore um mundo místico e estilizado repleto de desafios de agilidade. Com uma arte visual encantadora, o jogador atravessa biomas perigosos desvendando segredos antigos.",
-            devs: "Lil Shopa & Equipe",
-            capa: "assets/projetos/Pollaka/1.png",
-            imagens: [
-                "assets/projetos/Pollaka/1.png",
-                "assets/projetos/Pollaka/2.png"
-            ],
-            video: "",
+            genre: "Point'n Click",
+            platform: "PC",
+            desc: "Pollaka é um jogo focado na experiência emocional do jogador com elementos de quebra-cabeças e interativos, ele conta a história de Pollaka, uma garota fofa com cabelo castanho e seu avô, um homem doce com cabelo branco. No jogo você terá fotos que foram rasgadas e como Pollaka adulta, terá que colá-las de volta para entrar e lembrar das memórias que ela teve com seu avô, que pode ser interativo através de minijogos. O jogo é dividido em três capítulos: infância, adolescência e idade adulta.",
+            devs: "Marcos Vinicius, Maria Fernanda, Vitoria Bertolini, Lêniton Carneiro, Artur Queiroz",
+            pasta: "assets/projetos/Pollaka",
+            video: "https://www.youtube.com/watch?v=T7f-aZXNjf4",
             downloadLink: ""
         },
         {
             title: "Pesadelo Macabro",
             year: "2023",
-            genre: "Terror em 1ª Pessoa",
+            genre: "Survival Horror / Puzzle",
             platform: "PC (Windows)",
-            desc: "Uma experiência imersiva de terror e suspense em primeira pessoa. Explore ambientes sombrios, resolva enigmas complexos e escape de entidades assustadoras em uma atmosfera altamente tensa.",
-            devs: "Pedro CS & Equipe",
-            capa: "assets/projetos/Pesadelo_Macabro/1.png",
-            imagens: [
-                "assets/projetos/Pesadelo_Macabro/1.png",
-                "assets/projetos/Pesadelo_Macabro/2.png"
-            ],
-            video: "",
-            downloadLink: ""
+            desc: "Pesadelo Macabro é um jogo de terror, em primeira pessoa, onde o jogador se vê preso dentro de um pesadelo em que precisa escapar do Papa figo,  uma figura lendária do folclore brasileiro, conhecida principalmente em Pernambuco, Bahia e na Paraíba. O jogador controla uma estudante universitária que, após passar várias horas fazendo uma pesquisa sobre o folclore Pernambucano, exausta,  cai num sono profundo e acaba vivendo uma experiência sobrenatural. Lá ela descobre o destino terrível de quem é pego pelo monstro e usa toda sua astúcia para salvar a si e a criança que também está presa na casa do Papa figo.",
+            devs: "Carlos Roberto, Péricles Vinícius, Maria Luiza, Pedro Sousa",
+            pasta: "assets/projetos/Pesadelo_Macabro",
+            video: "https://www.youtube.com/watch?v=xrvIwRYhRRk",
+            downloadLink: "https://pedrocs.itch.io/pesadelo-macabro"
         },
         {
             title: "Pedra do Rei",
             year: "2024",
-            genre: "RPG / Aventura",
+            genre: "Ação / Aventura",
             platform: "PC (Windows)",
-            desc: "Inspirado na cultura e folclore regional, este RPG de ação leva o jogador a explorar ruínas esquecidas e enfrentar criaturas lendárias em busca da mítica relíquias que dá nome ao jogo.",
-            devs: "Equipe UNICAP Jogos",
-            capa: "assets/projetos/Pedra_do_Rei/1.png",
-            imagens: [
-                "assets/projetos/Pedra_do_Rei/1.png",
-                "assets/projetos/Pedra_do_Rei/2.png"
-            ],
-            video: "",
-            downloadLink: ""
+            desc: "A Pedra do Rei é um jogo de ação e aventura, com gráficos 2D e visão top-down, onde o jogador controla o personagem Cícero, que está em uma missão para recuperar o sol do reino roubado pelo Rei morto, enquanto luta com os aliados do rei durante sua missão. Totalmente falado em portugês, o jogo bebeu da fonte da música e literatura do movimento armorial pernambucano para o seu desenvolvimento. O jogo é uma história que se baseia em diversos elementos da cultura armorial e desafia seus jogadores a vencer os desafios da missão.",
+            devs: "Marcelo Henrique, Gabriela Albququerque, Ademir Melo, Pedro Mafra",
+            pasta: "assets/projetos/Pedra_do_Rei",
+            video: "https://www.youtube.com/watch?v=Adg_yTkxX1I",
+            downloadLink: "https://jogos-digitais-unicap.itch.io/pedra-do-rei"
         },
         {
             title: "One Bullet Man",
@@ -235,58 +246,42 @@ document.addEventListener("DOMContentLoaded", () => {
             platform: "PC / WebGL",
             desc: "Você entra em salas repletas de inimigos, mas sua arma possui apenas uma única bala. Calcule trajetórias precisas, aproveite rebotes nas paredes e reações em cadeia para eliminar todos com um só disparo.",
             devs: "Equipe UNICAP Jogos",
-            capa: "assets/projetos/One_Bullet_Man/1.png",
-            imagens: [
-                "assets/projetos/One_Bullet_Man/1.png",
-                "assets/projetos/One_Bullet_Man/2.png"
-            ],
-            video: "",
-            downloadLink: ""
+            pasta: "assets/projetos/One_Bullet_Man",
+            video: "https://www.youtube.com/watch?v=31FWtew4UAA",
+            downloadLink: "https://davifox.itch.io/one-bullet-man"
         },
         {
             title: "Meowgic School",
             year: "2024",
             genre: "Aventura / Magia",
-            platform: "PC / WebGL",
-            desc: "Assuma o papel de um adorável gato feiticeiro em uma academia de magia! Combine feitiços elementais, resolva quebra-cabeças mágicos e proteja os corredores da escola contra criaturas travessas.",
-            devs: "GameAxis & Equipe",
-            capa: "assets/projetos/Meowgic School/1.png",
-            imagens: [
-                "assets/projetos/Meowgic School/1.png",
-                "assets/projetos/Meowgic School/2.png"
-            ],
-            video: "",
-            downloadLink: ""
+            platform: "VR - Meta Quest 2+",
+            desc: "A Meowgic School é um jogo de exercícios de realidade virtual projetado para pessoas que podem estar procurando uma maneira divertida de combater estilos de vida sedentários. Combinamos os populares gêneros móveis Match 3 e Bubble Shooter com a Realidade Virtual para criar uma experiência de jogo ativa. Você é um aluno gato na Meowgic School, a escola mais prestigiada de magia elemental do mundo, onde vários magos com feitos incríveis já estiveram no passado.",
+            devs: "Carolina Queiroz, Gleydson Tavares, Igor Gustavo Sampaio, Raquel Marreira",
+            pasta: "assets/projetos/Meowgic School",
+            video: "https://www.youtube.com/watch?v=Thzv0zgcXzc",
+            downloadLink: "https://gameaxis.itch.io/meowgic-school"
         },
         {
             title: "Infernal Gate",
             year: "2021",
-            genre: "Hack and Slash / Roguelike",
+            genre: "Metroidvania",
             platform: "PC (Windows)",
-            desc: "Ação frenética e combate intenso contra hordas demoníacas. Escolha melhorias estratégicas a cada rodada, domine combos de armas e lute para selar os portões do submundo antes que seja tarde.",
+            desc: "Este jogo é um Metroidvania no estilo de fantasia sombria. Com exploração de ruínas e castelos e além de demônios pra expurgar deste mundo.",
             devs: "Ricardo Vitor & Equipe",
-            capa: "assets/projetos/Infernal Gate/1.png",
-            imagens: [
-                "assets/projetos/Infernal Gate/1.png",
-                "assets/projetos/Infernal Gate/2.png"
-            ],
-            video: "",
-            downloadLink: ""
+            pasta: "assets/projetos/Infernal Gate",
+            video: "https://www.youtube.com/watch?v=EizURHXf_w0",
+            downloadLink: "https://ricardo-vitor.itch.io/infernal-gate"
         },
         {
             title: "Eiffel Clue Agency",
             year: "2024",
-            genre: "Investigação / Mistério",
-            platform: "PC / WebGL",
-            desc: "Um jogo de detetive focado em narrativa e dedução lógica. Conduza investigações na França, interrogue suspeitos excêntricos, cruze depoimentos e analise cenas de crime para desmascarar os culpados.",
-            devs: "Equipe UNICAP Jogos",
-            capa: "assets/projetos/Eiffel_Clue/1.png",
-            imagens: [
-                "assets/projetos/Eiffel_Clue/1.png",
-                "assets/projetos/Eiffel_Clue/2.png"
-            ],
-            video: "",
-            downloadLink: ""
+            genre: "Investigação / Plataformer",
+            platform: "PC",
+            desc: "Descubra os segredos escondidos nas ruas de Paris em 1924 com o lançamento do jogo Eiffel Clue Agency! Torne-se um detetive destemido, determinado a resolver um mistério envolvendo o roubo de artefatos olímpicos durante os Jogos Olímpicos daquele ano. Descubra pistas, aprofunde-se na história e explore uma narrativa imersiva enquanto enfrenta desafios de plataforma e furtividade!",
+            devs: "Aryel Omenah Batista de Souza (sua memória está salva), João Vítor Cabral de Carvalho Gonçalves, Rodrigo Luiz de Souza Couto, Pedro Paz Alves Brito Monteiro, João Pedro  Rocha Gouveia",
+            pasta: "assets/projetos/Eiffel_Clue",
+            video: "https://www.youtube.com/watch?v=mXkOjC7fYUs",
+            downloadLink: "https://jogos-digitais-unicap.itch.io/eiffel-clue-agency"
         },
         {
             title: "Cooking Guns",
@@ -294,122 +289,97 @@ document.addEventListener("DOMContentLoaded", () => {
             genre: "Ação Caótica / Co-op",
             platform: "PC (Windows)",
             desc: "A mistura mais insana da culinária com tiroteio! Prepare pedidos gastronômicos complexos em uma cozinha sob ataque constante, defendendo sua bancada a tiros enquanto tenta não queimar a comida.",
-            devs: "Mateus Assis & Equipe",
-            capa: "assets/projetos/Cooking_Guns/1.png",
-            imagens: [
-                "assets/projetos/Cooking_Guns/1.png",
-                "assets/projetos/Cooking_Guns/2.png"
-            ],
-            video: "",
-            downloadLink: ""
+            devs: "Mateus Assis, André Luna, George Muniz, Milena, Maria Eduarda",
+            pasta: "assets/projetos/Cooking_Guns",
+            video: "https://www.youtube.com/watch?v=zGXoIGrE6eU",
+            downloadLink: "https://mateuzoassis.itch.io/cooking-guns"
         },
         {
             title: "Bob Vive",
             year: "2026",
             genre: "Plataforma 2D / Humor",
             platform: "PC / WebGL",
-            desc: "Uma jornada divertida e cheia de personalidade onde você guia o carismático Bob através de níveis criativos, repletos de obstáculos inusitados, referências à cultura pop e desafios de precisão.",
+            desc: "Dr.Bob é um cientista de uma instalação que estudava parasitas alienígenas, um acidente aconteceu e esses parasitas foram soltos pelo local. Bob, agora contaminado com um desses parasitas, precisa lutar para exterminar o resto dos parasitas, procurando por partes de uma cura, enquanto coleta mini curas durante o jogo, para impedir que o parasita tome conta do seu corpo.",
             devs: "Equipe UNICAP Jogos",
-            capa: "assets/projetos/Bob_Vive/1.png",
-            imagens: [
-                "assets/projetos/Bob_Vive/1.png",
-                "assets/projetos/Bob_Vive/2.png"
-            ],
+            pasta: "assets/projetos/Bob_Vive",
             video: "",
-            downloadLink: ""
+            downloadLink: "https://jogos-digitais-unicap.itch.io/bob-vive"
         },
         {
             title: "Arquivo Cronos",
             year: "2024",
-            genre: "Sci-Fi / Puzzle Temporal",
+            genre: "Puzzle",
             platform: "PC (Windows)",
-            desc: "Um jogo de quebra-cabeça de ficção científica onde você manipula a linha do tempo. Grave ações no passado, gere clones temporais de si mesmo e trabalhe em cooperação com o seu 'eu' do futuro.",
+            desc: "O jogador é um membro da iniciativa RecRunners que tem a missão de retornar ao passado, na década de 1980, para recuperar uma memória chave dentro do Arquivo Público de Olinda. Para garantir que a missão seja cumprida, o jogador precisa explorar o interior da casa e resolver diversos quebra-cabeças e mecanismos para descobrir e recuperar o objeto que armazena a memória chave.",
             devs: "Equipe UNICAP Jogos",
-            capa: "assets/projetos/Arquivo_Cronos/1.png",
-            imagens: [
-                "assets/projetos/Arquivo_Cronos/1.png",
-                "assets/projetos/Arquivo_Cronos/2.png"
-            ],
+            pasta: "assets/projetos/Arquivo_Cronos",
             video: "",
-            downloadLink: ""
+            downloadLink: "https://jogos-digitais-unicap.itch.io/arquivo-cronos"
         },
         {
             title: "Monster Meal",
-            year: "2020",
+            year: "2022",
             genre: "Gerenciamento de Tempo",
-            platform: "PC / WebGL",
+            platform: "Android",
             desc: "Uma lanchonete monstruosa precisa dos seus serviços! Gerencie o tempo, misture ingredientes nojentos (mas deliciosos para eles) e sirva refeições exóticas antes que os monstros percam a paciência.",
-            devs: "Kaio & Equipe",
-            capa: "assets/projetos/Monster Meal/1.png",
-            imagens: [
-                "assets/projetos/Monster Meal/1.png",
-                "assets/projetos/Monster Meal/2.png"
-            ],
+            devs: "Kaio Carrenho, Lucas Angeiras, Erick Bruno, Pietro Nestor",
+            pasta: "assets/projetos/Monster Meal",
             video: "",
-            downloadLink: ""
+            downloadLink: "https://kaio1995.itch.io/monster-meal"
         },
         {
             title: "Furry Fighters",
             year: "2026",
-            genre: "Luta / Brawler 2D",
+            genre: "Fighter / Shooter",
             platform: "PC (Windows)",
             desc: "Um jogo de luta e brawler 2D dinâmico e carismático estrelando lutadores antropomórficos! Escolha seu personagem peludo favorito, domine combos únicos, ataques especiais devastadores e enfrente seus amigos em arenas locais vibrantes e cheias de ação.",
-            devs: "Equipe UNICAP Jogos",
-            capa: "assets/projetos/FurryFighters/1.png",
-            imagens: [
-                "assets/projetos/FurryFighters/1.png",
-                "assets/projetos/FurryFighters/2.png",
-                "assets/projetos/FurryFighters/3.png"
-            ],
-            video: "", // Cole o link de Embed do YouTube/Vimeo aqui
-            downloadLink: "" // Cole o link de download ou do Itch.io aqui
+            devs: "Lucca Braga, Esdras Rodrigues, Matheus Medeiros, Rayran Clementino",
+            pasta: "assets/projetos/FurryFighters",
+            video: "https://www.youtube.com/watch?v=rrLg7Zj2GQs", 
+            downloadLink: "https://jogos-digitais-unicap.itch.io/furry-fighters"
         },
         {
             title: "Drawn To Wonder",
             year: "2021",
-            genre: "Plataforma / Aventura Artística",
+            genre: "Aventura / Puzzle",
             platform: "PC (Windows)",
-            desc: "Uma aventura mágica de plataforma onde a arte ganha vida! Controle uma jovem artista dentro de um caderno de rascunhos, utilizando o poder do desenho e da imaginação para criar plataformas, superar obstáculos e pintar o seu próprio destino.",
-            devs: "Rafa Lopes & Equipe",
-            capa: "assets/projetos/Drawn To Wonder/1.png",
-            imagens: [
-                "assets/projetos/Drawn To Wonder/1.png",
-                "assets/projetos/Drawn To Wonder/2.png",
-                "assets/projetos/Drawn To Wonder/3.png"
-            ],
-            video: "",
-            downloadLink: ""
-        },
-        {
-            title: "Infernal Gate",
-            year: "2021",
-            genre: "Hack and Slash / Roguelike",
-            platform: "PC (Windows)",
-            desc: "Ação frenética e combate sombrio contra hordas demoníacas implacáveis. Domine um arsenal de armas devastadoras, escolha melhorias estratégicas a cada rodada e lute para selar os portões do submundo antes de ser consumido.",
-            devs: "Ricardo Vitor & Equipe",
-            capa: "assets/projetos/Infernal Gate/1.png",
-            imagens: [
-                "assets/projetos/Infernal Gate/1.png",
-                "assets/projetos/Infernal Gate/2.png"
-            ],
-            video: "",
-            downloadLink: ""
+            desc: "A personagem principal é um desenho que cria vida em um quarto de criança com um objetivo em mente. A medida que ela vai explorando a casa, ela vai entendendo mais sobre a família que mora lá e o que veio a acontecer no seu passado para entender o que a aflige no presente.",
+            devs: "Rafa Lopes, Lucas Pinheiro, Paulo Victor, Diego Camilo",
+            pasta: "assets/projetos/Drawn To Wonder",
+            video: "https://www.youtube.com/watch?v=D3bE9RqADg0",
+            downloadLink: "https://rafalopeslol.itch.io/drawn-to-wonder-demo"
         },
         {
             title: "Aralume",
             year: "2024",
             genre: "Aventura / Fantasia 2D",
             platform: "PC (Windows)",
-            desc: "Explore um mundo de fantasia atmosférico e misterioso repleto de magia antiga e criaturas místicas. Com uma arte 2D encantadora e mecânicas imersivas de exploração, desbrave cenários interconectados e traga a luz de volta ao reino de Aralume.",
+            desc: "Aralume é um jogo ação-aventura 3D com foco nos bosses e puzzles. O objetivo do jogador é derrotar o boss de cada fase e resolver os puzzles para ir para a próxima fase. Aralume conta a história de Biu, um ser humano que é abençoado pela Nossa Senhora para derrotar a Bruxa, que despertou um grande mal e estava agindo de uma forma misteriosa. Contudo, ao decorrer da aventura, o héroi acaba descobrindo que existe um mal maior por traz de todo caos.",
             devs: "Equipe UNICAP Jogos",
-            capa: "assets/projetos/Aralume/1.png",
-            imagens: [
-                "assets/projetos/Aralume/1.png",
-                "assets/projetos/Aralume/2.png",
-                "assets/projetos/Aralume/3.png"
-            ],
+            pasta: "assets/projetos/Aralume",
             video: "",
-            downloadLink: ""
+            downloadLink: "https://jogos-digitais-unicap.itch.io/aralume"
+        },
+        {
+            title: "Bichos do Brasil",
+            year: "2025",
+            genre: "Aventura / Educacional",
+            platform: "PC / WebGL",
+            desc: "Uma bela jornada interativa valorizando a nossa fauna e flora do Brasil. Descubra biomas nacionais e proteja animais em extinção através de minigames criativos e envolventes.",
+            devs: "Equipe UNICAP Jogos",
+            pasta: "assets/projetos/Bichos _do_Brasil",
+            video: "",
+            downloadLink: "https://jogos-digitais-unicap.itch.io/bichos-do-brasil"
+        },
+            title: "In My Room",
+            year: "2021",
+            genre: "Survivor Horror",
+            platform: "PC",
+            desc: "In My Room é um jogo de terror de sobrevivência sendo desenvolvido pelo grupo Nightmare Studios do curso tecnólogo de Jogos Digitais da Universidade Católica de Pernambuco. Focado no aspecto psicológico, a perspectiva do jogo é em primeira pessoa, com uma linha de arte estilizada semi-realista. Na experiência o jogador controla o personagem principal e tem como objetivo acordar do sonho em que ele se encontra preso.",
+            devs: "Bianca Castor, Vinicius Montarroyos, Túlio Luiz, Matheus Silva",
+            pasta: "assets/projetos/InMyRoom",
+            video: "https://www.youtube.com/watch?v=oz_KWC1iNi4",
+            downloadLink: "https://nightmarestudiosunicap.itch.io/in-my-room"
         }
     ];
 
@@ -419,9 +389,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalClose = document.getElementById("modal-close");
 
     if (gbcGrid) {
-        gbcGrid.innerHTML = ""; // Limpa a grid antes de renderizar os novos
+        gbcGrid.innerHTML = "";
+        // Ordenação da data mais recente para a mais antiga (ex: 2026 -> 2020)
         gbcData.sort((a, b) => parseInt(b.year) - parseInt(a.year));
-        gbcData.forEach((game, index) => {
+        
+        gbcData.forEach((game) => {
+            const imagensPossiveis = gerarListaImagens(game.pasta);
+            const capaInicial = imagensPossiveis[0];
+
             const cart = document.createElement("div");
             cart.className = "gbc-cartridge";
             cart.innerHTML = `
@@ -429,16 +404,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span></span><span></span><span></span><span></span>
                 </div>
                 <div class="gbc-label">
-                    <img src="${game.capa}" alt="${game.title}" class="gbc-image" onerror="this.src='https://placehold.co/300x160/1e293b/00C2CB?text=${encodeURIComponent(game.title)}'">
+                    <img src="${capaInicial}" alt="${game.title}" class="gbc-image" 
+                         onerror="const next = this.getAttribute('data-idx') ? parseInt(this.getAttribute('data-idx')) + 1 : 1; if(next < ${imagensPossiveis.length}) { this.setAttribute('data-idx', next); this.src='${game.pasta}/' + ['1','2','3','4','5','capa','cover','gameplay','screenshot','thumb','${game.pasta.split('/').pop()}'][Math.floor(next/5)] + '.' + ['gif','png','jpg','jpeg','svg'][next%5]; } else { this.src='https://placehold.co/300x160/1e293b/00C2CB?text=${encodeURIComponent(game.title)}'; }">
                     <h4>${game.title}</h4>
-                    <span class="year">GBC • ${game.year}</span>
+                    <span class="year"> ${game.year}</span>
                 </div>
                 <div class="gbc-footer">UNICAP MEMORY CARD</div>
             `;
             
             cart.addEventListener("click", () => {
                 if (modalBody) {
-                    // Monta o player de vídeo (se o link existir)
                     let mediaSection = "";
                     if (game.video && game.video.trim() !== "") {
                         mediaSection += `
@@ -448,25 +423,33 @@ document.addEventListener("DOMContentLoaded", () => {
                         `;
                     }
 
-                    // Monta a galeria de imagens
-                    let gallerySection = `<div class="modal-gallery">`;
-                    game.imagens.forEach((imgSrc, i) => {
-                        gallerySection += `<img src="${imgSrc}" class="gallery-thumb ${i === 0 && !game.video ? 'active-main' : ''}" alt="${game.title}" onclick="document.getElementById('main-modal-img').src='${imgSrc}'" onerror="this.style.display='none'">`;
+                    // MONTA O CARROSSEL (Cada imagem aparece apenas 1 vez como slide!)
+                    let carouselSection = `
+                        <div class="modal-carousel-container">
+                            <button class="modal-car-btn prev" onclick="mudarSlideModal(-1)" title="Anterior"><i data-lucide="chevron-left"></i></button>
+                            <button class="modal-car-btn next" onclick="mudarSlideModal(1)" title="Próxima"><i data-lucide="chevron-right"></i></button>
+                            <div class="modal-carousel-track" id="modal-track">
+                    `;
+                    
+                    imagensPossiveis.forEach((imgSrc) => {
+                        // Se a imagem não existir no servidor, o onerror remove o slide inteiro e revalida as setas!
+                        carouselSection += `
+                            <div class="modal-slide">
+                                <img src="${imgSrc}" alt="${game.title}" onload="verificarSlidesModal()" onerror="this.parentElement.remove(); verificarSlidesModal();">
+                            </div>
+                        `;
                     });
-                    gallerySection += `</div>`;
+                    
+                    carouselSection += `
+                            </div>
+                        </div>
+                    `;
 
-                    // Se não tiver vídeo, coloca uma imagem grande principal que muda ao clicar nas miniaturas
-                    let mainImageDisplay = "";
-                    if (!game.video || game.video.trim() === "") {
-                        mainImageDisplay = `<img src="${game.capa}" id="main-modal-img" class="modal-img-main" alt="${game.title}" onerror="this.src='https://placehold.co/600x350/1e293b/00C2CB?text=${encodeURIComponent(game.title)}'">`;
-                    }
-
-                    // Botão de Download ou Aviso
                     let downloadBtn = "";
                     if (game.downloadLink && game.downloadLink.trim() !== "") {
-                        downloadBtn = `<a href="${game.downloadLink}" target="_blank" class="btn-primary w-full style="margin-top:1.5rem;">BAIXAR / JOGAR AGORA <i data-lucide="download"></i></a>`;
+                        downloadBtn = `<a href="${game.downloadLink}" target="_blank" class="btn-primary" style="margin-top:1.5rem; width:100%; justify-content:center;">BAIXAR / JOGAR AGORA <i data-lucide="download"></i></a>`;
                     } else {
-                        downloadBtn = `<a href="#visita" class="btn-secondary w-full" style="margin-top:1.5rem; text-align:center; display:block;">EM BREVE PARA DOWNLOAD — AGENDE UMA VISITA PARA JOGAR NO LAB</a>`;
+                        downloadBtn = `<a href="#visita" class="btn-secondary" style="margin-top:1.5rem; text-align:center; display:block; width:100%;">EM BREVE PARA DOWNLOAD — AGENDE UMA VISITA PARA JOGAR NO LAB</a>`;
                     }
 
                     modalBody.innerHTML = `
@@ -477,8 +460,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h3>${game.title} <span class="modal-year">(${game.year})</span></h3>
                         
                         ${mediaSection}
-                        ${mainImageDisplay}
-                        ${game.imagens.length > 1 ? gallerySection : ''}
+                        ${carouselSection}
                         
                         <div class="modal-desc">
                             <p>${game.desc}</p>
@@ -488,7 +470,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     `;
                 }
                 lucide.createIcons();
-                if (modal) modal.classList.remove("hidden");
+                if (modal) {
+                    modal.classList.remove("hidden");
+                    // Roda a verificação inicial para esconder setas caso o jogo tenha só 1 foto
+                    setTimeout(window.verificarSlidesModal, 300);
+                }
             });
             gbcGrid.appendChild(cart);
         });
@@ -498,7 +484,6 @@ document.addEventListener("DOMContentLoaded", () => {
         modalClose.addEventListener("click", () => modal.classList.add("hidden"));
         modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
     }
-
     // ----------------------------------------------------
     // 4. DOCENTES & EGRESSOS (GRIDS INTEGRADOS NAS ABAS E SEÇÃO)
     // ----------------------------------------------------
