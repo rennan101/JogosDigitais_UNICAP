@@ -234,35 +234,36 @@ body {
     flex-wrap: wrap;
 }
 
-//* GAME BOY WRAPPER & TELA DO VÍDEO REPOSICIONADA */
+/*GAME BOY WRAPPER & TELA DO VÍDEO REPOSICIONADA */
 .gameboy-wrapper {
     position: relative;
-    width: 100%;
-    max-width: 380px; /* Ajustado para manter a proporção perfeita do SVG */
+    width: 420px;  /* <- Valor FIXO em pixels (substitua pela largura ideal do seu SVG) */
+    height: 680px; /* <- Valor FIXO em pixels (substitua pela altura ideal do seu SVG) */
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* 2. TRAVE A IMAGEM DO GAME BOY NO MESMO TAMANHO FIXO */
 .gameboy-svg {
-    width: 100%;
-    height: auto;
+    width: 420px;  /* <- Mesmo valor fixo da wrapper */
+    height: 680px; /* <- Mesmo valor fixo da wrapper */
     display: block;
     position: relative;
     z-index: 1;
     filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.7));
 }
 
-/* ENCAIXE PERFEITO NA TELA CINZA DO SEU SVG */
+/* 3. A TELA AGORA FICARÁ 100% FIXA PORQUE O PAI NÃO MUDA MAIS DE TAMANHO */
 .gameboy-screen {
     position: absolute;
-    top: 25%;     /* Alinhado exatamente com o topo da tela cinza */
-    left: 59%;    /* Alinhado exatamente com a borda esquerda cinza */
-    width: 22%;     /* Largura exata da tela cinza */
-    height: 26.5%;  /* Altura exata sem cobrir o logo UNICAP */
+    top: 10%;     /* Alinhado com o topo */
+    left: 15%;    /* Alinhado com a esquerda */
+    width: 70%; /* Largura exata */
+    height: 30%;/* Altura exata */
     z-index: 2;
-    background: #1e293b; /* Tom cinza-azulado enquanto o vídeo carrega (evita o pretão) */
+    background: #1e293b;
     border-radius: 2px;
     overflow: hidden;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
