@@ -654,7 +654,7 @@ document.addEventListener("DOMContentLoaded", () => {
             name: "João Victor Batista", 
             tag: "Artista e Animador 2D e 3D", 
             desc: "Formado em 2025. Trabalhou em empresas como SENAI PE.", 
-            img: "assets/egressos/joao.png",
+            img: "assets/egressos/joao.jpeg",
             linkedin: "https://www.linkedin.com/in/joão-victor-batista-de-serqueira-87671b2ab/" 
         },
          { 
