@@ -33,18 +33,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // ----------------------------------------------------
     const currData = [
         // 1º Período
-        { sem: "1º SEMESTRE", title: "Lógica de Programação para Jogos", desc: "Algoritmos, estruturas de controle e variáveis focadas na lógica de mecânicas de jogos e resolução de problemas.", tech: ["C#", "Lógica", "GitHub"] },
-        { sem: "1º SEMESTRE", title: "Expressão Visual e Gráfica", desc: "Fundamentos do desenho, teoria das cores, composição visual e perspectiva aplicada ao design de games.", tech: ["Photoshop", "Sketching", "Figma"] },
-        { sem: "1º SEMESTRE", title: "Character Design", desc: "Criação de heróis, inimigos e NPCs com forte apelo narrativo e silhueta marcante para mídias digitais.", tech: ["Photoshop", "Procreate", "Concept Art"] },
-        { sem: "1º SEMESTRE", title: "Processos de Design", desc: "Metodologias criativas, Design Thinking e ideação de conceitos para prototipação rápida em estúdio.", tech: ["Figma", "Miro", "Notion"] },
-        { sem: "1º SEMESTRE", title: "Teorias dos Jogos (EAD)", desc: "Estudo formal do círculo mágico, taxonomia de jogadores e ludologia na cultura digital moderna.", tech: ["Teoria Lúdica", "Análise Crítica"] },
-        { sem: "1º SEMESTRE", title: "Narrativa para Jogos (EAD)", desc: "Jornada do herói, worldbuilding, diálogos ramificados e construção de narrativa emergente em jogos.", tech: ["Twine", "Articy:Draft", "Notion"] },
-        { sem: "1º SEMESTRE", title: "Expressão Oral e Escrita", desc: "Comunicação assertiva, redação técnica de documentos e técnicas de apresentação de ideias e Pitching.", tech: ["Pitching", "Oratória", "Docs"] },
+        { sem: "1º SEMESTRE", title: "Lógica de Programação para Jogos", desc: "Algoritmos, estruturas de controle e variáveis focadas na lógica de mecânicas de jogos e resolução de problemas.", tech: ["C#","Typescript", "Godot", "GitHub"] },
+        { sem: "1º SEMESTRE", title: "Expressão Visual e Gráfica", desc: "Fundamentos do desenho, teoria das cores, composição visual e perspectiva aplicada ao design de games.", tech: ["Photoshop", "Figma"] },
+        { sem: "1º SEMESTRE", title: "Character Design", desc: "Criação de heróis, inimigos e NPCs com forte apelo narrativo e silhueta marcante para mídias digitais.", tech: ["Papel e lápis", "Concept Art"] },
+        { sem: "1º SEMESTRE", title: "Processos de Design", desc: "Metodologias criativas, Design Thinking e ideação de conceitos para prototipação rápida em estúdio.", tech: ["Design Thinking", "Miro", "Notion"] },
+        { sem: "1º SEMESTRE", title: "Teorias dos Jogos (EAD)", desc: "Estudo formal do círculo mágico, taxonomia de jogadores e ludologia na cultura digital moderna.", tech: [] },
+        { sem: "1º SEMESTRE", title: "Narrativa para Jogos (EAD)", desc: "Jornada do herói, worldbuilding, diálogos ramificados e construção de narrativa emergente em jogos.", tech: ["Twine", "Final Draft", "Notion"] },
+        { sem: "1º SEMESTRE", title: "Expressão Oral e Escrita", desc: "Comunicação assertiva, redação técnica de documentos e técnicas de apresentação de ideias e Pitching.", tech: ["Pitching", "Oratória"] },
 
         // 2º Período
         { sem: "2º SEMESTRE", title: "Programação 2D para Jogos", desc: "Desenvolvimento de jogos 2D, física computacional, colisões e controle de animações dinâmicas via código.", tech: ["Unity", "C#", "VS Code"] },
         { sem: "2º SEMESTRE", title: "Arquitetura Web para Jogos", desc: "Fundamentos de redes, APIs e requisições HTTP para criação de placares e jogos em navegadores web.", tech: ["HTML5", "JavaScript", "WebSockets"] },
-        { sem: "2º SEMESTRE", title: "Animação 2D", desc: "Os 12 princípios da animação, rigging 2D e animação frame a frame para spritesheets em jogos digitais.", tech: ["Spine 2D", "Toon Boom", "Photoshop"] },
+        { sem: "2º SEMESTRE", title: "Animação 2D", desc: "Os 12 princípios da animação, rigging 2D e animação frame a frame para spritesheets em jogos digitais.", tech: ["Frame a Frame", "Unity Bones", "Photoshop"] },
         { sem: "2º SEMESTRE", title: "Pintura Digital", desc: "Técnicas de texturização, luz, sombra e renderização digital para elaboração de concept art e cenários.", tech: ["Photoshop", "Tablet Gráfica"] },
         { sem: "2º SEMESTRE", title: "Introdução a Game Design", desc: "Core loops, elaboração de GDD (Game Design Document), balanço de regras e mecânicas centrais do jogo.", tech: ["Notion", "Figma", "Google Docs"] },
         { sem: "2º SEMESTRE", title: "Metodologia Projetual", desc: "Gestão ágil de projetos de software, Kanban, Scrum e controle de versionamento colaborativo em equipe.", tech: ["Trello", "Jira", "GitHub"] },
@@ -520,17 +520,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // 4. DOCENTES & EGRESSOS (GRIDS INTEGRADOS NAS ABAS E SEÇÃO)
     // ----------------------------------------------------
     const docentes = [
-        { name: "Prof. Dr. Anthony Lins", tag: "Programação para Jogos", desc: "", img: "assets/docentes/anthony.jpg", lattes: "http://lattes.cnpq.br/0000000000000001" },
-        { name: "Prof. Msc. Alan Campos", tag: "Tópicos Avançados em Jogos", desc: "", img: "assets/docentes/alan.jpg", lattes: "http://lattes.cnpq.br/0000000000000002" },
-        { name: "Prof. Dr. Breno Carvalho", tag: "Design", desc:"", img: "assets/docentes/breno.jpg", lattes: "http://lattes.cnpq.br/0000000000000003" },    
-        { name: "Profa. Msc. Cecilia da Fonte", tag: "Processos de Design", desc: "", img: "assets/docentes/cecilia.jpg", lattes: "http://lattes.cnpq.br/0000000000000004" },
-        { name: "Prof. Dr. Christiane Quaresma", tag: "Modelagem 3D, Animação 2D", desc: "", img: "assets/docentes/christiane.jpg", lattes: "http://lattes.cnpq.br/0000000000000005" },
-        { name: "Prof. Msc. Danilo Lúcio", tag: "Roteiro & Som Digital", desc: "", img: "assets/docentes/danilo.jpg", lattes: "http://lattes.cnpq.br/0000000000000006" },
-        { name: "Prof. Msc. Flávio Dias", tag: "Programação para Jogos", desc: "", img: "assets/docentes/flavio.jpg", lattes: "http://lattes.cnpq.br/0000000000000007" },
-        { name: "Prof. Msc. Luca Pacheco", tag: "Edição de Video, Desenho & Pintura Digital", desc: "", img: "assets/docentes/luca.jpg", lattes: "http://lattes.cnpq.br/0000000000000008" },
-        { name: "Prof. Dr. Rennan Raffaele", tag: "Game Design & Gestão de Projetos", desc: "", img: "assets/docentes/rennan.jpeg", lattes: "http://lattes.cnpq.br/1916664448861686" },
-        { name: "Prof. Msc. Rodrigo Duguay", tag: "Teoria dos Jogos", desc: "", img: "assets/docentes/rodrigo.jpg", lattes: "http://lattes.cnpq.br/0000000000000010" },
-        { name: "Profa. Msc. Graziella", tag: "Teoria dos Jogos", desc: "", img: "assets/docentes/graziella.jpg", lattes: "http://lattes.cnpq.br/0000000000000011" }
+        { name: "Prof. Msc. Alan Campos", tag: "Game Design", desc: "", img: "assets/docentes/alan.png", lattes: "http://lattes.cnpq.br/1618069081375414" },
+        { name: "Prof. Dr. Anthony Lins", tag: "Programação para Jogos", desc: "", img: "assets/docentes/anthony.jpeg", lattes: "http://lattes.cnpq.br/8374444110347392" },
+        { name: "Prof. Dr. Breno Carvalho", tag: "Design & Gestão", desc:"", img: "assets/docentes/breno.png", lattes: "http://lattes.cnpq.br/2713900493883337" },    
+        { name: "Profa. Msc. Cecilia da Fonte", tag: "Design", desc: "", img: "assets/docentes/cecilia.jpeg", lattes: "http://lattes.cnpq.br/9540347266924524" },
+        { name: "Prof. Dr. Christiane Quaresma", tag: "Design e Animação", desc: "", img: "assets/docentes/christiane.jpeg", lattes: "http://lattes.cnpq.br/3409334786766460" },
+        { name: "Prof. Msc. Danilo Lúcio", tag: "Roteiro & Som Digital", desc: "", img: "assets/docentes/danilo.jpeg", lattes: "http://lattes.cnpq.br/1075233329679850" },
+        { name: "Prof. Msc. Flávio Dias", tag: "Programação para Jogos", desc: "", img: "assets/docentes/flavio.jpeg", lattes: "http://lattes.cnpq.br/0161156565171546" },
+         { name: "Profa. Msc. Graziela Almeida", tag: "Neurociência", desc: "", img: "assets/docentes/graziela.jpg", lattes: "http://lattes.cnpq.br/4099261279192519" },
+        { name: "Prof. Dr. Luca Pacheco", tag: "Edição de Video, Desenho & Pintura Digital", desc: "", img: "assets/docentes/luca.jpeg", lattes: "http://lattes.cnpq.br/4236853025292841" },
+        { name: "Prof. Dr. Rennan Raffaele", tag: "Game Design & Level Design", desc: "", img: "assets/docentes/rennan.jpeg", lattes: "http://lattes.cnpq.br/1916664448861686" },
+        { name: "Prof. Msc. Rodrigo Duguay", tag: "Teoria dos Jogos", desc: "", img: "assets/docentes/rodrigo.jpeg", lattes: "http://lattes.cnpq.br/9996687767861757" }
+   
     ];
 
     const docentesGrid = document.getElementById("docentes-grid");
