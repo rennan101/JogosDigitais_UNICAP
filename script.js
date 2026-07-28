@@ -558,6 +558,13 @@ document.addEventListener("DOMContentLoaded", () => {
             img: "assets/egressos/igorfialho.jpg",
             linkedin: "https://www.linkedin.com/in/igor-fialho-380b1613a/?skipRedirect=true"         
             },
+ { 
+            name: "Pedro Arthur", 
+            tag: "Programador | Desenvolvimento XR | Desenvolvimento de Games | LiveOps", 
+            desc: "Formado em 2020. Trabalhou em empresas como Sinapsis Inovação, Sense+, Playfox Games, PUGA Studios.", 
+            img: "assets/egressos/matheus.png",
+            linkedin: "https://www.linkedin.com/in/pedro-santos-bitencourt/"
+        },
         { 
             name: "Eudes Tenório", 
             tag: "Desenvolvedor de Jogos", 
@@ -584,7 +591,14 @@ document.addEventListener("DOMContentLoaded", () => {
             tag: "Game Producer", 
             desc: "Formada em 2022. Trabalhou em empresas como Kokku Games, DX Gameworks e Osten Games.", 
             img: "assets/egressos/mariafernanda.png",
-            linkedin: "https://www.linkedin.com/in/maria-fernanda-poletine-8303121b2/" 
+            linkedin: "https://www.linkedin.com/in/maria-fernanda-poletine-8303121b2/"  
+        },
+          { 
+            name: "Matheus Campelo", 
+            tag: "QA Tester", 
+            desc: "Formada em 2022. Trabalhou em empresas como Kokku Games, FAST Soluções Tecnológicas, Pulsatrix Studios.", 
+            img: "assets/egressos/matheus.png",
+            linkedin: "https://www.linkedin.com/in/matheus-campelo-9381271a8/"
         },
          { 
             name: "Davi Fox", 
@@ -596,10 +610,31 @@ document.addEventListener("DOMContentLoaded", () => {
          { 
             name: "André Luna", 
             tag: "Game Designer / Level Designer", 
-            desc: "Formado em 2022. Trabalhou em empresas como BBTV, Point'N Sheep, e Afil Games.", 
+            desc: "Formado em 2021. Trabalhou em empresas como BBTV, Point'N Sheep, e Afil Games.", 
             img: "assets/egressos/andre.jpeg",
             linkedin: "https://www.linkedin.com/in/andreggluna/" 
         },
+        { 
+            name: "Rodrigo Lemos", 
+            tag: "Software Tester", 
+            desc: "Formado em 2021. Trabalhou no Projeto CIn/Motorola.", 
+            img: "assets/egressos/Rodrigo.jpeg ",
+            linkedin: "https://www.linkedin.com/in/rodrigo-a-lemos/" 
+        },     
+          { 
+            name: "Milena Ferreira", 
+            tag: "Design Gráfico e Visual | UI/UX Designer | Ilustradora", 
+            desc: "Formado em 2021. Trabalhou na empresa Manifesto Games.", 
+            img: "assets/egressos/milena.jpeg ",
+            linkedin: "https://www.linkedin.com/in/milenarferreira/" 
+        },      
+        { 
+            name: "Eduarda Paixão", 
+            tag: "Designer | Social Media", 
+            desc: "Formado em 2021. Trabalhou na empresa Raid Hut.", 
+            img: "assets/egressos/eduarda.jpeg ",
+            linkedin: "https://www.linkedin.com/in/eduarda-paixão-7246421b6/" 
+        },     
           { 
             name: "Icaro Correia", 
             tag: "Lead Character Artist", 
@@ -613,6 +648,20 @@ document.addEventListener("DOMContentLoaded", () => {
             desc: "Formada em 2024. Trabalhou em empresas como Raid Hut, Obitus Games e Manifesto Games.", 
             img: "assets/egressos/carol.jpeg",
             linkedin: "https://www.linkedin.com/in/carolqueiroz-gd" 
+        },
+          { 
+            name: "João Victor Batista", 
+            tag: "Artista e Animador 2D e 3D", 
+            desc: "Formado em 2025. Trabalhou em empresas como SENAI PE.", 
+            img: "assets/egressos/joao.png",
+            linkedin: "https://www.linkedin.com/in/joão-victor-batista-de-serqueira-87671b2ab/" 
+        },
+         { 
+            name: "Laura Santos Veloso", 
+            tag: "Game Developer", 
+            desc: "Formado em 2025. Trabalhou em empresas como SENAI PE.", 
+            img: "assets/egressos/laura.png",
+            linkedin: "https://www.linkedin.com/in/laura-santos-veloso-99415536b//" 
         },
           { 
             name: "Henrique Gonçalves", 
@@ -641,6 +690,62 @@ document.addEventListener("DOMContentLoaded", () => {
             desc: "Formado em 2019. Trabalhou em empresas como Companion Group, Room 8 Studio, PUGA Studios.", 
             img: "assets/egressos/arthur.jpg",
             linkedin: "https://www.linkedin.com/in/arthur-santos-66452a119/" 
+        },       
+         { 
+            name: "Victor Andrade", 
+            tag: "Game Designer / Level Designer", 
+            desc: "Formado em 2016. Trabalhou em empresas como Baião Studio, OPA Games, Lumo Entertainment e Inside Tecnologia", 
+            img: "assets/egressos/victor.jpg",
+            linkedin: "https://www.linkedin.com/in/victoraes/" 
+        },   
+          { 
+            name: "Rafael Lopes", 
+            tag: "Software Engineer", 
+            desc: "Formado em 2021. Trabalhou em empresas como tatoDesk", 
+            img: "assets/egressos/rafael.jpeg",
+            linkedin: "https://www.linkedin.com/in/rafael-lopes-8b571a1b0/" 
+        },   
+          { 
+            name: "Hyago Carvalho", 
+            tag: "Game Designer", 
+            desc: "Formado em 2021. Trabalhou em empresas como Manifesto Games", 
+            img: "assets/egressos/hyago.jpeg",
+            linkedin: "https://www.linkedin.com/in/hyago-carvalho-38568817a/" 
+        },
+        { 
+            name: "Lêniton Carneiro", 
+            tag: "Game Developer", 
+            desc: "Formado em 2022. Trabalhou em empresas como OPA Games e GDS TEC", 
+            img: "assets/egressos/leniton.jpeg",
+            linkedin: "https://www.linkedin.com/in/lêniton-da-silva-carneiro-b77b0a195/" 
+        },
+            { 
+            name: "Marcos Vinicius Silva", 
+            tag: "Game Designer", 
+            desc: "Formado em 2022. Trabalhou em empresas como LUMA Gameworks", 
+            img: "assets/egressos/marcos.jpeg",
+            linkedin: "https://www.linkedin.com/in/marcos-vinicius-de-farias-silva-86ba481b2/marc" 
+        },
+            { 
+            name: "Jonny Willian", 
+            tag: "3D Character Artist", 
+            desc: "Formado em 2020. Trabalhou em empresas como Advancement Design e Flux Games.", 
+            img: "assets/egressos/jonny.jpeg",
+            linkedin: "https://www.linkedin.com/in/jonnywillianlima/" 
+        },
+         { 
+            name: "Rennan Raffaele", 
+            tag: "Professor e Game Designer", 
+            desc: "Formado em 2015. Trabalhou em empresas como UNICAP, Happen, IFPE e ESM FAMA", 
+            img: "assets/egressos/rennan.jpeg",
+            linkedin: "https://www.linkedin.com/in/rennan-raffaele/" 
+        },
+          { 
+            name: "Perseu Bastos", 
+            tag: "Estratégia e Modelagem de Negócios", 
+            desc: "Formado em 2012. Trabalhou em empresas como Sebrae PR, Porto Digital, Sebrae PE, Playful", 
+            img: "assets/egressos/perseu.jpeg",
+            linkedin: "https://www.linkedin.com/in/perseubastos/" 
         }
         
     ];

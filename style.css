@@ -1420,11 +1420,11 @@ html, body {
     }
 }
 
-/* 2. Cartuchos GBC com Proporção Travada (Preserva a altura e largura retrô) */
+/* 2. Cartuchos com Proporção Travada (Preserva a altura e largura retrô) */
 .gbc-image {
     width: 100% !important;
     height: auto !important;
-    aspect-ratio: 16 / 10 !important; /* TRAVA A PROPORÇÃO: Se a largura mudar, a altura acompanha! */
+    aspect-ratio: 16 / 12 !important; /* TRAVA A PROPORÇÃO: Se a largura mudar, a altura acompanha! */
     object-fit: cover !important;
 }
 
