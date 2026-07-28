@@ -997,7 +997,7 @@ const egressosPrev = document.getElementById("egressos-prev");
             if (!resposta.ok) throw new Error("Falha na comunicação com o Instagram");
             
             const dados = await resposta.json();
-            
+            console.log("DADOS QUE CHEGARAM DA API:", dados);
             // O formato oficial da Meta retorna dentro de uma matriz "data" ou direto em matriz no Behold
             const listaPosts = Array.isArray(dados) ? dados : (dados.data || []);
             
@@ -1005,7 +1005,9 @@ const egressosPrev = document.getElementById("egressos-prev");
             const postsFiltrados = listaPosts
                 .filter(post => post.mediaUrl || post.thumbnailUrl || post.media_url || post.thumbnail_url)
                 .slice(0, 8);
-
+            if (postsFiltrados.length === 0) {
+                throw new Error("A API retornou uma lista vazia de publicações.");
+            }
             renderizarFeedInsta(postsFiltrados);
 
         } catch (erro) {
