@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
             genre: "Ação / Aventura",
             platform: "PC (Windows)",
             desc: "Uma aventura de plataforma criativa onde o jogador utiliza mecânicas de pintura e cores para alterar as propriedades físicas do cenário, revelando plataformas ocultas e resolvendo enigmas visuais.",
-            devs: "João Victor Batista, Maria Laura Floresta, Laura Veloso, Felipe Freire, Caio Regueira, Thony Barreto, Marcelo Sampaio, Guilherme Fernandes"
+            devs: "João Victor Batista, Maria Laura Floresta, Laura Veloso, Felipe Freire, Caio Regueira, Thony Barreto, Marcelo Sampaio, Guilherme Fernandes",
             pasta: "assets/projetos/Repaint",
             video: "https://www.youtube.com/watch?v=H6cWE63HZyk",
             downloadLink: ""
