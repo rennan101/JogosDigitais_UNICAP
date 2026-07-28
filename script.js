@@ -935,20 +935,19 @@ const egressosPrev = document.getElementById("egressos-prev");
             }
         });
     }
- // ====================================================
+// ====================================================
     // GALERIA DINÂMICA DO INSTAGRAM (API EM TEMPO REAL)
     // ====================================================
     
-    // 💡 COLOQUE AQUI A SUA URL DA API DO INSTAGRAM OU DO PROXY (EX: BEHOLD.SO):
-    // Se ainda não tiver o link, deixe o exemplo abaixo para ver o layout funcionando!
-    const INSTA_API_URL = "https://feeds.behold.so/w9jDypvR0WWCc6Gzvdtc"; // Exemplo: "https://feeds.behold.so/teu-codigo-aqui"
+    // URL conectada ao Behold.so
+    const INSTA_API_URL = "https://feeds.behold.so/w9jDypvR0WWCc6Gzvdtc"; 
 
     const instaGrid = document.getElementById("insta-grid");
     const instaModal = document.getElementById("insta-modal");
     const instaModalBody = document.getElementById("insta-modal-body");
     const instaClose = document.getElementById("insta-close");
 
-    // Função para formatar a data que vem do Instagram (ISO) para o padrão Brasileiro
+    // Função para formatar a data (ISO) para o padrão Brasileiro
     function formatarDataInsta(dataIso) {
         if (!dataIso) return "Data recente";
         try {
@@ -967,22 +966,15 @@ const egressosPrev = document.getElementById("egressos-prev");
     async function carregarInstagramDinamico() {
         if (!instaGrid) return;
 
-        // Se a variável INSTA_API_URL estiver vazia, carrega um Feed de Demonstração (Fallback)
+        // Fallback de demonstração caso a URL não esteja inserida
         if (!INSTA_API_URL || INSTA_API_URL.trim() === "") {
             console.warn("⚠️ API do Instagram não configurada. Carregando modo demonstração.");
             renderizarFeedInsta([
                 {
                     id: "demo1",
-                    media_url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=600",
+                    mediaUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=600",
                     timestamp: "2026-03-15T14:30:00+0000",
                     caption: "🚀 Mais uma Global Game Jam finalizada com sucesso em nossos laboratórios!\n\nConfigure sua API para puxar os posts reais de @jogosdigitais_unicap em tempo real!",
-                    permalink: "https://www.instagram.com/jogosdigitais_unicap/"
-                },
-                {
-                    id: "demo2",
-                    media_url: "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&q=80&w=600",
-                    timestamp: "2026-02-28T10:00:00+0000",
-                    caption: "🥽 Aula prática de Realidade Virtual (VR) com headsets Meta Quest nos laboratórios da UNICAP! #VR #Gamedev",
                     permalink: "https://www.instagram.com/jogosdigitais_unicap/"
                 }
             ]);
@@ -998,12 +990,12 @@ const egressosPrev = document.getElementById("egressos-prev");
             
             const dados = await resposta.json();
             
-            // O formato oficial da Meta retorna dentro de uma matriz "data" ou direto em matriz no Behold
+            // Suporta retorno em matriz direta do Behold ou matriz "data" da Meta
             const listaPosts = Array.isArray(dados) ? dados : (dados.data || []);
             
-            // Filtra para pegar apenas imagens e vídeos (ignora álbuns vazios ou erros) e limita a 8 posts
+            // FILTRO ATUALIZADO: Aceita mediaUrl, media_url, álbuns de carrossel (children) e Reels!
             const postsFiltrados = listaPosts
-                .filter(post => post.media_url || post.thumbnail_url)
+                .filter(post => post.mediaUrl || post.thumbnailUrl || post.media_url || post.thumbnail_url || (post.children && post.children.length > 0))
                 .slice(0, 8);
 
             renderizarFeedInsta(postsFiltrados);
@@ -1021,12 +1013,16 @@ const egressosPrev = document.getElementById("egressos-prev");
     }
 
     // Construtor Visual das Cartas e do Modal
-function renderizarFeedInsta(posts) {
+    function renderizarFeedInsta(posts) {
         instaGrid.innerHTML = "";
         
         posts.forEach(post => {
-            // Suporta tanto o padrão Behold (mediaUrl) quanto o padrão Meta (media_url) automaticamente!
-            const imagemReal = post.thumbnailUrl || post.thumbnail_url || post.mediaUrl || post.media_url;
+            // LEITURA INTELIGENTE: Puxa foto normal, capa de Reel/Vídeo ou a 1ª foto de um Carrossel!
+            let imagemReal = post.thumbnailUrl || post.thumbnail_url || post.mediaUrl || post.media_url;
+            if (!imagemReal && post.children && post.children.length > 0) {
+                imagemReal = post.children[0].mediaUrl || post.children[0].media_url;
+            }
+            
             const legendaReal = post.caption || "Sem descrição disponível.";
             const dataReal = formatarDataInsta(post.timestamp || post.date);
             const linkReal = post.permalink || post.url || "https://www.instagram.com/jogosdigitais_unicap/";
@@ -1089,4 +1085,5 @@ function renderizarFeedInsta(posts) {
         instaClose.addEventListener("click", fecharInstaModal);
         instaModal.addEventListener("click", (e) => { if (e.target === instaModal) fecharInstaModal(); });
         document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !instaModal.classList.contains("hidden")) fecharInstaModal(); });
-    }});
+    }
+});
