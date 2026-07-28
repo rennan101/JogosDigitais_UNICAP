@@ -1501,16 +1501,51 @@ html, body {
     }
 }
 /* ====================================================
-   GALERIA DO INSTAGRAM & MODAL DE LEITURA DE LEGENDA
+   CARROSSEL DO INSTAGRAM & CARD "VER MAIS"
    ==================================================== */
-.insta-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+.insta-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 3.5rem; /* Corredor de segurança para os botões < > */
     margin-top: 2rem;
 }
 
-/* Card quadrado estilo feed do Instagram */
+.insta-grid {
+    display: flex !important;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1.5rem;
+    scroll-snap-type: x mandatory; /* Efeito magnético ao rolar */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+/* ====================================================
+   SCROLLBAR TEMÁTICA DO INSTAGRAM (PADRÃO TEAL/CIANO)
+   ==================================================== */
+.insta-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.insta-grid::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.insta-grid::-webkit-scrollbar-thumb {
+    background: var(--accent-teal);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 194, 203, 0.5);
+}
+
+.insta-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-teal-hover);
+}
+
+/* 4 cards visíveis por vez no Desktop com cálculo matemático exato */
 .insta-card {
     position: relative;
     border-radius: 12px;
@@ -1520,6 +1555,8 @@ html, body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    flex: 0 0 calc((100% - 4.5rem) / 4); /* Divide a tela para 4 cards + 3 espaços de 1.5rem */
+    scroll-snap-align: start;
 }
 
 .insta-card img {
@@ -1529,7 +1566,6 @@ html, body {
     transition: transform 0.5s ease;
 }
 
-/* Overlay que aparece ao passar o mouse */
 .insta-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -1552,132 +1588,83 @@ html, body {
     box-shadow: 0 15px 30px rgba(0, 194, 203, 0.3);
 }
 
-.insta-card:hover img {
-    transform: scale(1.08);
-}
+.insta-card:hover img { transform: scale(1.08); }
+.insta-card:hover .insta-overlay { opacity: 1; }
+.insta-overlay i { color: var(--accent-teal); width: 32px; height: 32px; margin-bottom: 0.5rem; }
+.insta-overlay span { color: #fff; font-size: 0.85rem; font-weight: 600; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
-.insta-card:hover .insta-overlay {
-    opacity: 1;
-}
-
-.insta-overlay i {
-    color: var(--accent-teal);
-    width: 32px;
-    height: 32px;
-    margin-bottom: 0.5rem;
-}
-
-.insta-overlay span {
+/* Botões de navegação lateral (< >) */
+.insta-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background: rgba(15, 23, 42, 0.95);
+    border: 2px solid var(--accent-teal);
     color: #fff;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* Limita o texto a 3 linhas no card */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* Modal interno dividido em Imagem (Esquerda) e Legenda (Direita) */
-.insta-modal-content {
-    max-width: 850px !important;
-    padding: 0 !important;
-    overflow: hidden;
-    border: 2px solid var(--accent-teal) !important;
-}
-
-.insta-modal-body {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    background: #090e1a;
-}
-
-.insta-modal-img-container {
-    width: 100%;
-    height: 100%;
-    min-height: 350px;
-    max-height: 550px;
-    background: #000;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.insta-modal-img-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.insta-btn:hover {
+    background: var(--accent-teal);
+    color: #000;
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 0 25px rgba(0, 194, 203, 0.8);
 }
 
-.insta-modal-text-container {
-    padding: 2.5rem 2rem 2rem 2rem;
+.insta-btn.prev { left: 0; }
+.insta-btn.next { right: 0; }
+
+/* 🌟 ÚLTIMO CARD ESPECIAL: "Deseja ver mais?" */
+.insta-card-more {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(0, 194, 203, 0.15)) !important;
+    border: 2px dashed var(--accent-teal) !important;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    max-height: 550px;
-    overflow-y: auto;
-}
-
-.insta-header-profile {
-    display: flex;
     align-items: center;
-    gap: 0.8rem;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+    text-decoration: none;
+}
+
+.insta-card-more:hover {
+    background: rgba(0, 194, 203, 0.25) !important;
+    border-style: solid !important;
+}
+
+.insta-card-more i.icon-main {
+    color: var(--accent-teal);
+    width: 48px;
+    height: 48px;
     margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s;
 }
 
-.insta-header-profile img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-teal);
+.insta-card-more:hover i.icon-main {
+    transform: scale(1.2) rotate(10deg);
 }
 
-.insta-header-profile h4 {
-    color: #fff;
-    font-size: 0.95rem;
-    margin: 0;
+.insta-card-more h4 { color: #fff; font-size: 1.15rem; margin-bottom: 0.4rem; font-weight: 700; }
+.insta-card-more p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.2rem; }
+
+/* Responsividade Anti-Pinch Out para Mobile e Tablet */
+@media (max-width: 992px) {
+    .insta-card {
+        flex: 0 0 calc((100% - 3rem) / 3); /* 3 cards por vez em telas médias */
+    }
 }
 
-.insta-header-profile span {
-    color: var(--accent-green);
-    font-size: 0.75rem;
-    display: block;
-}
-
-.insta-caption {
-    color: var(--text-main);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    white-space: pre-wrap; /* Mantém as quebras de linha da legenda original */
-    margin-bottom: 1.5rem;
-}
-
-.insta-date {
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    margin-bottom: 1.5rem;
-    display: block;
-}
-
-/* Ajuste Responsivo Anti-Pinch Out para o Celular */
 @media (max-width: 768px) {
-    .insta-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 1rem;
-    }
-    .insta-modal-body {
-        grid-template-columns: 1fr; /* Empilha a foto e o texto na vertical no celular */
-    }
-    .insta-modal-img-container {
-        max-height: 300px;
-        min-height: 250px;
-    }
-    .insta-modal-text-container {
-        padding: 1.5rem;
-        max-height: none;
-    }
-    .insta-overlay span {
-        font-size: 0.75rem;
-    }
+    .insta-carousel-wrapper { padding: 0; }
+    .insta-btn { display: none !important; } /* No mobile a rolagem é nativa com o dedo */
+    .insta-card { flex: 0 0 260px; } /* Largura perfeita para deslizar no smartphone */
 }

@@ -941,8 +941,7 @@ const egressosPrev = document.getElementById("egressos-prev");
     
     // 💡 COLOQUE AQUI A SUA URL DA API DO INSTAGRAM OU DO PROXY (EX: BEHOLD.SO):
     // Se ainda não tiver o link, deixe o exemplo abaixo para ver o layout funcionando!
-    const INSTA_API_URL = "https://feeds.behold.so/w9jDypvR0WWCc6Gzvdtc"; // Exemplo: "https://feeds.behold.so/teu-codigo-aqui"
-
+    const INSTA_API_URL = "https://feeds.behold.so/w9jDypvR0WWCc6Gzvdtc";
     const instaGrid = document.getElementById("insta-grid");
     const instaModal = document.getElementById("insta-modal");
     const instaModalBody = document.getElementById("insta-modal-body");
@@ -998,8 +997,8 @@ const egressosPrev = document.getElementById("egressos-prev");
             
             const dados = await resposta.json();
             console.log("DADOS QUE CHEGARAM DA API:", dados);
-            // O formato oficial da Meta retorna dentro de uma matriz "data" ou direto em matriz no Behold
-            const listaPosts = Array.isArray(dados) ? dados : (dados.data || []);
+         // Suporta: Behold em Objeto (dados.posts), Behold em Array direto ou Meta Graph API (dados.data)
+            const listaPosts = Array.isArray(dados) ? dados : (dados.posts || dados.data || []);
             
             // 💡 CORREÇÃO APLICADA AQUI: AGORA ACEITA TANTO O PADRÃO BEHOLD QUANTO META!
             const postsFiltrados = listaPosts
@@ -1022,12 +1021,11 @@ const egressosPrev = document.getElementById("egressos-prev");
         }
     }
 
-    // Construtor Visual das Cartas e do Modal
+// Construtor Visual das Cartas e do Modal
     function renderizarFeedInsta(posts) {
         instaGrid.innerHTML = "";
         
         posts.forEach(post => {
-            // Suporta tanto o padrão Behold (mediaUrl) quanto o padrão Meta (media_url) automaticamente!
             const imagemReal = post.thumbnailUrl || post.thumbnail_url || post.mediaUrl || post.media_url;
             const legendaReal = post.caption || "Sem descrição disponível.";
             const dataReal = formatarDataInsta(post.timestamp || post.date);
@@ -1076,7 +1074,40 @@ const egressosPrev = document.getElementById("egressos-prev");
             
             instaGrid.appendChild(card);
         });
+
+        // 🌟 ÚLTIMO CARD ESPECIAL: "Deseja ver mais?"
+        const moreCard = document.createElement("a");
+        moreCard.href = "https://www.instagram.com/jogosdigitais_unicap/";
+        moreCard.target = "_blank";
+        moreCard.rel = "noopener noreferrer";
+        moreCard.className = "insta-card insta-card-more";
+        moreCard.innerHTML = `
+            <i data-lucide="instagram" class="icon-main"></i>
+            <h4>Deseja ver mais?</h4>
+            <p>Acesse nosso feed oficial e confira todos os projetos!</p>
+            <span class="btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.8rem; width: auto;">
+                Ir para o Insta <i data-lucide="arrow-right" style="width:16px; height:16px; margin-left:4px;"></i>
+            </span>
+        `;
+        instaGrid.appendChild(moreCard);
+
         lucide.createIcons();
+    }
+
+    // Controles das setas < > para rolar 4 posts por vez
+    const instaPrev = document.getElementById("insta-prev");
+    const instaNext = document.getElementById("insta-next");
+
+    if (instaPrev && instaNext && instaGrid) {
+        instaPrev.addEventListener("click", () => {
+            // Rola exatamente a largura visível do carrossel para trás
+            instaGrid.scrollBy({ left: -(instaGrid.clientWidth * 0.85), behavior: "smooth" });
+        });
+
+        instaNext.addEventListener("click", () => {
+            // Rola exatamente a largura visível do carrossel para frente
+            instaGrid.scrollBy({ left: (instaGrid.clientWidth * 0.85), behavior: "smooth" });
+        });
     }
 
     // Inicia a busca dos dados assim que a página carrega!
