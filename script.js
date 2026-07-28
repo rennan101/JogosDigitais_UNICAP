@@ -563,7 +563,7 @@ document.addEventListener("DOMContentLoaded", () => {
             name: "Pedro Arthur", 
             tag: "Programador | Desenvolvimento XR | Desenvolvimento de Games | LiveOps", 
             desc: "Formado em 2020. Trabalhou em empresas como Sinapsis Inovação, Sense+, Playfox Games, PUGA Studios.", 
-            img: "assets/egressos/matheus.png",
+            img: "assets/egressos/pedro.jpeg",
             linkedin: "https://www.linkedin.com/in/pedro-santos-bitencourt/"
         },
         { 
