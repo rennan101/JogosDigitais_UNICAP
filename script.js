@@ -935,4 +935,158 @@ const egressosPrev = document.getElementById("egressos-prev");
             }
         });
     }
-});
+ // ====================================================
+    // GALERIA DINÂMICA DO INSTAGRAM (API EM TEMPO REAL)
+    // ====================================================
+    
+    // 💡 COLOQUE AQUI A SUA URL DA API DO INSTAGRAM OU DO PROXY (EX: BEHOLD.SO):
+    // Se ainda não tiver o link, deixe o exemplo abaixo para ver o layout funcionando!
+    const INSTA_API_URL = "https://feeds.behold.so/w9jDypvR0WWCc6Gzvdtc"; // Exemplo: "https://feeds.behold.so/teu-codigo-aqui"
+
+    const instaGrid = document.getElementById("insta-grid");
+    const instaModal = document.getElementById("insta-modal");
+    const instaModalBody = document.getElementById("insta-modal-body");
+    const instaClose = document.getElementById("insta-close");
+
+    // Função para formatar a data que vem do Instagram (ISO) para o padrão Brasileiro
+    function formatarDataInsta(dataIso) {
+        if (!dataIso) return "Data recente";
+        try {
+            const data = new Date(dataIso);
+            return data.toLocaleDateString('pt-BR', { 
+                day: '2-digit', 
+                month: 'long', 
+                year: 'numeric' 
+            });
+        } catch (e) {
+            return "Recente";
+        }
+    }
+
+    // Carregador Assíncrono do Feed
+    async function carregarInstagramDinamico() {
+        if (!instaGrid) return;
+
+        // Se a variável INSTA_API_URL estiver vazia, carrega um Feed de Demonstração (Fallback)
+        if (!INSTA_API_URL || INSTA_API_URL.trim() === "") {
+            console.warn("⚠️ API do Instagram não configurada. Carregando modo demonstração.");
+            renderizarFeedInsta([
+                {
+                    id: "demo1",
+                    media_url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=600",
+                    timestamp: "2026-03-15T14:30:00+0000",
+                    caption: "🚀 Mais uma Global Game Jam finalizada com sucesso em nossos laboratórios!\n\nConfigure sua API para puxar os posts reais de @jogosdigitais_unicap em tempo real!",
+                    permalink: "https://www.instagram.com/jogosdigitais_unicap/"
+                },
+                {
+                    id: "demo2",
+                    media_url: "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&q=80&w=600",
+                    timestamp: "2026-02-28T10:00:00+0000",
+                    caption: "🥽 Aula prática de Realidade Virtual (VR) com headsets Meta Quest nos laboratórios da UNICAP! #VR #Gamedev",
+                    permalink: "https://www.instagram.com/jogosdigitais_unicap/"
+                }
+            ]);
+            return;
+        }
+
+        try {
+            instaGrid.innerHTML = `<div class="text-center w-full" style="grid-column: 1/-1; padding: 2rem; color: var(--accent-teal);">Conectando aos servidores do Instagram... <i data-lucide="loader" class="animate-spin"></i></div>`;
+            lucide.createIcons();
+
+            const resposta = await fetch(INSTA_API_URL);
+            if (!resposta.ok) throw new Error("Falha na comunicação com o Instagram");
+            
+            const dados = await resposta.json();
+            
+            // O formato oficial da Meta retorna dentro de uma matriz "data" ou direto em matriz no Behold
+            const listaPosts = Array.isArray(dados) ? dados : (dados.data || []);
+            
+            // Filtra para pegar apenas imagens e vídeos (ignora álbuns vazios ou erros) e limita a 8 posts
+            const postsFiltrados = listaPosts
+                .filter(post => post.media_url || post.thumbnail_url)
+                .slice(0, 8);
+
+            renderizarFeedInsta(postsFiltrados);
+
+        } catch (erro) {
+            console.error("Erro ao puxar Instagram:", erro);
+            instaGrid.innerHTML = `
+                <div class="text-center w-full" style="grid-column: 1/-1; padding: 2rem; border: 1px dashed rgba(255,0,0,0.3); border-radius: 8px;">
+                    <p style="color: #f87171; margin-bottom: 0.5rem;">Não foi possível sincronizar com o Instagram no momento.</p>
+                    <a href="https://www.instagram.com/jogosdigitais_unicap/" target="_blank" class="btn-link">Acessar @jogosdigitais_unicap diretamente <i data-lucide="external-link"></i></a>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+    }
+
+    // Construtor Visual das Cartas e do Modal
+function renderizarFeedInsta(posts) {
+        instaGrid.innerHTML = "";
+        
+        posts.forEach(post => {
+            // Suporta tanto o padrão Behold (mediaUrl) quanto o padrão Meta (media_url) automaticamente!
+            const imagemReal = post.thumbnailUrl || post.thumbnail_url || post.mediaUrl || post.media_url;
+            const legendaReal = post.caption || "Sem descrição disponível.";
+            const dataReal = formatarDataInsta(post.timestamp || post.date);
+            const linkReal = post.permalink || post.url || "https://www.instagram.com/jogosdigitais_unicap/";
+
+            const card = document.createElement("div");
+            card.className = "insta-card";
+            card.innerHTML = `
+                <img src="${imagemReal}" alt="Post Instagram UNICAP" loading="lazy">
+                <div class="insta-overlay">
+                    <i data-lucide="instagram"></i>
+                    <span>${legendaReal.split('\n')[0]}...</span>
+                </div>
+            `;
+            
+            // Evento de clique para abrir o Lightbox completo
+            card.addEventListener("click", () => {
+                if (instaModalBody) {
+                    instaModalBody.innerHTML = `
+                        <div class="insta-modal-img-container">
+                            <img src="${imagemReal}" alt="Publicação Instagram">
+                        </div>
+                        <div class="insta-modal-text-container">
+                            <div>
+                                <div class="insta-header-profile">
+                                    <img src="assets/logos/Jogos_mec.svg" alt="Logo UNICAP" onerror="this.src='https://placehold.co/40x40/111827/00ff66?text=U'">
+                                    <div>
+                                        <h4>jogosdigitais_unicap</h4>
+                                        <span>Universidade Católica de Pernambuco</span>
+                                    </div>
+                                </div>
+                                <span class="insta-date"><i data-lucide="calendar" style="width:12px; height:12px; display:inline-block; vertical-align:middle;"></i> ${dataReal}</span>
+                                <div class="insta-caption">${legendaReal}</div>
+                            </div>
+                            <a href="${linkReal}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%; justify-content:center;">
+                                <i data-lucide="external-link"></i> VER NO INSTAGRAM
+                            </a>
+                        </div>
+                    `;
+                }
+                lucide.createIcons();
+                if (instaModal) {
+                    instaModal.classList.remove("hidden");
+                }
+            });
+            
+            instaGrid.appendChild(card);
+        });
+        lucide.createIcons();
+    }
+
+    // Inicia a busca dos dados assim que a página carrega!
+    carregarInstagramDinamico();
+
+    // Fechamento Inteligente do Modal
+    function fecharInstaModal() {
+        if (instaModal) instaModal.classList.add("hidden");
+    }
+
+    if (instaClose && instaModal) {
+        instaClose.addEventListener("click", fecharInstaModal);
+        instaModal.addEventListener("click", (e) => { if (e.target === instaModal) fecharInstaModal(); });
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !instaModal.classList.contains("hidden")) fecharInstaModal(); });
+    }});
