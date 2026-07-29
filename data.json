@@ -6,57 +6,56 @@
         {
             "sem": "1º SEMESTRE",
             "title": "Lógica de Programação para Jogos",
-            "desc": "Algoritmos, estruturas de controle e variáveis focadas na lógica de mecânicas de jogos e resolução de problemas.",
             "tech": [
-                "C#",
-                "Typescript",
-                "Godot",
-                "GitHub"
-            ]
+                "Scratch",
+                "Construct 2",
+                "GameMaker e Godot"
+            ],
+            "desc": "Ensina os princípios básicos da lógica computacional e matemática, englobando algoritmos, tipos de variáveis, estruturas de repetição, funções e introdução à programação orientada a objetos para jogos"
         },
         {
             "sem": "1º SEMESTRE",
             "title": "Expressão Visual e Gráfica",
-            "desc": "Fundamentos do desenho, teoria das cores, composição visual e perspectiva aplicada ao design de games.",
             "tech": [
                 "Photoshop",
                 "Figma"
-            ]
+            ],
+            "desc": "Aborda os fundamentos do Design Visual e a Teoria da Gestalt, para o desenvolvimento criativo de identidades visuais, tipografia, ícones e interfaces digitais focadas em comunicação"
         },
         {
             "sem": "1º SEMESTRE",
             "title": "Character Design",
-            "desc": "Criação de heróis, inimigos e NPCs com forte apelo narrativo e silhueta marcante para mídias digitais.",
             "tech": [
                 "Papel e lápis",
                 "Concept Art"
-            ]
+            ],
+            "desc": "Foca em aplicar técnicas fundamentais de desenho, anatomia, traços, luz e sombra para a criação de concept art de personagens, cenários e a produção de storyboards para jogos digitais"
         },
         {
             "sem": "1º SEMESTRE",
             "title": "Processos de Design",
-            "desc": "Metodologias criativas, Design Thinking e ideação de conceitos para prototipação rápida em estúdio.",
             "tech": [
                 "Design Thinking",
-                "Miro",
-                "Notion"
-            ]
+                "Miro"
+            ],
+            "desc": "Apresenta a metodologia do Design Thinking, guiando os alunos na empatia, definição de personas, jornadas do usuário, idealização, prototipagem e testes para construir soluções criativas centradas no usuário"
         },
         {
             "sem": "1º SEMESTRE",
             "title": "Teorias dos Jogos (EAD)",
-            "desc": "Estudo formal do círculo mágico, taxonomia de jogadores e ludologia na cultura digital moderna.",
-            "tech": []
+            "tech": [
+                "Disciplina essencialmente teórica"
+            ],
+            "desc": "Discute os fundamentos da Ludologia, analisando o jogo como artefato científico, cultural e midiático. Aborda as estruturas, mecânicas, narratologia e os diversos gêneros de jogos digitais"
         },
         {
             "sem": "1º SEMESTRE",
             "title": "Narrativa para Jogos (EAD)",
-            "desc": "Jornada do herói, worldbuilding, diálogos ramificados e construção de narrativa emergente em jogos.",
             "tech": [
-                "Twine",
-                "Final Draft",
-                "Notion"
-            ]
+                "Construção de Storyboard",
+                "Animatic"
+            ],
+            "desc": "Estudo das estruturas narrativas clássicas e modernas (como a jornada do herói), gêneros, e aspectos psicológicos para a elaboração de roteiros digitais e interativos que fomentam a imersão e o engajamento no jogo"
         },
         {
             "sem": "1º SEMESTRE",
@@ -80,12 +79,10 @@
         {
             "sem": "2º SEMESTRE",
             "title": "Arquitetura Web para Jogos",
-            "desc": "Fundamentos de redes, APIs e requisições HTTP para criação de placares e jogos em navegadores web.",
             "tech": [
-                "HTML5",
-                "JavaScript",
-                "WebSockets"
-            ]
+                "SQLite"
+            ],
+            "desc": "Aplica práticas de arquitetura de dados (locais e em nuvem), abrangendo modelos relacionais, segurança, normalização, modelagem conceitual/lógica e uso de linguagens (DDL e DML) como SQL"
         },
         {
             "sem": "2º SEMESTRE",
@@ -127,14 +124,13 @@
             ]
         },
         {
-            "sem": "2º SEMESTRE",
+            "sem": "3º SEMESTRE",
             "title": "Neurociência e Processos Tecnológicos (EAD)",
-            "desc": "Como o cérebro processa recompensas, engajamento e estímulos sensoriais em ambientes interativos.",
             "tech": [
-                "UX",
-                "Neurociência",
-                "Behavior"
-            ]
+                "Teoria",
+                "Análise"
+            ],
+            "desc": "Estuda o sistema nervoso central, os processos cognitivos e as emoções humanas, com destaque para a percepção e aprendizagem por estado de flow na implementação de jogos e ambientes lúdicos."
         },
         {
             "sem": "2º SEMESTRE",
@@ -148,42 +144,41 @@
         {
             "sem": "3º SEMESTRE",
             "title": "Programação de Jogos Mobile",
-            "desc": "Otimização de memória, controles touch e deploy de projetos para sistemas Android e iOS.",
             "tech": [
                 "Unity",
-                "Android SDK",
-                "iOS"
-            ]
+                "C#",
+                "Android SDK"
+            ],
+            "desc": "O foco é a programação para dispositivos móveis desenvolvendo jogos em 2D. Envolve adaptação a múltiplas telas, toques variados (multi-touch), responsividade e a integração com giroscópio e acelerômetro."
         },
         {
             "sem": "3º SEMESTRE",
             "title": "Arquitetura do Desenho 3D",
-            "desc": "Introdução à geometria 3D, malhas poligonais, topologia limpa e fluxo de bordas voltado para tempo real.",
             "tech": [
                 "Blender",
                 "3ds Max"
-            ]
+            ],
+            "desc": "Trabalha a modelagem e a retopologia tridimensional para a criação de cenários e objetos inorgânicos. Cobre o uso de câmeras, texturas, iluminação e renderização para games e animação"
         },
         {
             "sem": "3º SEMESTRE",
             "title": "Som Digital",
-            "desc": "Captação, mixagem, sound effects (SFX) e integração de áudio dinâmico e trilha sonora em motores gráficos.",
             "tech": [
                 "FMOD",
                 "Wwise",
                 "Reaper",
                 "Audacity"
-            ]
+            ],
+            "desc": "Criação da estética sonora para jogos (Sound Design). Os alunos elaboram trilhas sonoras, efeitos (SFX), além de praticar a edição, mixagem e a implementação destes arquivos."
         },
         {
             "sem": "3º SEMESTRE",
             "title": "Projeto Integrador I",
-            "desc": "Desenvolvimento prático em equipe de um jogo 2D completo para resolver um desafio do ecossistema.",
             "tech": [
                 "Scrum",
-                "Unity",
-                "Git"
-            ]
+                "Engine Livre"
+            ],
+            "desc": "Desenvolve projetos focados na sociedade civil de maneira solidária, criando diagnósticos e apontando soluções com o uso de produções audiovisuais e jogos em 2D"
         },
         {
             "sem": "3º SEMESTRE",
@@ -197,22 +192,13 @@
         },
         {
             "sem": "3º SEMESTRE",
-            "title": "Gestão Projetual (EAD) [Eletiva II]",
-            "desc": "Planejamento financeiro, estimativa de custos e cronograma em produções de jogos independentes.",
+            "title": "Gestão Projetual (EAD)",
             "tech": [
-                "Gestão",
-                "Agile",
-                "Excel"
-            ]
-        },
-        {
-            "sem": "3º SEMESTRE",
-            "title": "Introdução a Inteligência Artificial (EAD)",
-            "desc": "Máquinas de estados finitos (FSM), pathfinding (A*) e algoritmos de comportamentos autônomos para NPCs.",
-            "tech": [
-                "C#",
-                "AI Behavior Trees"
-            ]
+                "Scrum",
+                "Metodologias ágeis",
+                "Notion"
+            ],
+            "desc": "Traz fundamentos de planejamento de projetos focados em escopo, cronogramas, riscos e trabalho em equipe, além de discutir habilidades de comunicação e inteligência emocional (Soft Skills)"
         },
         {
             "sem": "3º SEMESTRE",
@@ -256,12 +242,11 @@
         {
             "sem": "4º SEMESTRE",
             "title": "Projeto Integrador II",
-            "desc": "Desenvolvimento em equipe de um jogo 3D ou VR com foco em inovação tecnológica e apresentação de pitch.",
             "tech": [
-                "Agile",
-                "Unreal Engine",
-                "Blender"
-            ]
+                "Scrum",
+                "Engine Livre"
+            ],
+            "desc": "Desenvolvimento em equipe de um jogo 3D ou VR com foco em inovação tecnológica e apresentação de pitch."
         },
         {
             "sem": "4º SEMESTRE",
@@ -285,31 +270,29 @@
         {
             "sem": "5º SEMESTRE",
             "title": "Projeto de Artefatos Lúdicos",
-            "desc": "Desenvolvimento de boardgames, jogos híbridos e experiências interativas físicas com prototipação rápida.",
             "tech": [
-                "Prototipação de Papel",
-                "Impressão 3D"
-            ]
+                "Scrum",
+                "Engine Livre"
+            ],
+            "desc": "É a disciplina integradora final onde as equipes desenvolvem um jogo completo multiplataforma de forma prática, indo do roteiro, level design e programação até testes de mercado, planejamento do modelo de negócio e criação do produto mínimo viável (MVP)"
         },
         {
             "sem": "5º SEMESTRE",
             "title": "Midiatização dos Jogos",
-            "desc": "E-sports, streaming, impacto cultural dos videogames e engajamento em comunidades em plataformas digitais.",
             "tech": [
-                "Twitch",
-                "OBS",
+                "Figma",
                 "Social Media"
-            ]
+            ],
+            "desc": "Estuda os jogos inseridos na cultura e no campo midiático, investigando planejamento estratégico, criação de planos de mídia para jogos, narrativas transmídia e a economia afetiva."
         },
         {
             "sem": "5º SEMESTRE",
             "title": "Tópicos Avançados em Jogos Digitais",
-            "desc": "Exploração de tecnologias emergentes como Realidade Virtual (VR), Realidade Aumentada e Cloud Gaming.",
             "tech": [
-                "VR/AR",
-                "Meta Quest",
-                "Next-Gen Engine"
-            ]
+                "Pesquisas",
+                "Estudos de casos mercadológicos"
+            ],
+            "desc": "Analisa e debate sobre novas perspectivas de tecnologias, ferramentas e tendências emergentes na indústria. Busca instigar o empreendedorismo, estratégias mercadológicas e a visão contemporânea do game design."
         },
         {
             "sem": "5º SEMESTRE",
@@ -323,12 +306,12 @@
         {
             "sem": "5º SEMESTRE",
             "title": "Propriedade Intelectual (EAD)",
-            "desc": "Direitos autorais de software, registro de marcas, contratos de publicação (Publishers) e licenciamento.",
             "tech": [
                 "Direito Digital",
                 "Licenciamento",
                 "Contratos"
-            ]
+            ],
+            "desc": "Explica a legislação brasileira e internacional voltada aos direitos intelectuais, como ética profissional, direitos autorais (patentes e marcas), Copyleft e como registrar o código e o título do game criado."
         }
     ],
     "projetos": [
