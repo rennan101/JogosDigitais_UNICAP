@@ -530,9 +530,6 @@ const dadosDeFallback = {
     if (prevBtn && slides.length > 0) prevBtn.addEventListener("click", () => { currentIndex = (currentIndex - 1 + slides.length) % slides.length; updateCarousel(); });
 
     // ====================================================
-    // FORMULÁRIO DE VISITA
-    // ====================================================
-// ====================================================
     // AGENDA INTERATIVA E VALIDAÇÃO DE HORÁRIOS
     // ====================================================
     let agendaConfig = { diasSemana: [1,2,3,4,5], horarios: ["14:00", "15:00", "16:00"], diasBloqueados: [] };
@@ -665,18 +662,20 @@ const dadosDeFallback = {
         });
     }
 
-    // Submissão do Formulário
-    // Submissão do Formulário (Integrado com FormSubmit via AJAX)
+    // ====================================================
+    // SUBMISSÃO DO FORMULÁRIO (INTEGRADO COM FORMSUBMIT AJAX)
+    // ====================================================
     const scheduleForm = document.getElementById("schedule-form");
     if (scheduleForm) {
         scheduleForm.addEventListener("submit", async (e) => {
             e.preventDefault(); // Impede o recarregamento padrão da página
             
-            const btnSubmit = document.getElementById("btn-submit-agenda");
+            const btnSubmit = document.getElementById("btn-submit-agenda") || scheduleForm.querySelector('button[type="submit"]');
             const nome = document.getElementById("nome").value;
             const data = inputDataVisita.value;
             const hora = inputHoraVisita.value;
             
+            // Validações da interface de calendário e relógio
             if (!data) {
                 alert("⚠️ Selecione um DIA disponível no calendário.");
                 return;
@@ -688,25 +687,19 @@ const dadosDeFallback = {
 
             // Efeito visual de carregamento no botão
             const textoOriginal = btnSubmit.innerHTML;
-            btnSubmit.innerHTML = 'ENVIANDO... <i data-lucide="loader" class="animate-spin"></i>';
+            btnSubmit.innerHTML = '⏳ ENVIANDO... <i data-lucide="loader" class="animate-spin"></i>';
             btnSubmit.style.pointerEvents = "none";
-            lucide.createIcons();
+            btnSubmit.disabled = true;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
 
             try {
-                // Coleta todos os dados digitados
+                // O FormData coleta magicamente TODOS os inputs ocultos (incluindo o seu name="_cc")
                 const formData = new FormData(scheduleForm);
-                const actionUrl = scheduleForm.getAttribute("action");
                 
-                // Trava de segurança caso esqueça de colocar o email no HTML
-                if(!actionUrl || actionUrl === "" || actionUrl.includes("SEU_EMAIL_AQUI")) {
-                    alert("⚠️ O sistema de email ainda não foi configurado pelo Administrador.\nAbra o index.html e coloque o email correto na tag <form action='...'>.");
-                    throw new Error("Email não configurado no form action.");
-                }
+                // Endpoint direto com a sua chave segura (hash)
+                const ajaxUrl = "https://formsubmit.co/ajax/2dcd9e67b56e01b83ef051fa88e1520e";
 
-                // Converte a URL padrão do FormSubmit para a URL AJAX (que não redireciona a página)
-                const ajaxUrl = actionUrl.replace("formsubmit.co/", "formsubmit.co/ajax/");
-
-                // Dispara a requisição real para o servidor do FormSubmit
+                // Dispara a requisição real para o servidor do FormSubmit sem sair da página
                 const response = await fetch(ajaxUrl, {
                     method: "POST",
                     body: formData,
@@ -718,31 +711,37 @@ const dadosDeFallback = {
                 if (response.ok) {
                     alert(`✅ Solicitação enviada com sucesso, ${nome}!\n\nA coordenação do curso entrará em contato em breve para confirmar seu agendamento.`);
                     
-                    // Limpa o formulário e a agenda
+                    // Limpa o formulário textualmente
                     scheduleForm.reset();
+                    
+                    // Reseta o estado interativo do calendário
                     dataSelecionadaStr = null;
-                    inputDataVisita.value = "";
-                    inputHoraVisita.value = "";
-                    selectedDateLabel.textContent = "Selecione uma data";
+                    if (typeof inputDataVisita !== 'undefined') inputDataVisita.value = "";
+                    if (typeof inputHoraVisita !== 'undefined') inputHoraVisita.value = "";
+                    
+                    if (selectedDateLabel) selectedDateLabel.textContent = "Selecione uma data";
+                    
                     if (timesGrid) timesGrid.innerHTML = `<p class="time-placeholder">Os horários disponíveis aparecerão aqui após escolher um dia no calendário.</p>`;
+                    
+                    // Redesenha o calendário visualmente para desmarcar o dia escolhido
                     renderizarCalendario();
                 } else {
                     throw new Error("Erro na comunicação com o servidor de email.");
                 }
 
             } catch (error) {
-                if(error.message !== "Email não configurado no form action.") {
-                    alert("❌ Ocorreu um erro ao enviar seu agendamento. Tente novamente mais tarde.");
-                }
+                alert("❌ Ocorreu um erro ao enviar seu agendamento. Tente novamente mais tarde ou contate a coordenação.");
                 console.error(error);
             } finally {
-                // Devolve o botão ao estado normal
+                // Devolve o botão ao estado normal e clicável
                 btnSubmit.innerHTML = textoOriginal;
                 btnSubmit.style.pointerEvents = "auto";
-                lucide.createIcons();
+                btnSubmit.disabled = false;
+                if (typeof lucide !== 'undefined') lucide.createIcons();
             }
         });
     }
+
     // Renderiza inicialmente
     setTimeout(() => { renderizarCalendario(); }, 100);
 
