@@ -7,9 +7,7 @@
             "sem": "1º SEMESTRE",
             "title": "Lógica de Programação para Jogos",
             "tech": [
-                "Scratch",
-                "Construct 2",
-                "GameMaker e Godot"
+                "Godot"
             ],
             "desc": "Ensina os princípios básicos da lógica computacional e matemática, englobando algoritmos, tipos de variáveis, estruturas de repetição, funções e introdução à programação orientada a objetos para jogos"
         },
