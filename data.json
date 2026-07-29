@@ -748,11 +748,11 @@
     ],
     "docentes": [
         {
-            "name": "Prof. Msc. Alan Campos",
+            "name": "Prof. Dr. Alan Campos",
             "tag": "Game Design",
-            "desc": "",
             "img": "assets/docentes/alan.png",
-            "lattes": "http://lattes.cnpq.br/1618069081375414"
+            "lattes": "http://lattes.cnpq.br/1618069081375414",
+            "desc": " "
         },
         {
             "name": "Prof. Dr. Anthony Lins",
