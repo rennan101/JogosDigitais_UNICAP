@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogos Digitais | UNICAP - Nota 5 no MEC | Vestibular 2027.1</title>
-    <!-- Ícone na Aba do Navegador (Favicon) -->
     <link rel="icon" type="image/svg+xml" href="assets/icons/jogos_icon.svg">
-    <!-- Google Fonts: Poppins (Leitura) & Press Start 2P (Retro/Arcade) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-    <!-- Lucide Icons Vetoriais -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- HEADER FIXO (GLASSMORPHISM) -->
     <header class="header">
         <div class="container header-content">
             <a href="#hero" class="logo">
@@ -27,7 +23,6 @@
                 <a href="#matriz">Matriz Curricular</a>
                 <a href="#projetos">Projetos</a>
                 <a href="#egressos">Egressos</a>
-                <a href="#infra">Infraestrutura</a>
                 <a href="#visita" class="nav-highlight">Agende sua Visita</a>
             </nav>
             <a href="#investimento" class="btn-cta-pulse">Inscreva-se 2027.1</a>
@@ -38,7 +33,6 @@
     </header>
 
     <main>
-        <!-- SEÇÃO 1: HERO & INVESTIMENTO -->
         <section id="hero" class="hero-section">
             <div class="container hero-grid">
                 <div class="hero-text">
@@ -55,23 +49,15 @@
                 </div>
                 <div class="hero-image">
                     <div class="gameboy-wrapper">
-                        <!-- Imagem SVG do Game Boy -->
                         <img src="assets/demo/jogosboy.svg" alt="Game Boy UNICAP Jogos" class="gameboy-svg">
-                        
-                        <!-- Tela do Game Boy com o vídeo otimizado -->
                         <div class="gameboy-screen">
-                            <iframe 
-                                src="https://www.youtube-nocookie.com/embed/tpFPva4w9Sg?autoplay=1&mute=1&loop=1&playlist=tpFPva4w9Sg&controls=0&showinfo=0&rel=0&modestbranding=1" 
-                                title="Showreel Jogos UNICAP" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
+                            <iframe src="https://www.youtube-nocookie.com/embed/tpFPva4w9Sg?autoplay=1&mute=1&loop=1&playlist=tpFPva4w9Sg&controls=0&showinfo=0&rel=0&modestbranding=1" title="Showreel Jogos UNICAP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- CARD DE INVESTIMENTO -->
+            <!-- CARD DE INVESTIMENTO (Controlado pelo admin.js) -->
             <div id="investimento" class="container investment-container">
                 <div class="investment-card">
                     <div class="inv-header">
@@ -105,7 +91,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO 2: SOBRE O CURSO (COM ABAS DE DOCENTES E PESQUISAS INTEGRADAS) -->
+        <!-- SEÇÃO 2: SOBRE O CURSO -->
         <section id="sobre" class="section">
             <div class="container">
                 <div class="section-title">
@@ -113,86 +99,85 @@
                     <h2>SOBRE O CURSO</h2>
                 </div>
                 
-                <div class="tabs-container">
-                    <div class="tabs-header">
-                        <button class="tab-btn active" data-tab="tab-desc">Descrição</button>
-                        <button class="tab-btn" data-tab="tab-perfil">Perfil Profissional</button>
-                        <button class="tab-btn" data-tab="tab-extensao">Extensão</button>
-                        <button class="tab-btn" data-tab="tab-avaliacao">Avaliação (PBL)</button>
-                        <button class="tab-btn" data-tab="tab-parceiros">Empresas Locais</button>
-                        <button class="tab-btn" data-tab="tab-docentes">Corpo Docente</button>
-                        <button class="tab-btn" data-tab="tab-pesquisas">Pesquisas & PIBIC</button>
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="tab-desc">Descrição</button>
+                    <button class="tab-btn" data-tab="tab-perfil">Perfil Profissional</button>
+                    <button class="tab-btn" data-tab="tab-extensao">Extensão</button>
+                    <button class="tab-btn" data-tab="tab-infra">Infraestrutura</button>
+                    <button class="tab-btn" data-tab="tab-parceiros">Empresas Locais</button>
+                    <button class="tab-btn" data-tab="tab-docentes">Corpo Docente</button>
+                    <button class="tab-btn" data-tab="tab-pesquisas">Pesquisas</button>
+                </div>
+
+                <div class="tabs-content">
+                    <div class="tab-pane active" id="tab-desc">
+                        <h3>Formação de Excelência e Aprendizagem na Prática</h3>
+                        <ul class="custom-bullet-list">
+                            <li><strong>Nota 5 no MEC:</strong> O curso tem duração de <strong>2 anos e 6 meses (5 semestres)</strong>, garantindo formação técnica de nível superior reconhecida pela excelência.</li>
+                            <li><strong>Foco Direto no Mercado:</strong> Imersão prática em rotinas de estúdio, abrangendo design de games, programação, modelagem 3D, pintura digital e animação.</li>
+                            <li><strong>Metodologia de Aprendizagem Baseada em Projetos (PBL):</strong> Esqueça provas monótonas teóricas. Nossa metodologia foca na produção contínua e colaborativa de jogos reais a cada semestre.</li>
+                            <li><strong>Avaliação por Portfólio:</strong> O rendimento é avaliado pela qualidade da entrega dos seus protótipos, código funcional e direção artística, preparando seu portfólio antes mesmo de se formar.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tab-pane" id="tab-perfil">
+                        <h3>Competências do Egresso</h3>
+                        <p>O profissional formado no curso de Jogos Digitais sai pronto para liderar nas seguintes áreas de atuação:</p>
+                        <div class="tags-grid">
+                            <span>Programador de Jogos</span>
+                            <span>Artista Conceitual</span>
+                            <span>Game Designer</span> 
+                            <span>Level Designer</span>
+                            <span>Produtor</span>
+                            <span>Modelador 3D / Animador</span>
+                            <span>QA (Quality Assurance)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="tab-extensao">
+                        <h3>Conexão com Empresas e Projetos Reais</h3>
+                        <p>Oportunidade de atuar na <a href="https://combogounicap.vercel.app/" class="link-destaque" target="_blank" rel="noopener noreferrer">Combogó UNICAP</a>, a agência de soluções interativas do curso de Jogos desenvolvendo projetos para clientes reais. Além da Combogó temos o projeto Manifesto PowerUP, onde o aluno terá a experiência de atuar em conjunto com a empresa <a href="https://www.manifestogames.com.br" class="link-destaque" target="_blank" rel="noopener noreferrer">Manifesto Games</a> de Recife.</p>
+                    </div>
+                    
+                    <div class="tab-pane" id="tab-infra">
+                        <h3>Laboratórios e Tecnologia de Ponta</h3>
+                        <p>Máquinas equipadas com 32GB de RAM, placas de vídeo de 8GB VRAM e SSDs, prontas para as maiores Game Engines.</p>
+                        <div class="carousel-container" style="margin-top: 2rem;">
+                            <button class="carousel-btn prev" id="carousel-prev"><i data-lucide="chevron-left"></i></button>
+                            <div class="carousel-track-wrapper">
+                                <div class="carousel-track" id="carousel-track">
+                                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&q=80&w=800" alt="Lab Computação Gráfica"><span>Lab de Computação Gráfica (PCs)</span></div>
+                                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&q=80&w=800" alt="Sala de Realidade Virtual"><span>Estúdio de Realidade Virtual (VR) & Realidade Aumentada</span></div>
+                                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800" alt="Estúdio de Captura"><span>Estúdio de Captura de Movimento (MoCap) & Áudio</span></div>
+                                    <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" alt="Coworking"><span>Espaço de Coworking e Desenvolvimento de Jogos</span></div>
+                                </div>
+                            </div>
+                            <button class="carousel-btn next" id="carousel-next"><i data-lucide="chevron-right"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="tab-parceiros">
+                        <h3>Conexão com o Porto Digital e Empresas de Recife</h3>
+                        <p>Clique nos estúdios locais para conhecer suas produções:</p>
+                        <!-- GERADO VIA JS PELO DATA.JSON -->
+                        <div class="partners-grid" id="partners-grid"></div>
                     </div>
 
-                    <div class="tabs-content">
-                        <div class="tab-pane active" id="tab-desc">
-                            <h3>Formação de Excelência — Nota 5 no MEC</h3>
-                            <p>O curso de Tecnólogo em Jogos Digitais da UNICAP tem duração de 2 anos e 6 meses (5 semestres). Focado na prática de estúdio, design de games, programação de jogos, modelagem 3D, pintura digital e animação, os alunos têm acesso a laboratórios de jogos, sons, captura de movimento e vivência real com os desafios da indústria local e internacional.</p>
-                        </div>
-                        
-                        <div class="tab-pane" id="tab-perfil">
-                            <h3>Competências do Egresso</h3>
-                            <p>O profissional formado no curso de Jogos Digitais sai pronto para liderar nas seguintes áreas de atuação:</p>
-                            <div class="tags-grid">
-                                <span>Programador de Jogos</span>
-                                <span>Artista Conceitual</span>
-                                <span>Game Designer</span> 
-                                <span>Level Designer</span>
-                                <span>Produtor</span>
-                                <span>Modelador 3D / Animador</span>
-                                <span>QA (Quality Assurance)</span>
-                            </div>
-                        </div>
-                        
-                        <div class="tab-pane" id="tab-extensao">
-                            <h3>Conexão com Empresas e Projetos Reais</h3>
-                            <p>Oportunidade de atuar na <a href="https://combogounicap.vercel.app/" class="link-destaque" target="_blank" rel="noopener noreferrer">Combogó UNICAP</a>, a agência de soluções interativas do curso de Jogos desenvolvendo projetos para clientes reais. Além da Combogó temos o projeto Manifesto PowerUP, onde o aluno terá a experiência de atuar em conjunto com a empresa <a href="https://www.manifestogames.com.br" class="link-destaque" target="_blank" rel="noopener noreferrer">Manifesto Games</a> de Recife.</p>
-                        </div>
-                        
-                        <div class="tab-pane" id="tab-avaliacao">
-                            <h3>Aprendizagem Baseada em Projetos (PBL)</h3>
-                            <p>Esqueça provas monótonas e teóricas sem aplicação. Nossa metodologia foca na produção contínua de jogos reais a cada semestre. Você é avaliado pela entrega dos seus protótipos, código funcional e direção artística, preparando seu portfólio antes de se formar.</p>
-                        </div>
-                        
-                        <div class="tab-pane" id="tab-parceiros">
-                            <h3>Conexão com o Porto Digital e Empresas de Recife</h3>
-                            <p>Clique nos estúdios locais para conhecer suas produções:</p>
-                            <div class="partners-grid">
-                                <a href="https://playnambuco.com.br/" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">PLAYNAMBUCO</a>
-                                <a href="https://kokkugames.com" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">KOKKU GAMES</a>
-                                <a href="https://room8studio.com/" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">ROOM 8</a>
-                                <a href="https://dioramadigital.com/" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">DIORAMA DIGITAL</a>
-                                <a href="https://www.cyanheartstudio.com" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">CYAN HEART STUDIO</a>
-                                <a href="https://www.manifestogames.com.br/" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">MANIFESTO GAMES</a>
-                                <a href="https://pointnsheep.com" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">POINT N' SHEEP</a>
-                                <a href="https://www.instagram.com/play.quilomboz/" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">QUILOMBOZ / ALPAK'</a>
-                                <a href="https://mangrovestudio.ueniweb.com" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">MANGROVE STUDIO</a>                                 
-                                <a href="https://www.instagram.com/lvl100.studio/" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">LEVEL100</a>
-                                <a href="https://www.instagram.com/taquara.design/" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">TAQUARA DESIGN</a>
-                                <a href="https://rvbnes.wixsite.com/kunjee-studio" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">KUNJEE STUDIO</a>
-                                <a href="https://www.instagram.com/pixelhoundstudios/" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">PIXEL HOUND</a>
-                                <a href="https://www.instagram.com/baiaoestudio/" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">Baião Studio</a>
-                                <a href="https://sebrae.com.br/pe/empreendedores" target="_blank" rel="noopener noreferrer" class="partner-logo partner-btn">SEBRAE</a>
-                            </div>
-                        </div>
+                    <div class="tab-pane" id="tab-docentes">
+                        <h3>Mestres e Doutores</h3>
+                        <p>Conheça os professores que guiarão sua formação acadêmica e profissional:</p>
+                        <div class="docentes-grid" id="docentes-grid"></div>
+                    </div>
 
-                        <!-- ABA DE CORPO DOCENTE INTEGRADA -->
-                        <div class="tab-pane" id="tab-docentes">
-                            <h3>Mestres e Doutores</h3>
-                            <p>Conheça os professores que guiarão sua formação acadêmica e profissional:</p>
-                            <div class="docentes-grid" id="docentes-grid">
-                                <!-- Gerado via JS -->
-                            </div>
+                    <div class="tab-pane" id="tab-pesquisas">
+                        <h3>Produções Científicas e Iniciação</h3>
+                        <p>Projetos de pesquisa liderados por nossos docentes e alunos, conectando inovação e tecnologia:</p>
+                        <div style="margin-bottom: 2rem;">
+                            <select class="pesq-dropdown" id="pesq-filter-select" aria-label="Filtrar por professor">
+                                <option value="Todos">Exibir todos os docentes</option>
+                            </select>
                         </div>
-
-                        <!-- ABA DE PESQUISAS INTEGRADA -->
-                        <div class="tab-pane" id="tab-pesquisas">
-                            <h3>Produção Científica e Iniciação (PIBIC)</h3>
-                            <p>Projetos de pesquisa liderados por nossos docentes e alunos, conectando inovação e tecnologia:</p>
-                            <div class="pesquisas-list" id="pesquisas-list">
-                                <!-- Gerado via JS -->
-                            </div>
-                        </div>
+                        <div class="pesquisas-list" id="pesquisas-list"></div>
                     </div>
                 </div>
 
@@ -208,7 +193,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO 3: MATRIZ CURRICULAR INTERATIVA (POR PERÍODOS) -->
+        <!-- SEÇÃO 3: MATRIZ CURRICULAR INTERATIVA -->
         <section id="matriz" class="section bg-darker">
             <div class="container">
                 <div class="section-title">
@@ -216,8 +201,6 @@
                     <h2>MATRIZ CURRICULAR</h2>
                     <p>Explore as disciplinas separadas por período. Clique no card para expandir a ementa e ver as tecnologias aplicadas.</p>
                 </div>
-
-                <!-- ABAS DE PERÍODOS -->
                 <div class="filter-pills period-tabs">
                     <button class="pill active" data-period="1º SEMESTRE">1º Período</button>
                     <button class="pill" data-period="2º SEMESTRE">2º Período</button>
@@ -226,15 +209,11 @@
                     <button class="pill" data-period="5º SEMESTRE">5º Período</button>
                     <button class="pill" data-period="all">Ver Todas as Disciplinas</button>
                 </div>
-
-                <!-- GRID ACCORDION DISCIPLINAS -->
-                <div class="curriculum-grid" id="curriculum-grid">
-                    <!-- Gerado via JavaScript de acordo com o Período selecionado -->
-                </div>
+                <div class="curriculum-grid" id="curriculum-grid"></div>
             </div>
         </section>
 
-        <!-- SEÇÃO 4: PROJETOS DOS ALUNOS (GAME BOY COLOR) -->
+        <!-- SEÇÃO 4: PROJETOS DOS ALUNOS (CARREGAMENTO +4) -->
         <section id="projetos" class="section">
             <div class="container">
                 <div class="section-title text-center">
@@ -242,58 +221,31 @@
                     <h2>VITRINE DE PROJETOS DO CURSO</h2>
                     <p>Clique no cartucho e visualize os jogos criados por nossos alunos.</p>
                 </div>
-
-                <div class="gbc-grid" id="gbc-grid">
-                    <!-- Cards inseridos via JS com formato Cartucho GBC -->
+                <div class="gbc-grid" id="gbc-grid"></div>
+                <div id="load-more-games-container" style="text-align: center; margin-top: 3.5rem;">
+                    <button id="load-more-games" class="btn-secondary" style="border-radius: 30px; font-size: 0.95rem;">
+                        Exibir mais projetos <i data-lucide="chevron-down"></i>
+                    </button>
                 </div>
             </div>
         </section>
 
-<section id="egressos" class="section bg-darker">
+        <!-- SEÇÃO 5: EGRESSOS -->
+        <section id="egressos" class="section bg-darker">
             <div class="container">
                 <div class="section-title">
                     <span class="badge-retro">MERCADO</span>
                     <h2>SUCESSO DOS NOSSOS ALUNOS</h2>
                 </div>
-                
-                <!-- CARROSSEL COM BOTÕES NAS EXTREMIDADES -->
                 <div class="egressos-carousel-wrapper">
                     <button class="egressos-btn prev" id="egressos-prev" aria-label="Ver anterior"><i data-lucide="chevron-left"></i></button>
-                    
-                    <div class="egressos-grid" id="egressos-grid">
-                        <!-- Gerado via JS -->
-                    </div>
-                    
+                    <div class="egressos-grid" id="egressos-grid"></div>
                     <button class="egressos-btn next" id="egressos-next" aria-label="Ver próximo"><i data-lucide="chevron-right"></i></button>
                 </div>
             </div>
         </section>
 
-        <!-- SEÇÃO 6: INFRAESTRUTURA -->
-        <section id="infra" class="section">
-            <div class="container">
-                <div class="section-title text-center">
-                    <span class="badge-retro">TECNOLOGIA DE PONTA</span>
-                    <h2>INFRAESTRUTURA</h2>
-                    <p>Laboratórios gráficos, estúdios de captura de movimento (MoCap), estúdio de som, Laboratório de prototipagem 3D, e VR à sua disposição. Nossos laboratórios contam com 32gb de ram, placas video de 8Gb Vram e SSDs, tudo para suportar as Game Engines.</p>
-                </div>
-                
-                <div class="carousel-container">
-                    <button class="carousel-btn prev" id="carousel-prev"><i data-lucide="chevron-left"></i></button>
-                    <div class="carousel-track-wrapper">
-                        <div class="carousel-track" id="carousel-track">
-                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&q=80&w=800" alt="Lab Computação Gráfica"><span>Lab de Computação Gráfica (PCs)</span></div>
-                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&q=80&w=800" alt="Sala de Realidade Virtual"><span>Estúdio de Realidade Virtual (VR) & Realidade Aumentada</span></div>
-                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800" alt="Estúdio de Captura"><span>Estúdio de Captura de Movimento (MoCap) & Áudio</span></div>
-                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" alt="Coworking"><span>Espaço de Coworking e Desenvolvimento de Jogos</span></div>
-                        </div>
-                    </div>
-                    <button class="carousel-btn next" id="carousel-next"><i data-lucide="chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-        
-<!-- SEÇÃO 7: FEED DO INSTAGRAM -->
+        <!-- SEÇÃO 7: FEED DO INSTAGRAM -->
         <section id="instagram" class="section">
             <div class="container">
                 <div class="section-title text-center">
@@ -301,18 +253,13 @@
                     <h2>ACOMPANHE NOSSO DIA A DIA</h2>
                     <p>Bastidores dos laboratórios, Game Jams, apresentações de protótipos e eventos no nosso Instagram oficial.</p>
                 </div>
-
-              <!-- CARROSSEL DE FOTOS DO INSTAGRAM -->
                 <div class="insta-carousel-wrapper">
                     <button class="insta-btn prev" id="insta-prev" aria-label="Ver post anterior"><i data-lucide="chevron-left"></i></button>
-                    
-                    <div class="insta-grid" id="insta-grid">
-                        <!-- Gerado via JavaScript -->
-                    </div>
-                    
+                    <div class="insta-grid" id="insta-grid"></div>
                     <button class="insta-btn next" id="insta-next" aria-label="Ver próximo post"><i data-lucide="chevron-right"></i></button>
                 </div>
-           </section>
+            </div>
+        </section>
         
         <!-- SEÇÃO 8: AGENDE SUA VISITA AO CURSO -->
         <section id="visita" class="section bg-darker">
@@ -320,76 +267,97 @@
                 <div class="section-title text-center">
                     <span class="badge-retro">TOUR PRESENCIAL</span>
                     <h2>AGENDE SUA VISITA AO CURSO</h2>
-                    <p>Venha conhecer nossos laboratórios, estúdios de captura de movimento e conversar com a coordenação. Atendimento das <strong>14h às 18h</strong>.</p>
+                    <p>Venha conhecer nossos laboratórios, estúdios de captura de movimento e conversar com a coordenação e professores.</p>
                 </div>
-
+                
                 <div class="schedule-container">
-                    <form id="schedule-form" class="schedule-form">
-                        <div class="form-grid">
+                    <form id="schedule-form" class="schedule-form" action="https://formsubmit.co/rennan.raffaele@unicap.br" method="POST">
+    
+                      <!-- Configurações invisíveis do FormSubmit -->
+                        <input type="hidden" name="_subject" value="Novo Agendamento de Visita - Jogos Digitais">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <!-- Emails -->
+                        <input type="hidden" name="_cc" value="rennan.raffaele@unicap.br, combogo.unicap@unicap.br">
+                        
+                        <div class="form-grid" style="margin-bottom: 1.5rem;">
                             <div class="form-group">
                                 <label for="nome"><i data-lucide="user"></i> Nome Completo *</label>
                                 <input type="text" id="nome" name="nome" placeholder="Seu nome ou do estudante" required>
                             </div>
-
                             <div class="form-group">
                                 <label for="whatsapp"><i data-lucide="phone"></i> WhatsApp / Telefone *</label>
                                 <input type="tel" id="whatsapp" name="whatsapp" placeholder="(81) 99999-9999" required>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="data-visita"><i data-lucide="calendar"></i> Dia da Visita *</label>
-                                <input type="date" id="data-visita" name="data-visita" required>
+                        <!-- NOVO COMPONENTE DE AGENDA -->
+                        <div class="custom-booking-wrapper">
+                            <!-- Esquerda: Calendário -->
+                            <div class="booking-calendar">
+                                <div class="calendar-header-nav">
+                                    <button type="button" id="cal-prev" aria-label="Mês Anterior"><i data-lucide="chevron-left"></i></button>
+                                    <h4 id="cal-month-year">Setembro 2026</h4>
+                                    <button type="button" id="cal-next" aria-label="Próximo Mês"><i data-lucide="chevron-right"></i></button>
+                                </div>
+                                <div class="calendar-weekdays">
+                                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+                                </div>
+                                <div class="calendar-days-grid" id="cal-days-grid">
+                                    <!-- Dias gerados via JS -->
+                                </div>
                             </div>
-
-                            <div class="form-group">
-                                <label for="hora-visita"><i data-lucide="clock"></i> Horário (Entre 14h e 18h) *</label>
-                                <input type="time" id="hora-visita" name="hora-visita" min="14:00" max="18:00" step="1800" required>
-                                <span class="time-hint">Horários disponíveis: das 14:00 às 18:00</span>
+                            
+                            <!-- Direita: Horários -->
+                            <div class="booking-times">
+                                <h4 id="selected-date-label" class="times-header">Selecione uma data</h4>
+                                <div class="times-grid" id="times-grid">
+                                    <p class="time-placeholder">Os horários disponíveis aparecerão aqui após escolher um dia no calendário.</p>
+                                    <!-- Botões de hora gerados via JS -->
+                                </div>
                             </div>
                         </div>
 
-                        <div class="form-group full-width">
+                        <!-- Inputs Ocultos que guardarão a escolha para enviar no formulário -->
+                        <input type="hidden" id="data-visita" name="data-visita" required>
+                        <input type="hidden" id="hora-visita" name="hora-visita" required>
+
+                        <div class="form-group full-width" style="margin-top: 1.5rem;">
                             <label for="mensagem"><i data-lucide="message-square"></i> Mensagem / Dúvidas</label>
-                            <textarea id="mensagem" name="mensagem" rows="4" placeholder="Tem alguma dúvida ou interesse específico (ex: ver o lab, conversar com coordenador)?"></textarea>
+                            <textarea id="mensagem" name="mensagem" rows="3" placeholder="Tem alguma dúvida ou interesse específico?"></textarea>
                         </div>
 
                         <div class="form-submit text-center">
-                            <button type="submit" class="btn-primary">SOLICITAR AGENDAMENTO <i data-lucide="send"></i></button>
+                            <button type="submit" class="btn-primary" id="btn-submit-agenda">SOLICITAR AGENDAMENTO <i data-lucide="send"></i></button>
                         </div>
                     </form>
-                </div>
-            </div>
-        </section>
+                </div>        
+                </section>
     </main>
 
-<!-- FOOTER RESTAURADO E DISTRIBUÍDO EM GRADE -->
+    <!-- FOOTER RESTAURADO E DISTRIBUÍDO EM GRADE -->
     <footer class="footer">
         <div class="container footer-grid">
-            
-            <!-- COLUNA 1: LOGOS E DESCRIÇÃO -->
             <div class="footer-col">
                 <div class="footer-logos-group">
-                    <a href="https://portal.unicap.br/w/jogos-digitais#presencial/sobre" target="_blank" aria-label="Página oficial do curso de Jogos Digitais na UNICAP" class="footer-logo-link">
+                    <a href="https://portal.unicap.br/w/jogos-digitais#presencial/sobre" target="_blank" class="footer-logo-link">
                         <img src="assets/logos/Jogos_mec.svg" alt="Logo Jogos UNICAP" class="footer-logo-main" onerror="this.src='https://placehold.co/180x50/111827/00ff66?text=JOGOS+UNICAP'">
                     </a>
-                    <a href="https://portal.unicap.br/w/jogos-digitais#presencial/sobre" target="_blank" aria-label="Página oficial da UNICAP" class="unicap-link">
+                    <a href="https://portal.unicap.br/w/jogos-digitais#presencial/sobre" target="_blank" class="unicap-link">
                         <img src="assets/logos/Unicap_logo.png" alt="Logo UNICAP" class="footer-logo-unicap" onerror="this.src='https://placehold.co/120x40/1f2937/ffffff?text=UNICAP'">
                     </a>
                 </div>
                 <p>Curso de Graduação Tecnológica em Jogos Digitais da Universidade Católica de Pernambuco. <strong>Avaliado com Nota Máxima (5) pelo MEC.</strong></p> 
-               
-                <!-- REDES SOCIAIS -->
                 <div class="social-links">
                     <a href="https://www.instagram.com/jogosdigitais_unicap/" target="_blank" aria-label="Instagram">
-                        <img src="assets/icons/instagram_icon.svg" alt="Instagram Oficial Jogos UNICAP" class="custom-social-icon" onerror="this.src='https://placehold.co/24x24/1e293b/ffffff?text=IG'">
+                        <img src="assets/icons/instagram_icon.svg" alt="Instagram Oficial" class="custom-social-icon" onerror="this.src='https://placehold.co/24x24/1e293b/ffffff?text=IG'">
                     </a>
                     <a href="https://www.youtube.com/@jogosdigitaisunicap" target="_blank" aria-label="YouTube">
-                        <img src="assets/icons/youtube_icon.png" alt="YouTube Oficial Jogos UNICAP" class="custom-social-icon" onerror="this.src='https://placehold.co/24x24/1e293b/ffffff?text=YT'">
+                        <img src="assets/icons/youtube_icon.png" alt="YouTube Oficial" class="custom-social-icon" onerror="this.src='https://placehold.co/24x24/1e293b/ffffff?text=YT'">
                     </a>
                 </div>
             </div>
             
-            <!-- COLUNA 2: NAVEGAÇÃO RÁPIDA -->
             <div class="footer-col">
                 <h4>Navegação Rápida</h4>
                 <ul>
@@ -400,7 +368,6 @@
                 </ul>
             </div>
             
-            <!-- COLUNA 3: CONTATO -->
             <div class="footer-col">
                 <h4>Contato</h4>
                 <p><i data-lucide="map-pin"></i> Rua do Príncipe, 526 - Boa Vista, Recife - PE</p>
@@ -408,66 +375,38 @@
                 <p><i data-lucide="mail"></i> wilmer.camacho@unicap.br</p>
             </div>
             
-            <!-- COLUNA 4: PARCEIROS INSTITUCIONAIS -->
             <div class="footer-col partners-col">
                 <h4>Parceiros Institucionais</h4>
                 <div class="footer-logos">
-                    <a href="https://www.combogounicap.vercel.app" target="_blank" aria-label="Site Combogó">
-                        <img src="assets/logos/Combogo_logo.png" alt="Logo Combogó" class="inst-partner-logo" onerror="this.src='https://placehold.co/120x45/1f2937/ffffff?text=COMBOGÓ'">
-                    </a>
-                    <a href="https://portal.unicap.br/" target="_blank" aria-label="Amana Lab">
-                        <img src="assets/labs/Amana_Lab.png" alt="Logo Amana Lab" class="inst-partner-logo logo-amana" onerror="this.src='https://placehold.co/120x45/1f2937/ffffff?text=AMANA+LAB'">
-                    </a>
-                    <a href="https://portal.unicap.br/museu" target="_blank" aria-label="Museu UNICAP">
-                        <img src="assets/labs/museu.png" alt="Logo Museu UNICAP" class="inst-partner-logo logo-museu" onerror="this.src='https://placehold.co/120x45/1f2937/ffffff?text=MUSEU'">
-                    </a>
+                    <a href="https://www.combogounicap.vercel.app" target="_blank"><img src="assets/logos/Combogo_logo.png" alt="Combogó" class="inst-partner-logo" onerror="this.src='https://placehold.co/120x45/1f2937/ffffff?text=COMBOGÓ'"></a>
+                    <a href="https://portal.unicap.br/" target="_blank"><img src="assets/labs/Amana_Lab.png" alt="Amana Lab" class="inst-partner-logo logo-amana" onerror="this.src='https://placehold.co/120x45/1f2937/ffffff?text=AMANA'"></a>
+                    <a href="https://portal.unicap.br/museu" target="_blank"><img src="assets/labs/museu.png" alt="Museu" class="inst-partner-logo logo-museu" onerror="this.src='https://placehold.co/120x45/1f2937/ffffff?text=MUSEU'"></a>
                 </div>
             </div>
-            
-        </div> <!-- FECHAMENTO DA GRADE -->
+        </div> 
         
-        <!-- COPYRIGHT BLINDADO E 100% CENTRALIZADO -->
         <div class="container">
             <div class="footer-bottom text-center">
-                <p>&copy; 2026/2027 UNICAP - Jogos Digitais. Todos os direitos reservados. Processo Seletivo Vestibular 2027.1.</p>
+                <p id="copyright-text">&copy; 2026/2027 UNICAP - Jogos Digitais. Todos os direitos reservados. Processo Seletivo Vestibular 2027.1.</p>
             </div>
         </div>
     </footer>
 
-    <!-- MODAL POPUP PARA PROJETOS GBC -->
+    <!-- MODAIS E SCRIPTS -->
     <div id="game-modal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <button class="modal-close" id="modal-close"><i data-lucide="x"></i></button>
-            <div class="modal-body" id="modal-body">
-                <!-- Conteúdo injetado via JS -->
-            </div>
-        </div>
+        <div class="modal-content"><button class="modal-close" id="modal-close"><i data-lucide="x"></i></button><div class="modal-body" id="modal-body"></div></div>
+    </div>
+    <div id="gameboy-modal" class="modal-overlay hidden">
+        <div class="gameboy-modal-content"><button class="modal-close" id="gameboy-close" title="Fechar (ESC)"><i data-lucide="x"></i></button><div class="gameboy-modal-frame"><div class="gameboy-modal-wrapper"><img src="assets/demo/jogosboy.svg" alt="Game Boy" class="gameboy-modal-svg"><div class="gameboy-modal-screen" id="gameboy-modal-screen"></div></div></div></div>
+    </div>
+    <div id="insta-modal" class="modal-overlay hidden">
+        <div class="modal-content insta-modal-content"><button class="modal-close" id="insta-close" title="Fechar (ESC)"><i data-lucide="x"></i></button><div class="insta-modal-body" id="insta-modal-body"></div></div>
     </div>
 
+    <!-- SCRIPT PRINCIPAL DE RENDERIZAÇÃO -->
     <script src="script.js"></script>
-<!-- MODAL DO GAME BOY EXPANDIDO (SHOWREEL COM SUPER ZOOM) -->
-    <div id="gameboy-modal" class="modal-overlay hidden">
-        <div class="gameboy-modal-content">
-            <button class="modal-close" id="gameboy-close" title="Fechar (ESC)"><i data-lucide="x"></i></button>
-            <div class="gameboy-modal-frame">
-                <div class="gameboy-modal-wrapper">
-                    <!-- Imagem SVG do Game Boy em tamanho gigante -->
-                    <img src="assets/demo/jogosboy.svg" alt="Game Boy UNICAP Jogos" class="gameboy-modal-svg">
-                    
-                    <!-- Tela do Game Boy onde o vídeo será injetado via JS -->
-                    <div class="gameboy-modal-screen" id="gameboy-modal-screen"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- MODAL POPUP PARA O FEED DO INSTAGRAM -->
-    <div id="insta-modal" class="modal-overlay hidden">
-        <div class="modal-content insta-modal-content">
-            <button class="modal-close" id="insta-close" title="Fechar (ESC)"><i data-lucide="x"></i></button>
-            <div class="insta-modal-body" id="insta-modal-body">
-                <!-- Conteúdo injetado via JS -->
-            </div>
-        </div>
-    </div>
+    
+    <!-- SCRIPT DE ADMINISTRAÇÃO E GERAÇÃO DE JSON -->
+    <script src="admin.js"></script>
 </body>
 </html>
