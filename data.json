@@ -1,6 +1,20 @@
 {
     "config": {
-        "ocultarInvestimento": true
+        "ocultarInvestimento": false,
+        "agenda": {
+            "diasSemana": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "horarios": [
+                "14:00",
+                "15:00"
+            ],
+            "diasBloqueados": []
+        }
     },
     "matriz": [
         {
