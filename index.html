@@ -159,7 +159,6 @@
                     <div class="tab-pane" id="tab-parceiros">
                         <h3>Conexão com o Porto Digital e Empresas de Recife</h3>
                         <p>Clique nos estúdios locais para conhecer suas produções:</p>
-                        <!-- GERADO VIA JS PELO DATA.JSON -->
                         <div class="partners-grid" id="partners-grid"></div>
                     </div>
 
@@ -213,7 +212,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO 4: PROJETOS DOS ALUNOS (CARREGAMENTO +4) -->
+        <!-- SEÇÃO 4: PROJETOS DOS ALUNOS -->
         <section id="projetos" class="section">
             <div class="container">
                 <div class="section-title text-center">
@@ -267,19 +266,19 @@
                 <div class="section-title text-center">
                     <span class="badge-retro">TOUR PRESENCIAL</span>
                     <h2>AGENDE SUA VISITA AO CURSO</h2>
-                    <p>Venha conhecer nossos laboratórios, estúdios de captura de movimento e conversar com a coordenação e professores.</p>
+                    <p>Venha conhecer nossos laboratórios, estúdios de captura de movimento e conversar com a coordenação e professores. Atendimento das <strong>14h às 18h</strong>.</p>
                 </div>
-                
                 <div class="schedule-container">
-                  <form id="schedule-form" class="schedule-form" action="https://formsubmit.co/2dcd9e67b56e01b83ef051fa88e1520e" method="POST"> 
-    
-                      <!-- Configurações invisíveis do FormSubmit -->
-                        <input type="hidden" name="_subject" value="Novo Agendamento de Visita - Jogos Digitais">
+                    
+                    <!-- FORMULÁRIO COM O FORMSUBMIT -->
+                    <form id="schedule-form" class="schedule-form">
+                        
+                        <!-- CONFIGURAÇÕES DO FORMSUBMIT (OCULTAS) -->
+                        <input type="hidden" name="_subject" value="🚀 Novo Agendamento de Visita - Jogos Digitais UNICAP">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
-       
                         
-                        <div class="form-grid" style="margin-bottom: 1.5rem;">
+                        <div class="form-grid">
                             <div class="form-group">
                                 <label for="nome"><i data-lucide="user"></i> Nome Completo *</label>
                                 <input type="text" id="nome" name="nome" placeholder="Seu nome ou do estudante" required>
@@ -288,53 +287,31 @@
                                 <label for="whatsapp"><i data-lucide="phone"></i> WhatsApp / Telefone *</label>
                                 <input type="tel" id="whatsapp" name="whatsapp" placeholder="(81) 99999-9999" required>
                             </div>
-                        </div>
-
-                        <!-- NOVO COMPONENTE DE AGENDA -->
-                        <div class="custom-booking-wrapper">
-                            <!-- Esquerda: Calendário -->
-                            <div class="booking-calendar">
-                                <div class="calendar-header-nav">
-                                    <button type="button" id="cal-prev" aria-label="Mês Anterior"><i data-lucide="chevron-left"></i></button>
-                                    <h4 id="cal-month-year">Setembro 2026</h4>
-                                    <button type="button" id="cal-next" aria-label="Próximo Mês"><i data-lucide="chevron-right"></i></button>
-                                </div>
-                                <div class="calendar-weekdays">
-                                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
-                                </div>
-                                <div class="calendar-days-grid" id="cal-days-grid">
-                                    <!-- Dias gerados via JS -->
-                                </div>
+                            <div class="form-group">
+                                <label for="data-visita"><i data-lucide="calendar"></i> Dia da Visita *</label>
+                                <input type="date" id="data-visita" name="data-visita" required>
                             </div>
-                            
-                            <!-- Direita: Horários -->
-                            <div class="booking-times">
-                                <h4 id="selected-date-label" class="times-header">Selecione uma data</h4>
-                                <div class="times-grid" id="times-grid">
-                                    <p class="time-placeholder">Os horários disponíveis aparecerão aqui após escolher um dia no calendário.</p>
-                                    <!-- Botões de hora gerados via JS -->
-                                </div>
+                            <div class="form-group">
+                                <label for="hora-visita"><i data-lucide="clock"></i> Horário (Entre 14h e 18h) *</label>
+                                <input type="time" id="hora-visita" name="hora-visita" min="14:00" max="18:00" step="1800" required>
+                                <span class="time-hint">Horários disponíveis: das 14:00 às 18:00</span>
                             </div>
                         </div>
-
-                        <!-- Inputs Ocultos que guardarão a escolha para enviar no formulário -->
-                        <input type="hidden" id="data-visita" name="data-visita" required>
-                        <input type="hidden" id="hora-visita" name="hora-visita" required>
-
-                        <div class="form-group full-width" style="margin-top: 1.5rem;">
+                        <div class="form-group full-width">
                             <label for="mensagem"><i data-lucide="message-square"></i> Mensagem / Dúvidas</label>
-                            <textarea id="mensagem" name="mensagem" rows="3" placeholder="Tem alguma dúvida ou interesse específico?"></textarea>
+                            <textarea id="mensagem" name="mensagem" rows="4" placeholder="Tem alguma dúvida ou interesse específico (ex: ver o lab, conversar com coordenador)?"></textarea>
                         </div>
-
                         <div class="form-submit text-center">
                             <button type="submit" class="btn-primary" id="btn-submit-agenda">SOLICITAR AGENDAMENTO <i data-lucide="send"></i></button>
                         </div>
                     </form>
-                </div>        
-                </section>
+                    
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- FOOTER RESTAURADO E DISTRIBUÍDO EM GRADE -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-col">

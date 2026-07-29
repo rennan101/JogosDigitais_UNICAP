@@ -670,7 +670,7 @@ const dadosDeFallback = {
     const scheduleForm = document.getElementById("schedule-form");
     if (scheduleForm) {
         scheduleForm.addEventListener("submit", async (e) => {
-           // e.preventDefault(); // Impede o recarregamento padrão da página
+            e.preventDefault(); // Impede o recarregamento padrão da página
             
             const btnSubmit = document.getElementById("btn-submit-agenda");
             const nome = document.getElementById("nome").value;
