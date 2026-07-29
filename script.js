@@ -662,13 +662,13 @@ const dadosDeFallback = {
         });
     }
 
-    // ====================================================
+// ====================================================
     // SUBMISSÃO DO FORMULÁRIO (INTEGRADO COM FORMSUBMIT AJAX)
     // ====================================================
     const scheduleForm = document.getElementById("schedule-form");
     if (scheduleForm) {
         scheduleForm.addEventListener("submit", async (e) => {
-           // e.preventDefault(); // Impede o recarregamento padrão da página
+            e.preventDefault(); // Mantemos isso para não mudar de página!
             
             const btnSubmit = document.getElementById("btn-submit-agenda") || scheduleForm.querySelector('button[type="submit"]');
             const nome = document.getElementById("nome").value;
@@ -693,19 +693,23 @@ const dadosDeFallback = {
             if (typeof lucide !== 'undefined') lucide.createIcons();
 
             try {
-                // O FormData coleta magicamente TODOS os inputs ocultos (incluindo o seu name="_cc")
+                // 1. Coleta os dados do formulário
                 const formData = new FormData(scheduleForm);
+                
+                // 2. CONVERTE OS DADOS PARA JSON (É isso que resolve o bug do FormSubmit com o Hash!)
+                const dataObj = Object.fromEntries(formData.entries());
                 
                 // Endpoint direto com a sua chave segura (hash)
                 const ajaxUrl = "https://formsubmit.co/ajax/2dcd9e67b56e01b83ef051fa88e1520e";
 
-                // Dispara a requisição real para o servidor do FormSubmit sem sair da página
+                // 3. Dispara a requisição enviando como JSON puro
                 const response = await fetch(ajaxUrl, {
                     method: "POST",
-                    body: formData,
                     headers: {
+                        'Content-Type': 'application/json',
                         'Accept': 'application/json'
-                    }
+                    },
+                    body: JSON.stringify(dataObj)
                 });
 
                 if (response.ok) {
@@ -719,18 +723,18 @@ const dadosDeFallback = {
                     if (typeof inputDataVisita !== 'undefined') inputDataVisita.value = "";
                     if (typeof inputHoraVisita !== 'undefined') inputHoraVisita.value = "";
                     
-                    if (selectedDateLabel) selectedDateLabel.textContent = "Selecione uma data";
+                    if (typeof selectedDateLabel !== 'undefined' && selectedDateLabel) selectedDateLabel.textContent = "Selecione uma data";
                     
-                    if (timesGrid) timesGrid.innerHTML = `<p class="time-placeholder">Os horários disponíveis aparecerão aqui após escolher um dia no calendário.</p>`;
+                    if (typeof timesGrid !== 'undefined' && timesGrid) timesGrid.innerHTML = `<p class="time-placeholder">Os horários disponíveis aparecerão aqui após escolher um dia no calendário.</p>`;
                     
                     // Redesenha o calendário visualmente para desmarcar o dia escolhido
-                    renderizarCalendario();
+                    if (typeof renderizarCalendario === "function") renderizarCalendario();
                 } else {
                     throw new Error("Erro na comunicação com o servidor de email.");
                 }
 
             } catch (error) {
-                alert("❌ Ocorreu um erro ao enviar seu agendamento. Tente novamente mais tarde ou contate a coordenação.");
+                alert("❌ Ocorreu um erro ao enviar seu agendamento. Verifique sua conexão ou contate a coordenação.");
                 console.error(error);
             } finally {
                 // Devolve o botão ao estado normal e clicável
