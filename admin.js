@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================================================
     let localData = {};
     let currentTab = 'config';
+    let temAlteracoesNaoSalvas = false; // Controle de segurança
 
     // Esquema de campos para cada categoria (para gerar os formulários automaticamente)
     const schemas = {
@@ -76,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Copia os dados atuais carregados no site para a memória do painel
         localData = window.siteDataGlobal ? JSON.parse(JSON.stringify(window.siteDataGlobal)) : { config: { ocultarInvestimento: false }, projetos: [], egressos: [], docentes: [], pesquisas: [], parceiros: [], matriz: [] };
         currentTab = 'config';
+        temAlteracoesNaoSalvas = false; // Reseta a bandeira ao abrir
 
         // Injeta estilos CSS específicos para o painel não conflitar com o site
         const style = document.createElement('style');
@@ -159,13 +161,20 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Fechar
-        document.getElementById("fechar-admin").addEventListener("click", () => {
+        // Função segura para fechar o painel com verificação de alterações não salvas
+        const tentarFecharAdmin = () => {
+            if (temAlteracoesNaoSalvas) {
+                const confirmar = confirm("⚠️ ATENÇÃO: Você possui alterações que não foram salvas!\n\nSe fechar agora, nada foi salvo e os dados modificados serão perdidos. Deseja realmente continuar e sair?");
+                if (!confirmar) return; // Cancela o fechamento se o usuário escolher "Não"
+            }
             document.getElementById("admin-styles").remove();
             painel.remove();
-        });
+        };
 
-        // Botão Final de Download
+        // Fechar pelo botão X
+        document.getElementById("fechar-admin").addEventListener("click", tentarFecharAdmin);
+
+        // Botão Final de Download (Marca como salvo ao baixar)
         document.getElementById("btn-baixar-json").addEventListener("click", () => {
             const jsonString = JSON.stringify(localData, null, 4);
             const blob = new Blob([jsonString], { type: "application/json" });
@@ -178,6 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
             
+            temAlteracoesNaoSalvas = false; // Limpa o alerta pois foi salvo/baixado
             document.getElementById("save-status").style.display = "none";
             alert("✅ Arquivo data.json gerado!\n\nAgora vá até o seu repositório no GitHub, clique em 'Add File > Upload Files', selecione este arquivo baixado e clique em 'Commit changes'. O Vercel atualizará o site em alguns segundos.");
         });
@@ -283,19 +293,36 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h3 style="margin: 0; color: #fff; font-size: 1.5rem;">Gestão: ${tituloAba}</h3>
                 <button class="adm-btn" id="btn-add-new"><i data-lucide="plus"></i> Adicionar Novo</button>
             </div>
-            <div class="adm-list" id="items-list">
         `;
+
+        // Adiciona o filtro interativo caso a aba ativa seja a da Matriz Curricular
+        if (currentTab === 'matriz' && lista.length > 0) {
+            const periodosUnicos = [...new Set(lista.map(i => i.sem))].filter(Boolean).sort();
+            html += `
+                <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,0.03); padding: 1rem 1.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                    <label style="color: #cbd5e1; font-size: 0.9rem; font-weight: 600; display:flex; align-items:center; gap:0.5rem;">
+                        <i data-lucide="filter" style="width: 16px; height: 16px;"></i> Filtrar por Período:
+                    </label>
+                    <select id="admin-matriz-filter" class="adm-form-control" style="max-width: 250px; padding: 0.5rem; font-size:0.9rem;">
+                        <option value="Todos">Todos os Períodos</option>
+                        ${periodosUnicos.map(p => `<option value="${p}">${p}</option>`).join('')}
+                    </select>
+                </div>
+            `;
+        }
+
+        html += `<div class="adm-list" id="items-list">`;
 
         if (lista.length === 0) {
             html += `<div style="padding: 2rem; text-align: center; color: #94a3b8; border: 1px dashed #334155; border-radius: 8px;">Nenhum item cadastrado nesta categoria.</div>`;
         } else {
             lista.forEach((item, index) => {
-                // Lógica para pegar um "título principal" e um "subtítulo" genérico pra mostrar no card
                 let tituloCard = item.title || item.name || `Item ${index + 1}`;
                 let subCard = item.year ? `Ano: ${item.year}` : (item.tag || item.sem || item.leader || item.url || '');
+                let dataFilter = currentTab === 'matriz' ? `data-sem="${item.sem || ''}"` : '';
 
                 html += `
-                    <div class="adm-card">
+                    <div class="adm-card" ${dataFilter}>
                         <div class="adm-card-info">
                             <h4>${tituloCard}</h4>
                             <p>${subCard}</p>
@@ -311,6 +338,23 @@ document.addEventListener("DOMContentLoaded", () => {
         html += `</div>`;
         main.innerHTML = html;
         if (typeof lucide !== 'undefined') lucide.createIcons();
+
+        if (currentTab === 'matriz') {
+            const filterSelect = document.getElementById('admin-matriz-filter');
+            if (filterSelect) {
+                filterSelect.addEventListener('change', (e) => {
+                    const selectedSem = e.target.value;
+                    const cards = document.querySelectorAll('#items-list .adm-card');
+                    cards.forEach(card => {
+                        if (selectedSem === 'Todos' || card.getAttribute('data-sem') === selectedSem) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+        }
 
         // Binds de botões da lista
         document.getElementById('btn-add-new').addEventListener('click', () => abrirFormulario(-1));
@@ -328,7 +372,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (confirm(`Tem certeza que deseja excluir este item permanentemente?`)) {
                     localData[currentTab].splice(idx, 1);
                     marcarAlteracao();
-                    renderContent(); // Atualiza a tela
+                    renderContent();
                 }
             });
         });
@@ -353,11 +397,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     <form id="adm-form">
         `;
 
-        // Gera os inputs dinamicamente com base no Schema
         schema.forEach(field => {
             let val = itemAtual[field.key] !== undefined ? itemAtual[field.key] : '';
-            
-            // Tratamento especial para o Array de Tecnologias da Matriz
             if (field.key === 'tech' && Array.isArray(val)) {
                 val = val.join(', ');
             }
@@ -391,12 +432,10 @@ document.addEventListener("DOMContentLoaded", () => {
         main.insertAdjacentHTML('beforeend', formHtml);
         if (typeof lucide !== 'undefined') lucide.createIcons();
 
-        // Bind Fechar modal
         document.querySelectorAll('.btn-close-form').forEach(b => b.addEventListener('click', () => {
             document.getElementById('form-modal').remove();
         }));
 
-        // Bind Submeter Formulário
         document.getElementById('adm-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
@@ -404,33 +443,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
             schema.forEach(field => {
                 let valor = formData.get(field.key);
-                
-                // Conversão de tipos
                 if (field.type === 'number') valor = parseInt(valor) || 0;
-                
-                // Tratamento Array da Matriz
                 if (field.key === 'tech') {
                     valor = valor.split(',').map(s => s.trim()).filter(s => s !== "");
                 }
-
                 novoItem[field.key] = valor;
             });
 
-            // Salva no Objeto
             if (isEdit) {
                 localData[currentTab][index] = novoItem;
             } else {
                 if(!localData[currentTab]) localData[currentTab] = [];
-                localData[currentTab].unshift(novoItem); // Adiciona no topo
+                localData[currentTab].unshift(novoItem);
             }
 
             marcarAlteracao();
             document.getElementById('form-modal').remove();
-            renderContent(); // Atualiza a lista
+            renderContent();
         });
     }
 
     function marcarAlteracao() {
+        temAlteracoesNaoSalvas = true; // Ativa a bandeira de alteração pendente
         document.getElementById("save-status").style.display = "block";
     }
 
