@@ -650,3 +650,12 @@ body::before {
     border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
+/* ==================================================== */
+/* SISTEMA DE TRADUÇÃO (DISPLAY POR IDIOMA)             */
+/* ==================================================== */
+
+/* Por padrão, oculta inglês e espanhol (Assume que o site base é PT-BR) */
+.lang-text.lang-en, 
+.lang-text.lang-es { 
+    display: none; 
+}
