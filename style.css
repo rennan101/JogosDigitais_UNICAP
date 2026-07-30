@@ -576,3 +576,27 @@ body::before {
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 90%);
     -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 90%);
 }
+/* ==================================================== */
+/* AJUSTES MOBILE: PESQUISAS (PIBIC/UNICAP)             */
+/* ==================================================== */
+
+@media (max-width: 768px) {
+    /* Empilha os itens do card verticalmente */
+    .pesquisa-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    /* Garante que a tag fique alinhada à esquerda, abaixo do texto */
+    .pesquisa-badge-wrapper {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    /* Reduz o tamanho do título no mobile (original era 1.05rem) */
+    .pesquisa-item h4 {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+}

@@ -340,14 +340,14 @@
         },
         {
             "title": "Protocolo 67: Antártica",
-            "year": "2026",
+            "year": 2026,
             "genre": "Survival Horror",
             "platform": "PC (Windows)",
-            "desc": "Século XXII, a humanidade deixou de temer a guerras entre si, pois algo muito pior surgiu... Portais de origem desconhecidos surgiram em diversos pontos do planeta, e deles, criaturas grotescas e jamais vistas começam a invadir a Terra.",
             "devs": "Oto Macabeu, Hugo Beltrão, Alexandro Cavalcanti, Yve Correia",
             "pasta": "assets/projetos/Protocolo67",
             "video": "",
-            "downloadLink": ""
+            "downloadLink": "https://jogos-digitais-unicap.itch.io/protocolo-67-antartica",
+            "desc": "Século XXII, a humanidade deixou de temer a guerras entre si, pois algo muito pior surgiu... Portais de origem desconhecidos surgiram em diversos pontos do planeta, e deles, criaturas grotescas e jamais vistas começam a invadir a Terra."
         },
         {
             "title": "Bob Vive",
@@ -373,14 +373,14 @@
         },
         {
             "title": "Repaint",
-            "year": "2025",
+            "year": 2025,
             "genre": "Ação / Aventura",
             "platform": "PC (Windows)",
-            "desc": "Uma aventura de plataforma criativa onde o jogador utiliza mecânicas de pintura e cores para alterar as propriedades físicas do cenário, revelando plataformas ocultas e resolvendo enigmas visuais.",
             "devs": "João Victor Batista, Maria Laura Floresta, Laura Veloso, Felipe Freire, Caio Regueira, Thony Barreto, Marcelo Sampaio, Guilherme Fernandes",
             "pasta": "assets/projetos/Repaint",
             "video": "https://www.youtube.com/watch?v=H6cWE63HZyk",
-            "downloadLink": ""
+            "downloadLink": "https://jogos-digitais-unicap.itch.io/repaint",
+            "desc": "Uma aventura de plataforma criativa onde o jogador utiliza mecânicas de pintura e cores para alterar as propriedades físicas do cenário, revelando plataformas ocultas e resolvendo enigmas visuais."
         },
         {
             "title": "Bichos do Brasil",
@@ -472,14 +472,14 @@
         },
         {
             "title": "Pollaka",
-            "year": "2022",
+            "year": 2022,
             "genre": "Point'n Click",
             "platform": "PC (Windows)",
-            "desc": "Pollaka é um jogo focado na experiência emocional do jogador com elementos de quebra-cabeças e interativos, ele conta a história de Pollaka, uma garota fofa com cabelo castanho e seu avô.",
             "devs": "Marcos Vinicius, Maria Fernanda, Vitoria Bertolini, Lêniton Carneiro, Artur Queiroz",
             "pasta": "assets/projetos/Pollaka",
             "video": "https://www.youtube.com/watch?v=T7f-aZXNjf4",
-            "downloadLink": ""
+            "downloadLink": "https://lilshopa.itch.io/pollaka",
+            "desc": "Pollaka é um jogo focado na experiência emocional do jogador com elementos de quebra-cabeças e interativos, ele conta a história de Pollaka, uma garota fofa com cabelo castanho e seu avô."
         },
         {
             "title": "One Bullet Man",
