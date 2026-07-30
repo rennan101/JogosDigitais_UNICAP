@@ -554,29 +554,35 @@ body {
     /* Certifique-se de que o z-index do main não está escondendo o body */
 }
 
+/* ==================================================== */
+/* BACKGROUND GAMER (GRID ISOMÉTRICO BRANCO E MENOR)    */
+/* ==================================================== */
+
 body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1; /* Garante que fique atrás de todos os elementos */
-    pointer-events: none; /* Impede que o grid bloqueie os cliques do usuário no site */
+    top: -50%;
+    left: -50%;
+    width: 200vw;
+    height: 200vh;
+    z-index: -1; 
+    pointer-events: none; 
     
-    /* Desenha as linhas horizontais e verticais super transparentes (4% de opacidade) */
+    /* Linhas BRANCAS e mais visíveis (15% de opacidade) */
     background-image: 
-        linear-gradient(rgba(0, 255, 102, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 102, 0.04) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
     
-    /* Tamanho de cada "quadradinho" da malha */
-    background-size: 45px 45px;
+    /* Tamanho dos quadrados reduzido (de 55px para 30px) */
+    background-size: 30px 30px;
     
-    /* Efeito Vignette: Faz a grade ser visível no centro e sumir nas bordas */
-    mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 90%);
-    -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 90%);
-}
-/* ==================================================== */
+    /* Perspectiva isométrica 3D */
+    transform: perspective(1000px) rotateX(60deg) rotateZ(45deg);
+    
+    /* Efeito de luz no centro escurecendo nas bordas */
+    mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 55%);
+    -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 55%);
+}/* ==================================================== */
 /* AJUSTES MOBILE: PESQUISAS (PIBIC/UNICAP)             */
 /* ==================================================== */
 
@@ -599,4 +605,48 @@ body::before {
         font-size: 0.9rem;
         line-height: 1.4;
     }
+}
+/* ==================================================== */
+/* GLASSMORPHISM - CONTROLE DE TRANSPARÊNCIA            */
+/* ==================================================== */
+
+.investment-card,
+.inv-box,
+.tab-pane,
+.coord-card,
+.curriculum-item,
+.card-generic,
+.schedule-container {
+    /* 1. CONTROLE DE PREENCHIMENTO (Transparência da cor) */
+    background-color: rgba(15, 23, 42, 0.05) !important;
+    
+    /* 2. CONTROLE DO DESFOQUE (Embaçamento do vidro) */
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    
+    /* Mantém a bordinha de vidro e a sombra */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Garante que o item da matriz brilhe de leve ao ser clicado/aberto */
+.curriculum-item.open {
+    background-color: rgba(15, 23, 42, 0.15) !important;
+    border-color: rgba(0, 255, 102, 0.3) !important;
+}
+/* ==================================================== */
+/* GLASSMORPHISM - SEÇÕES BG-DARKER                     */
+/* ==================================================== */
+
+.bg-darker {
+    /* Troca a cor sólida por uma cor escura muito transparente (40% de opacidade) */
+    background-color: rgba(9, 14, 26, 0.15) !important;
+    
+    /* Aplica o desfoque do vidro sobre as linhas do grid */
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    
+    /* Mantém as linhas sutis originais para separar as seções */
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
