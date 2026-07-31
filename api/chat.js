@@ -1,6 +1,7 @@
 import { pccContent } from '../RAG/contexto_pcc.js';
 
 export default async function handler(req, res) {
+    // Apenas aceita requisições do tipo POST
     if (req.method !== 'POST') return res.status(405).json({ error: 'Método não permitido' });
 
     const { message } = req.body;
@@ -29,7 +30,8 @@ export default async function handler(req, res) {
             ]
         };
 
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        // 🟢 CORREÇÃO AQUI: Mudamos para gemini-1.5-flash-latest
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -37,7 +39,7 @@ export default async function handler(req, res) {
 
         const data = await response.json();
         
-        // Se o Google recusar a requisição (ex: chave errada)
+        // Se o Google recusar a requisição (ex: erro de modelo ou cota)
         if (data.error) {
             return res.status(500).json({ error: 'Erro do Google: ' + data.error.message });
         }
