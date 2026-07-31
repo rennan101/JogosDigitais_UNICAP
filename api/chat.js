@@ -9,26 +9,34 @@ export default async function handler(req, res) {
     if (!apiKey) return res.status(500).json({ error: 'A Vercel não carregou a Chave de API.' });
 
     try {
-        const systemPrompt = `
+        // =================================================================
+        // O TRUQUE: Unimos tudo em um único "prompt de usuário"
+        // Isso evita erros de suporte a "system_instruction" na API.
+        // =================================================================
+        const promptCompleto = `
         Você é o Assistente Virtual Oficial do curso de Jogos Digitais da UNICAP.
         Responda as dúvidas do usuário usando estritamente os dados do documento abaixo.
         Seja amigável, direto e use um tom tech/gamer.
         
         DOCUMENTO BASE (PCC DO CURSO):
         ${pccContent}
+        
+        --- FIM DO CONTEXTO ---
+        
+        Pergunta do usuário: ${message}
         `;
 
         const payload = {
             contents: [
                 {
                     role: "user",
-                    parts: [{ text: systemPrompt + "\n\n--- FIM DO CONTEXTO ---\n\nPergunta do usuário: " + message }]
+                    parts: [{ text: promptCompleto }]
                 }
             ]
         };
 
-        // 🟢 CORREÇÃO AQUI: Removido o "-latest", chamando o modelo oficial e estável gemini-1.5-flash
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        // 🟢 CORREÇÃO: Usando o modelo universal 'gemini-pro' que funciona em 100% das contas
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -36,6 +44,7 @@ export default async function handler(req, res) {
 
         const data = await response.json();
         
+        // Se o Google recusar a requisição
         if (data.error) {
             return res.status(500).json({ error: 'Erro do Google: ' + data.error.message });
         }
