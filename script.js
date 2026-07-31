@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
 
+    // ====================================================
+    // MENU E NAVEGAÇÃO
+    // ====================================================
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu = document.getElementById("nav-menu");
     if (menuToggle && navMenu) {
@@ -30,6 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // ==========================================================
+    // SISTEMA DE DADOS CENTRALIZADO (FALLBACK)
+    // ==========================================================
     const dadosDeFallback = {
         config: { 
             ocultarInvestimento: false,
@@ -39,12 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 diasBloqueados: []
             }
         },
-        matriz: [],
-        projetos: [],
-        egressos: [],
-        docentes: [],
-        pesquisas: [],
-        parceiros: []
+        matriz: [], projetos: [], egressos: [], docentes: [], pesquisas: [], parceiros: []
     };
 
     let siteData = {};
@@ -70,6 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
         window.siteDataGlobal = siteData; 
     }
 
+    // ====================================================
+    // FUNÇÕES DE RENDERIZAÇÃO
+    // ====================================================
     function aplicarConfiguracoes(config) {
         if (config && config.ocultarInvestimento) {
             const investSection = document.getElementById("investimento");
@@ -347,6 +351,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ====================================================
+    // GAME BOY EXPANDIDO MODAL (CORRIGIDO)
+    // ====================================================
+    const gameboyWrapper = document.querySelector(".gameboy-wrapper");
+    const gameboyModal = document.getElementById("gameboy-modal");
+    const gameboyModalScreen = document.getElementById("gameboy-modal-screen");
+    const gameboyClose = document.getElementById("gameboy-close");
+    const modalClose = document.getElementById("modal-close");
+    const modal = document.getElementById("game-modal");
+    const modalBody = document.getElementById("modal-body");
+
+    function fecharCartuchoModal() { if (modal) { modal.classList.add("hidden"); if (modalBody) modalBody.innerHTML = ""; } }
+    if (modalClose && modal) { modalClose.addEventListener("click", fecharCartuchoModal); modal.addEventListener("click", (e) => { if (e.target === modal) fecharCartuchoModal(); }); document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.classList.contains("hidden")) fecharCartuchoModal(); }); }
+
+    function abrirGameboyModal() { if (gameboyModal && gameboyModalScreen) { gameboyModalScreen.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/tpFPva4w9Sg?autoplay=1&rel=0" title="Showreel Jogos UNICAP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`; gameboyModal.classList.remove("hidden"); lucide.createIcons(); } }
+    function fecharGameboyModal() { if (gameboyModal) { gameboyModal.classList.add("hidden"); if (gameboyModalScreen) gameboyModalScreen.innerHTML = ""; } }
+    
+    if (gameboyWrapper) gameboyWrapper.addEventListener("click", abrirGameboyModal);
+    if (gameboyClose && gameboyModal) { 
+        gameboyClose.addEventListener("click", fecharGameboyModal); 
+        gameboyModal.addEventListener("click", (e) => { if (e.target === gameboyModal) fecharGameboyModal(); }); 
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !gameboyModal.classList.contains("hidden")) fecharGameboyModal(); }); 
+    }
+
+    // ====================================================
     // INFRAESTRUTURA CARROSSEL E AGENDA
     // ====================================================
     const track = document.getElementById("carousel-track");
@@ -524,7 +552,86 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => { renderizarCalendario(); }, 100);
 
     // ====================================================
-    // CHATBOT: COMPORTAMENTO, UI, E FORMATAÇÃO DE MENSAGENS
+    // INSTAGRAM API (RESTAURADO E CORRIGIDO)
+    // ====================================================
+    const INSTA_API_URL = "https://feeds.behold.so/w9jDypvR0WWCc6Gzvdtc";
+    const instaGrid = document.getElementById("insta-grid");
+    const instaModal = document.getElementById("insta-modal");
+    const instaModalBody = document.getElementById("insta-modal-body");
+    const instaClose = document.getElementById("insta-close");
+
+    function formatarDataInsta(dataIso) { 
+        if (!dataIso) return "Data recente"; 
+        try { return new Date(dataIso).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }); } 
+        catch (e) { return "Recente"; } 
+    }
+
+    async function carregarInstagramDinamico() {
+        if (!instaGrid) return;
+        if (!INSTA_API_URL || INSTA_API_URL.trim() === "") { 
+            renderizarFeedInsta([{ id: "demo1", mediaUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=600", timestamp: "2026-03-15T14:30:00+0000", caption: "🚀 Demonstração", permalink: "https://www.instagram.com/jogosdigitais_unicap/" }]); 
+            return; 
+        }
+        try {
+            instaGrid.innerHTML = `<div class="text-center w-full" style="grid-column: 1/-1; padding: 2rem; color: var(--accent-teal);">Conectando aos servidores do Instagram... <i data-lucide="loader" class="animate-spin"></i></div>`;
+            lucide.createIcons();
+            const resposta = await fetch(INSTA_API_URL);
+            if (!resposta.ok) throw new Error("Falha Instagram");
+            const dados = await resposta.json();
+            const listaPosts = Array.isArray(dados) ? dados : (dados.posts || dados.data || []);
+            const postsFiltrados = listaPosts.filter(post => post.mediaUrl || post.thumbnailUrl || post.media_url || post.thumbnail_url).slice(0, 8);
+            if (postsFiltrados.length === 0) throw new Error("Lista vazia");
+            renderizarFeedInsta(postsFiltrados);
+        } catch (erro) {
+            instaGrid.innerHTML = `<div class="text-center w-full" style="padding: 2rem;"><p style="color: #f87171;">Não foi possível sincronizar.</p><a href="https://www.instagram.com/jogosdigitais_unicap/" target="_blank" class="btn-link">Acessar Instagram <i data-lucide="external-link"></i></a></div>`;
+            lucide.createIcons();
+        }
+    }
+
+    function renderizarFeedInsta(posts) {
+        instaGrid.innerHTML = "";
+        posts.forEach(post => {
+            const imagemReal = post.thumbnailUrl || post.thumbnail_url || post.mediaUrl || post.media_url;
+            const legendaReal = post.caption || "Sem descrição disponível.";
+            const dataReal = formatarDataInsta(post.timestamp || post.date);
+            const linkReal = post.permalink || post.url || "https://www.instagram.com/jogosdigitais_unicap/";
+            const card = document.createElement("div");
+            card.className = "insta-card";
+            card.innerHTML = `<img src="${imagemReal}" alt="Post Instagram" loading="lazy"><div class="insta-overlay"><i data-lucide="instagram"></i><span>${legendaReal.split('\n')[0]}...</span></div>`;
+            card.addEventListener("click", () => {
+                if (instaModalBody) {
+                    instaModalBody.innerHTML = `<div class="insta-modal-img-container"><img src="${imagemReal}" alt="Instagram"></div><div class="insta-modal-text-container"><div><div class="insta-header-profile"><img src="assets/logos/Jogos_mec.svg" alt="Logo"><br><h4>jogosdigitais_unicap</h4></div><span class="insta-date">${dataReal}</span><div class="insta-caption">${legendaReal}</div></div><a href="${linkReal}" target="_blank" class="btn-primary" style="width:100%; justify-content:center;">VER NO INSTAGRAM</a></div>`;
+                }
+                lucide.createIcons();
+                if (instaModal) instaModal.classList.remove("hidden");
+            });
+            instaGrid.appendChild(card);
+        });
+        const moreCard = document.createElement("a");
+        moreCard.href = "https://www.instagram.com/jogosdigitais_unicap/";
+        moreCard.target = "_blank";
+        moreCard.className = "insta-card insta-card-more";
+        moreCard.innerHTML = `<i data-lucide="instagram" class="icon-main"></i><h4>Deseja ver mais?</h4><p>Acesse nosso feed!</p><span class="btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.8rem;">Ir para o Insta</span>`;
+        instaGrid.appendChild(moreCard);
+        lucide.createIcons();
+    }
+
+    const instaPrev = document.getElementById("insta-prev");
+    const instaNext = document.getElementById("insta-next");
+    if (instaPrev && instaNext && instaGrid) {
+        instaPrev.addEventListener("click", () => instaGrid.scrollBy({ left: -(instaGrid.clientWidth * 0.85), behavior: "smooth" }));
+        instaNext.addEventListener("click", () => instaGrid.scrollBy({ left: (instaGrid.clientWidth * 0.85), behavior: "smooth" }));
+    }
+
+    carregarInstagramDinamico();
+    if (instaClose && instaModal) { 
+        instaClose.addEventListener("click", () => instaModal.classList.add("hidden")); 
+        instaModal.addEventListener("click", (e) => { if (e.target === instaModal) instaModal.classList.add("hidden"); }); 
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape") instaModal.classList.add("hidden"); }); 
+    }
+
+    // ====================================================
+    // CHATBOT: COMPORTAMENTO, UI E FORMATAÇÃO DE MENSAGENS
     // ====================================================
     const chatbotToggle = document.getElementById('chatbot-toggle');
     const chatbotWindow = document.getElementById('chatbot-window');
@@ -534,7 +641,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatSendBtn = document.getElementById('chatbot-send');
     const chatMessages = document.getElementById('chatbot-messages');
 
-    // Abre e fecha o chatbot pelo botão principal
     if (chatbotToggle && chatbotWindow && chatbotClose) {
         chatbotToggle.addEventListener('click', () => {
             chatbotWindow.classList.toggle('hidden');
@@ -545,7 +651,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Botão de expandir a janela do chat
     if (chatbotExpand && chatbotWindow) {
         chatbotExpand.addEventListener('click', () => {
             chatbotWindow.classList.toggle('expanded');
@@ -559,7 +664,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Função que traduz o Markdown da IA para HTML limpo
     function formatMessageText(text) {
         let html = text;
         
@@ -569,7 +673,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // 2. Limpeza de asteriscos duplos (negrito)
         html = html.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #fff;">$1</strong>');
         
-        // 3. Listas com asterisco ou traço (se a linha começa com * ou -)
+        // 3. Listas com asterisco ou traço
         html = html.replace(/(?:^|<br>)\s*[\*\-]\s+(.*?)(?=<br>|$)/g, '<br>• $1');
         
         // 4. Links no formato [texto](url) viram tags <a> clicáveis
