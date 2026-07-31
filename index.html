@@ -432,11 +432,12 @@
             <i data-lucide="message-square-text"></i>
         </button>
 
-        <!-- A Janela do Chat -->
+<!-- A Janela do Chat -->
         <div id="chatbot-window" class="chatbot-window hidden">
             <div class="chatbot-header">
                 <div class="chatbot-title">
-                    <i data-lucide="bot"></i>
+                    <!-- SEU ÍCONE PERSONALIZADO AQUI -->
+                    <img src="assets/icons/jogos_icon.svg" alt="Ícone Bot" style="width: 26px; height: 26px; filter: drop-shadow(0 0 5px rgba(0, 194, 203, 0.8));">
                     <div>
                         <h4>Assistente UNICAP</h4>
                         <span>Tire dúvidas sobre o curso</span>
@@ -447,7 +448,14 @@
             
             <div class="chatbot-messages" id="chatbot-messages">
                 <div class="chat-msg bot-msg">
-                    Olá! Sou o assistente virtual de Jogos Digitais da UNICAP. Como posso ajudar você hoje? (Ex: Como funciona o financiamento? O que aprendo no 1º período?)
+                    Olá! Sou o assistente virtual de Jogos Digitais da UNICAP. Como posso ajudar você hoje?
+                </div>
+                
+                <!-- OPÇÕES RÁPIDAS -->
+                <div class="chatbot-quick-options" id="quick-options">
+                    <button class="quick-btn">Duração do curso</button>
+                    <button class="quick-btn">Saída Profissional</button>
+                    <button class="quick-btn">Empresas Locais</button>
                 </div>
             </div>
             
@@ -456,7 +464,6 @@
                 <button id="chatbot-send"><i data-lucide="send-horizonal"></i></button>
             </div>
         </div>
-    </div>
     
     <!-- SCRIPT PRINCIPAL DE RENDERIZAÇÃO -->
     <script src="script.js"></script>

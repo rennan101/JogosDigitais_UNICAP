@@ -1,3 +1,7 @@
+// RAG/contexto_pcc.js
+export const pccContent = `
+
+
 ////////////////////////////////////////////////////////////////////////////////////
 PPC
 UNIVERSIDADE CATÓLICA DE PERNAMBUCO
@@ -1402,4 +1406,5 @@ PIXEL HOUND
 BAIÃO STUDIO
 SEBRAE
 
+`;
 

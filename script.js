@@ -921,6 +921,22 @@ const dadosDeFallback = {
         chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage();
         });
+        
     }
-    
+    // ====================================================
+        // LÓGICA DOS BOTÕES RÁPIDOS
+        // ====================================================
+        const quickBtns = document.querySelectorAll('.quick-btn');
+        quickBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                chatInput.value = btn.innerText;
+                sendMessage();
+                
+                // Esconde as opções rápidas depois que o usuário escolhe uma
+                const optionsContainer = document.getElementById('quick-options');
+                if(optionsContainer) {
+                    optionsContainer.style.display = 'none';
+                }
+            });
+        });
 });    
