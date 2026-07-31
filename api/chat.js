@@ -39,7 +39,10 @@ export default async function handler(req, res) {
         };
 
         const modelosParaTestar = [
+            'gemini-3.5',
+            'gemini-3.5-flash',
             'gemini-1.5-flash',
+            'gemini-3.5-pro',
             'gemini-1.5-pro',
             'gemini-1.0-pro',
             'gemini-pro'
