@@ -839,3 +839,86 @@ const dadosDeFallback = {
     // CHAMA A INICIALIZAÇÃO NO FINAL!
     inicializarSite();
 });
+// ====================================================
+    // TOGGLE DO CHATBOT
+    // ====================================================
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotClose = document.getElementById('chatbot-close');
+
+    if (chatbotToggle && chatbotWindow && chatbotClose) {
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('hidden');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.classList.add('hidden');
+        });
+    }
+    // ====================================================
+    // LÓGICA DE CONVERSA DO CHATBOT (RAG API)
+    // ====================================================
+    const chatInput = document.getElementById('chatbot-input');
+    const chatSendBtn = document.getElementById('chatbot-send');
+    const chatMessages = document.getElementById('chatbot-messages');
+
+    // Função para adicionar balões de mensagem na tela
+    function addMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.classList.add('chat-msg', sender === 'user' ? 'user-msg' : 'bot-msg');
+        msgDiv.innerText = text;
+        chatMessages.appendChild(msgDiv);
+        // Rola o chat para o final
+        chatMessages.scrollTop = chatMessages.scrollHeight; 
+    }
+
+    // Função principal que envia a mensagem para a Vercel
+    async function sendMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        // 1. Mostra a mensagem do usuário
+        addMessage(text, 'user');
+        chatInput.value = '';
+
+        // 2. Mostra um aviso de "digitando..."
+        const loadingId = 'loading-' + Date.now();
+        const loadingDiv = document.createElement('div');
+        loadingDiv.classList.add('chat-msg', 'bot-msg');
+        loadingDiv.id = loadingId;
+        loadingDiv.innerText = 'Processando matriz curricular...';
+        chatMessages.appendChild(loadingDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        try {
+            // 3. Envia para a Serverless Function na Vercel
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text })
+            });
+
+            const data = await response.json();
+            
+            // Remove o "digitando..."
+            document.getElementById(loadingId).remove();
+
+            if (data.reply) {
+                addMessage(data.reply, 'bot');
+            } else {
+                addMessage("Sistema offline. Tente novamente mais tarde.", 'bot');
+            }
+        } catch (error) {
+            document.getElementById(loadingId).remove();
+            addMessage("Erro de conexão com os servidores centrais.", 'bot');
+        }
+    }
+
+    // Ouve o clique do botão ou a tecla Enter
+    if (chatSendBtn && chatInput) {
+        chatSendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    }

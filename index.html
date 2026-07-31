@@ -429,5 +429,40 @@
     
     <!-- SCRIPT DE ADMINISTRAÇÃO E GERAÇÃO DE JSON -->
     <script src="admin.js"></script>
+    
+    <!-- ========================================== -->
+    <!-- CHATBOT FLUTUANTE                          -->
+    <!-- ========================================== -->
+    <div class="chatbot-wrapper">
+        <!-- O Botão Flutuante -->
+        <button id="chatbot-toggle" class="chatbot-toggle-btn" aria-label="Abrir Chatbot">
+            <i data-lucide="message-square-text"></i>
+        </button>
+
+        <!-- A Janela do Chat -->
+        <div id="chatbot-window" class="chatbot-window hidden">
+            <div class="chatbot-header">
+                <div class="chatbot-title">
+                    <i data-lucide="bot"></i>
+                    <div>
+                        <h4>Assistente UNICAP</h4>
+                        <span>Tire dúvidas sobre o curso</span>
+                    </div>
+                </div>
+                <button id="chatbot-close"><i data-lucide="x"></i></button>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="chat-msg bot-msg">
+                    Olá! Sou o assistente virtual de Jogos Digitais da UNICAP. Como posso ajudar você hoje? (Ex: Como funciona o financiamento? O que aprendo no 1º período?)
+                </div>
+            </div>
+            
+            <div class="chatbot-input-area">
+                <input type="text" id="chatbot-input" placeholder="Digite sua pergunta...">
+                <button id="chatbot-send"><i data-lucide="send-horizonal"></i></button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
