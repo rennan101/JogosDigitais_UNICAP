@@ -838,7 +838,7 @@ const dadosDeFallback = {
 
     // CHAMA A INICIALIZAÇÃO NO FINAL!
     inicializarSite();
-});
+
 // ====================================================
     // TOGGLE DO CHATBOT
     // ====================================================
@@ -922,3 +922,5 @@ const dadosDeFallback = {
             if (e.key === 'Enter') sendMessage();
         });
     }
+    
+});    
