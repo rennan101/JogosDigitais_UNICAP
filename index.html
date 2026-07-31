@@ -434,15 +434,20 @@
 
 <!-- A Janela do Chat -->
         <div id="chatbot-window" class="chatbot-window hidden">
-            <div class="chatbot-header">
+         <div class="chatbot-header">
                 <div class="chatbot-title">
-                    <!-- SEU ÍCONE PERSONALIZADO AQUI -->
                     <img src="assets/icons/jogos_icon.svg" alt="Ícone Bot" style="width: 26px; height: 26px; filter: drop-shadow(0 0 5px rgba(0, 194, 203, 0.8));">
                     <div>
                         <h4>Assistente UNICAP</h4>
                         <span>Tire dúvidas sobre o curso</span>
                     </div>
                 </div>
+                <!-- NOVO: Grupo de botões de ação -->
+                <div style="display: flex; gap: 10px;">
+                    <button id="chatbot-expand" style="background:none; border:none; color:#fff; cursor:pointer;"><i data-lucide="maximize"></i></button>
+                    <button id="chatbot-close" style="background:none; border:none; color:#fff; cursor:pointer;"><i data-lucide="x"></i></button>
+                </div>
+            </div>
                 <button id="chatbot-close"><i data-lucide="x"></i></button>
             </div>
             

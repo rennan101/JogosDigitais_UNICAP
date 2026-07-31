@@ -863,15 +863,51 @@ const dadosDeFallback = {
     const chatSendBtn = document.getElementById('chatbot-send');
     const chatMessages = document.getElementById('chatbot-messages');
 
-    // Função para adicionar balões de mensagem na tela
+
+
+ function formatMessageText(text) {
+        let html = text;
+        // Transforma links Markdown [texto](url) em links HTML reais
+        html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+        // Transforma **texto** em Negrito HTML
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // Transforma *texto* em Itálico HTML
+        html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        // Troca as quebras de linha normais por quebras de linha HTML
+        html = html.replace(/\n/g, '<br>');
+        return html;
+    }
+    // 🟢 ATUALIZADO: Função para adicionar balões de mensagem na tela usando HTML
     function addMessage(text, sender) {
         const msgDiv = document.createElement('div');
         msgDiv.classList.add('chat-msg', sender === 'user' ? 'user-msg' : 'bot-msg');
-        msgDiv.innerText = text;
+        
+        // Passa o texto pelo tradutor antes de jogar na tela
+        msgDiv.innerHTML = formatMessageText(text); 
+        
         chatMessages.appendChild(msgDiv);
-        // Rola o chat para o final
         chatMessages.scrollTop = chatMessages.scrollHeight; 
     }
+    
+    // ====================================================
+    // LÓGICA DO BOTÃO DE EXPANDIR (NOVO)
+    // ====================================================
+    const chatbotExpand = document.getElementById('chatbot-expand');
+    if (chatbotExpand) {
+        chatbotExpand.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('expanded');
+            
+            // Troca o ícone de expandir para minimizar
+            const icon = chatbotExpand.querySelector('i');
+            if (chatbotWindow.classList.contains('expanded')) {
+                icon.setAttribute('data-lucide', 'minimize');
+            } else {
+                icon.setAttribute('data-lucide', 'maximize');
+            }
+            lucide.createIcons();
+        });
+    }
+    
 
     // Função principal que envia a mensagem para a Vercel
     async function sendMessage() {

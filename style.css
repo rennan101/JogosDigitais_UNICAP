@@ -769,12 +769,30 @@ body::before {
     gap: 1rem;
 }
 
+/* Correção do balão de mensagem para não vazar da tela */
 .chat-msg {
     max-width: 85%;
     padding: 0.8rem 1rem;
     border-radius: 8px;
     font-size: 0.9rem;
     line-height: 1.4;
+    word-wrap: break-word;          /* Força a quebra de links longos */
+    overflow-wrap: break-word;      /* Força a quebra de links longos */
+    word-break: break-word;         /* Força a quebra de links longos */
+}
+/* Deixa os links azuis e clicáveis dentro do chat */
+.chat-msg a {
+    color: var(--accent-cyan);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* Nova classe para expandir o chat */
+.chatbot-window.expanded {
+    width: min(90vw, 450px);
+    height: 75vh;
+    bottom: 90px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .bot-msg {

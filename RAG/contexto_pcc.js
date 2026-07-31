@@ -549,8 +549,6 @@ Composição do NDE:
 DOCENTE	Titulação	Regime de Trabalho
 Breno José Andrade de Carvalho / Coordenador 	Doutor	TI
 Anthony José da Cunha C. Lins / Professor 	Doutor	TI
-Carla Patrícia Pacheco Teixeira / Professora 	Doutora	TI
-Dario Brito da Rocha Júnior / Professor 	Doutor	TI
 Rennan Cavalcante Raffaele / Professor 	Mestre	TI
 2.2.	 Equipe Multidisciplinar 
 A Equipe Multidisciplinar, em consonância com a política de EAD da UNICAP expressa no PDI, integra o Núcleo de Educação a Distância (NEAD). De acordo com o regimento do EaD, Portaria CONSEPE Nº 006/2023, compete à Equipe Multidisciplinar:
@@ -575,7 +573,7 @@ A figura abaixo ilustra a estrutura organizacional onde está localizado o Núcl
 
 Figura 3: Estrutura Organizacional UNICAP Digital.
 2.3.	Atuação da Coordenação e regime de trabalho
-Coordenador: Breno José Andrade de Carvalho
+Coordenador: Prof. Wilmer Camacho
 Titulação: Doutor
 Regime de Trabalho: 40h, tempo integral
 
@@ -606,7 +604,7 @@ v)	promover a abertura de sindicância ou inquérito, para apuração de faltas 
 w)	presidir o Colegiado do Curso.
 
 O regime de trabalho do Coordenador é de tempo integral, com carga horária total de 40 horas semanais de trabalho, sendo 20 horas para a gestão acadêmica do curso, conforme o Plano de Ação (anexo III), e 20 horas para as atividades de ensino, pesquisa e extensão.
-A coordenação do Curso Superior de Tecnologia em Jogos Digitais está sob a responsabilidade do Prof. Breno José Andrade de Carvalho, é doutor em Design pela UFPE (2020), mestre em Design pela UFPE (2014), especialista em Design da Informação pela UFPE (2002), e graduação em Comunicação Social pela Unicap (1999). Atualmente é assessor do Núcleo de Inovação Tecnológica - NIT, pesquisador do Instituto de Estudos de Convergência Midiática e da Informação (Icinform), do grupo de pesquisa Tecnologias Aplicadas ao Desenvolvimento de Soluções e Produtos em Comunicação e Indústrias Criativas (Createch) e professor do Programa de Pós-graduação em Indústrias Criativas e professor e coordenador do Curso de Tecnologia em Jogos Digitais da Universidade Católica de Pernambuco. Coordenou a agência de soluções interativas Combogó Unicap. É membro do Laboratório de Inovação, Criatividade e Empreendedorismo da Unicap - LICEU. Também é responsável pela Coluna Cabra Nerd da Revista on-line Algomais. Experiência na área de Comunicação, com ênfase em Comunicação Visual e Web Design, atuando principalmente nos seguintes temas: indústrias criativas, branding, marca mutante, marca mutante jogável, interface gráfica, doodle, cultura, games, gamification, interface, Realidade Virtual e tecnologias 3D. ORCID: http://orcid.org/0000-0002-4449-4036 
+A coordenação do Curso Superior de Tecnologia em Jogos Digitais está sob a responsabilidade do Prof.Prof. Dr. Wilmer Camacho. 
 Faz parte ainda da rotina da Coordenação a gestão dos corpos docente e discente, desde os encaminhamentos de questões pedagógicas até a gestão de conflitos de naturezas diversas. Práticas relacionadas à vida acadêmica dos discentes, como alterações de programação acadêmica, validação de atividades complementares, apoio às questões relacionadas com as atividades de pesquisa e extensão, encaminhamentos de documentos de TCC, estágios obrigatórios e não obrigatórios, entre outras ações.
 2.4.	Corpo docente: titulação e regime de trabalho 
 O corpo docente da UNICAP é composto por profissionais da educação com titulação de doutorado ou mestrado, em regime de tempo integral ou não, observados os limites mínimos estabelecidos em lei. De acordo com o art. 104 do seu Estatuto, “o corpo docente é constituído por professores e pesquisadores, distribuídos em categorias estabelecidas no Plano de Carreira Docente aprovado pelo CONSEPE”.
@@ -1406,5 +1404,7 @@ PIXEL HOUND
 BAIÃO STUDIO
 SEBRAE
 
+//////////////
+20+20+20+7 = aí é muito fácil professora, é 67 haha.
 `;
 
