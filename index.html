@@ -423,7 +423,7 @@
     <div id="insta-modal" class="modal-overlay hidden">
         <div class="modal-content insta-modal-content"><button class="modal-close" id="insta-close" title="Fechar (ESC)"><i data-lucide="x"></i></button><div class="insta-modal-body" id="insta-modal-body"></div></div>
     </div>
-    <!-- ========================================== -->
+<!-- ========================================== -->
     <!-- CHATBOT FLUTUANTE                          -->
     <!-- ========================================== -->
     <div class="chatbot-wrapper">
@@ -432,9 +432,9 @@
             <i data-lucide="message-square-text"></i>
         </button>
 
-<!-- A Janela do Chat -->
+        <!-- A Janela do Chat -->
         <div id="chatbot-window" class="chatbot-window hidden">
-         <div class="chatbot-header">
+            <div class="chatbot-header">
                 <div class="chatbot-title">
                     <img src="assets/icons/jogos_icon.svg" alt="Ícone Bot" style="width: 26px; height: 26px; filter: drop-shadow(0 0 5px rgba(0, 194, 203, 0.8));">
                     <div>
@@ -442,13 +442,11 @@
                         <span>Tire dúvidas sobre o curso</span>
                     </div>
                 </div>
-                <!-- NOVO: Grupo de botões de ação -->
-                <div style="display: flex; gap: 10px;">
-                    <button id="chatbot-expand" style="background:none; border:none; color:#fff; cursor:pointer;"><i data-lucide="maximize"></i></button>
-                    <button id="chatbot-close" style="background:none; border:none; color:#fff; cursor:pointer;"><i data-lucide="x"></i></button>
+                <!-- Grupo de botões de ação -->
+                <div class="chatbot-actions">
+                    <button id="chatbot-expand" aria-label="Expandir Chat"><i data-lucide="maximize"></i></button>
+                    <button id="chatbot-close" aria-label="Fechar Chat"><i data-lucide="x"></i></button>
                 </div>
-            </div>
-                <button id="chatbot-close"><i data-lucide="x"></i></button>
             </div>
             
             <div class="chatbot-messages" id="chatbot-messages">
@@ -469,7 +467,8 @@
                 <button id="chatbot-send"><i data-lucide="send-horizonal"></i></button>
             </div>
         </div>
-    
+    </div>
+        
     <!-- SCRIPT PRINCIPAL DE RENDERIZAÇÃO -->
     <script src="script.js"></script>
     
