@@ -1,38 +1,41 @@
-// api/chat.js
+import fs from 'fs';
+import path from 'path';
+
 export default async function handler(req, res) {
-    // Apenas aceita requisições do tipo POST
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Método não permitido' });
     }
 
     const { message } = req.body;
-
-    // Pegamos a chave de segurança nas variáveis de ambiente da Vercel
     const apiKey = process.env.GEMINI_API_KEY; 
 
     if (!apiKey) {
-        return res.status(500).json({ error: 'Chave de API não configurada no servidor.' });
+        return res.status(500).json({ error: 'Chave de API não configurada.' });
     }
 
-    // =================================================================
-    // O CONTEXTO (RAG SIMPLIFICADO)
-    // Aqui você vai colocar o resumo do PCC, regras de financiamento, 
-    // disciplinas, etc. A IA vai ler isso antes de responder o aluno.
-    // =================================================================
-    const systemPrompt = `
-    Você é o Assistente Virtual Oficial do curso de Jogos Digitais da UNICAP.
-    Seja amigável, direto e use tom tech/gamer.
-    
-    Informações sobre o curso:
-    - Foco: Programação, Game Design, Arte 3D e Empreendedorismo.
-    - O mercado cresce 8% ao ano (faturamento de R$12 bilhões).
-    - Temos parceria com o Porto Digital.
-    
-    Responda apenas com base nestas informações. Se não souber, peça para o aluno entrar em contato com a coordenação.
-    `;
-
     try {
-        // Fazendo a chamada para a API do Google Gemini
+        // =================================================================
+        // LENDO A PASTA RAG
+        // =================================================================
+        // 1. Descobre o caminho exato da pasta RAG no servidor da Vercel
+        const filePath = path.join(process.cwd(), 'RAG', 'contexto_pcc.txt');
+        
+        // 2. Lê o conteúdo do arquivo de texto
+        const pccContent = fs.readFileSync(filePath, 'utf8');
+
+        // 3. Monta as instruções juntando a personalidade + o texto do RAG
+        const systemPrompt = `
+        Você é o Assistente Virtual Oficial do curso de Jogos Digitais da UNICAP.
+        Responda as dúvidas do usuário usando estritamente os dados do documento abaixo.
+        Seja amigável e use um tom tech/gamer.
+        
+        DOCUMENTO BASE (PCC DO CURSO):
+        ${pccContent}
+        `;
+
+        // =================================================================
+        // ENVIANDO PARA A IA (GEMINI)
+        // =================================================================
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -44,13 +47,12 @@ export default async function handler(req, res) {
 
         const data = await response.json();
         
-        // Extrai a resposta de texto da IA
+        // Retorna o texto da IA
         const botReply = data.candidates[0].content.parts[0].text;
-
         return res.status(200).json({ reply: botReply });
         
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ error: 'Erro ao conectar com a IA.' });
+        return res.status(500).json({ error: 'Erro ao processar os arquivos do RAG ou conectar com a IA.' });
     }
 }
