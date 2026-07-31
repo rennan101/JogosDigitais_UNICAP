@@ -13,7 +13,7 @@ PROJETO PEDAGÓGICO DE CURSO
 JOGOS DIGITAIS
 
 Coordenador do Curso Superior de Tecnologia em Jogos Digitais
-Prof. Dr. Prof. Dr. Wilmer Camacho
+Prof. Dr. Wilmer Yecid Córdoba Camacho
 
  Sumário
 INTRODUÇÃO	5
@@ -573,7 +573,7 @@ A figura abaixo ilustra a estrutura organizacional onde está localizado o Núcl
 
 Figura 3: Estrutura Organizacional UNICAP Digital.
 2.3.	Atuação da Coordenação e regime de trabalho
-Coordenador: Prof. Wilmer Camacho
+Coordenador: Prof. Wilmer Yecid Córdoba Camacho
 Titulação: Doutor
 Regime de Trabalho: 40h, tempo integral
 
@@ -604,7 +604,7 @@ v)	promover a abertura de sindicância ou inquérito, para apuração de faltas 
 w)	presidir o Colegiado do Curso.
 
 O regime de trabalho do Coordenador é de tempo integral, com carga horária total de 40 horas semanais de trabalho, sendo 20 horas para a gestão acadêmica do curso, conforme o Plano de Ação (anexo III), e 20 horas para as atividades de ensino, pesquisa e extensão.
-A coordenação do Curso Superior de Tecnologia em Jogos Digitais está sob a responsabilidade do Prof.Prof. Dr. Wilmer Camacho. 
+A coordenação do Curso Superior de Tecnologia em Jogos Digitais está sob a responsabilidade do Prof. Dr. Wilmer Yecid Córdoba Camacho. 
 Faz parte ainda da rotina da Coordenação a gestão dos corpos docente e discente, desde os encaminhamentos de questões pedagógicas até a gestão de conflitos de naturezas diversas. Práticas relacionadas à vida acadêmica dos discentes, como alterações de programação acadêmica, validação de atividades complementares, apoio às questões relacionadas com as atividades de pesquisa e extensão, encaminhamentos de documentos de TCC, estágios obrigatórios e não obrigatórios, entre outras ações.
 2.4.	Corpo docente: titulação e regime de trabalho 
 O corpo docente da UNICAP é composto por profissionais da educação com titulação de doutorado ou mestrado, em regime de tempo integral ou não, observados os limites mínimos estabelecidos em lei. De acordo com o art. 104 do seu Estatuto, “o corpo docente é constituído por professores e pesquisadores, distribuídos em categorias estabelecidas no Plano de Carreira Docente aprovado pelo CONSEPE”.
