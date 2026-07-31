@@ -1,4 +1,3 @@
-// api/chat.js
 import { pccContent } from '../RAG/contexto_pcc.js';
 
 export default async function handler(req, res) {
@@ -7,7 +6,8 @@ export default async function handler(req, res) {
     const { message } = req.body;
     const apiKey = process.env.GEMINI_API_KEY; 
 
-    if (!apiKey) return res.status(500).json({ error: 'Chave de API ausente.' });
+    // Se a Vercel não puxou a chave, isso avisa o erro na tela
+    if (!apiKey) return res.status(500).json({ error: 'A Vercel não carregou a Chave de API.' });
 
     try {
         const systemPrompt = `
@@ -19,24 +19,34 @@ export default async function handler(req, res) {
         ${pccContent}
         `;
 
+        // Payload simplificado e universal para a API do Gemini
+        const payload = {
+            contents: [
+                {
+                    role: "user",
+                    parts: [{ text: systemPrompt + "\n\n--- FIM DO CONTEXTO ---\n\nPergunta do usuário: " + message }]
+                }
+            ]
+        };
+
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                system_instruction: { parts: { text: systemPrompt } },
-                contents: [{ parts: [{ text: message }] }]
-            })
+            body: JSON.stringify(payload)
         });
 
         const data = await response.json();
         
-        if (data.error) throw new Error(data.error.message);
+        // Se o Google recusar a requisição (ex: chave errada)
+        if (data.error) {
+            return res.status(500).json({ error: 'Erro do Google: ' + data.error.message });
+        }
 
         const botReply = data.candidates[0].content.parts[0].text;
         return res.status(200).json({ reply: botReply });
         
     } catch (error) {
-        console.error("Erro na API:", error);
-        return res.status(500).json({ error: 'Falha nos servidores da IA.' });
+        console.error("Erro interno:", error);
+        return res.status(500).json({ error: 'Erro interno no servidor (RAG/Vercel).' });
     }
 }

@@ -891,7 +891,7 @@ const dadosDeFallback = {
         chatMessages.appendChild(loadingDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
-        try {
+try {
             // 3. Envia para a Serverless Function na Vercel
             const response = await fetch('/api/chat', {
                 method: 'POST',
@@ -906,12 +906,15 @@ const dadosDeFallback = {
 
             if (data.reply) {
                 addMessage(data.reply, 'bot');
+            } else if (data.error) {
+                // MOSTRA O ERRO EXATO NA TELA DO CHAT!
+                addMessage("❌ Erro do Sistema: " + data.error, 'bot'); 
             } else {
                 addMessage("Sistema offline. Tente novamente mais tarde.", 'bot');
             }
         } catch (error) {
             document.getElementById(loadingId).remove();
-            addMessage("Erro de conexão com os servidores centrais.", 'bot');
+            addMessage("Erro fatal de conexão com o servidor.", 'bot');
         }
     }
 
@@ -921,22 +924,22 @@ const dadosDeFallback = {
         chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage();
         });
-        
     }
+
     // ====================================================
-        // LÓGICA DOS BOTÕES RÁPIDOS
-        // ====================================================
-        const quickBtns = document.querySelectorAll('.quick-btn');
-        quickBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                chatInput.value = btn.innerText;
-                sendMessage();
-                
-                // Esconde as opções rápidas depois que o usuário escolhe uma
-                const optionsContainer = document.getElementById('quick-options');
-                if(optionsContainer) {
-                    optionsContainer.style.display = 'none';
-                }
-            });
+    // LÓGICA DOS BOTÕES RÁPIDOS
+    // ====================================================
+    const quickBtns = document.querySelectorAll('.quick-btn');
+    quickBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            chatInput.value = btn.innerText;
+            sendMessage();
+            
+            // Esconde as opções rápidas da tela
+            const optionsContainer = document.getElementById('quick-options');
+            if(optionsContainer) {
+                optionsContainer.style.display = 'none';
+            }
         });
+    });
 });    
