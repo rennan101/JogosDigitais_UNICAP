@@ -1404,7 +1404,70 @@ PIXEL HOUND
 BAIÃO STUDIO
 SEBRAE
 
-//////////////
+///////Easter Egg//////////////
 20+20+20+7 = aí é muito fácil professora, é 67 haha.
+
+======================================================================
+BASE DE CONHECIMENTO DIRETA: PERGUNTAS FREQUENTES (FAQ)
+======================================================================
+
+[INFORMAÇÕES GERAIS DO CURSO]
+P: Qual é a duração do curso de Jogos Digitais?
+R: O curso dura no mínimo 5 períodos (2 anos e meio) e no máximo 7 períodos.
+
+P: Em qual turno as aulas acontecem?
+R: O curso de Jogos Digitais funciona no turno da noite.
+
+P: O curso é presencial ou EaD?
+R: A modalidade é Presencial. Porém, para estimular o letramento digital, o curso conta com cerca de 30% da sua carga horária (600 horas) oferecida na modalidade a distância (EaD) através do Ambiente Virtual de Aprendizagem (Moodle).
+
+P: Qual é a carga horária total do curso?
+R: A carga horária total é de 2.010 horas, divididas em formação básica, teórico-prática, formação específica e horas de extensão.
+
+P: Quem é o coordenador do curso?
+R: O curso é coordenado pelo Prof. Dr. Wilmer Yecid Córdoba Camacho.
+
+P: Onde as aulas acontecem?
+R: O curso é ministrado na Universidade Católica de Pernambuco (UNICAP), localizada na Rua do Príncipe, 526, Boa Vista, Recife - PE.
+
+
+[INGRESSO E AVALIAÇÃO]
+P: Como faço para entrar no curso? Quais as formas de acesso?
+R: Você pode ingressar através do Vestibular tradicional, Vestibular Social, notas do ENEM, ou por admissão extravestibular (transferência de outra faculdade, portador de diploma e transferência interna).
+
+P: Quantas vagas abrem por ano?
+R: São disponibilizadas 40 vagas anuais.
+
+P: Tem TCC (Trabalho de Conclusão de Curso) obrigatório?
+R: O TCC nos moldes tradicionais não é obrigatório para Cursos Superiores de Tecnologia. No lugar dele, o curso possui uma atividade prática integralizadora na disciplina "Projeto de Artefatos Lúdicos" no 5º período, focada na criação de um portfólio real.
+
+P: Como funciona a avaliação das notas?
+R: A avaliação é processual. Em disciplinas tradicionais, existem o 1º e 2º Graus de Qualificação (GQ). A média para aprovação direta é igual ou superior a 7,0, com exigência de 75% de presença nas aulas presenciais. Várias disciplinas focam na avaliação prática por projetos e portfólio.
+
+
+[ESTRUTURA, PRÁTICA E EXTENSÃO]
+P: O que é a Agência Combogó?
+R: A Combogó Unicap é a nossa agência experimental de soluções interativas. Nela, estudantes voluntários desenvolvem aplicativos gamificados, jogos e "serious games" para clientes reais da Região Metropolitana do Recife, criando portfólio antes mesmo de se formarem.
+
+P: O curso tem estágio obrigatório ou monitoria?
+R: O curso não exige estágio obrigatório e não participa do programa de Monitoria por ter turno único[cite: 8]. A vivência prática ocorre na Agência Combogó e no desenvolvimento constante de jogos ao longo dos semestres.
+
+P: O que são as certificações por competência?
+R: O nosso currículo permite que o aluno ganhe certificações ao concluir módulos específicos: Certificação em Desenvolvedor de Jogos 2D (Módulo I), Certificação em Desenvolvedor de Jogos 3D Multiplataforma (Módulo II) e Certificação em Game Designer e Desenvolvedor de Jogos Digitais (Módulo III).
+
+P: Como são os laboratórios do curso?
+R: A infraestrutura conta com Laboratórios Multimídia equipados com computadores modernos, 21 mesas digitalizadoras Wacom Bamboo por sala, projetores, além do Laboratório de Projeto (com miniatura de esqueleto para estudos de anatomia) e Laboratório de Áudio/Vídeo para edição e captação.
+
+
+[MERCADO DE TRABALHO E TECNOLOGIAS]
+P: O que vou aprender no curso?
+R: Você vai aprender a criar, projetar e programar jogos 2D e 3D; gerenciar projetos com equipes multidisciplinares; criar roteiros, mecânicas, modelagem de personagens e cenários; além de focar em serious games, advergames e experiências em Realidade Virtual.
+
+P: Como é o mercado de trabalho em Recife para quem faz Jogos Digitais?
+R: O mercado local é muito forte. Pernambuco tem destaque nacional e internacional desde os anos 2000. O Recife abriga diversas empresas parceiras e de destaque que costumam absorver nossos egressos, como Manifesto Games, Kokku, Room8 Studios, Raid Hut, Diorama Studio, JoyStreet e grandes nomes de TI como a Accenture e o CESAR.
+
+P: Quais softwares e métodos são usados nas aulas?
+R: Usamos os softwares mais modernos do mercado e metodologias ativas como Gamificação, Design Thinking e Aprendizagem Baseada em Projetos (PBL). Nossos alunos não fazem apenas provas, eles criam jogos jogáveis e interativos em todo semestre letivo.
+
 `;
 
