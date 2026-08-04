@@ -751,29 +751,33 @@
             "name": "Prof. Dr. Alan Campos",
             "tag": "Game Design",
             "img": "assets/docentes/alan.png",
+            "linkedin": "https://www.linkedin.com/in/alan-campos669/",
             "lattes": "http://lattes.cnpq.br/1618069081375414",
             "desc": " "
         },
         {
             "name": "Prof. Dr. Anthony Lins",
             "tag": "Programação para Jogos",
-            "desc": "",
             "img": "assets/docentes/anthony.jpeg",
-            "lattes": "http://lattes.cnpq.br/8374444110347392"
+            "linkedin": "https://www.linkedin.com/in/anthonylins",
+            "lattes": "http://lattes.cnpq.br/8374444110347392",
+            "desc": " "
         },
         {
             "name": "Prof. Dr. Breno Carvalho",
             "tag": "Design & Gestão",
-            "desc": "",
             "img": "assets/docentes/breno.png",
-            "lattes": "http://lattes.cnpq.br/2713900493883337"
+            "linkedin": "https://www.linkedin.com/in/brenocarvalho25/",
+            "lattes": "http://lattes.cnpq.br/2713900493883337",
+            "desc": " "
         },
         {
             "name": "Profa. Msc. Cecília da Fonte",
             "tag": "Design / UI/UX",
-            "desc": "",
             "img": "assets/docentes/cecilia.jpeg",
-            "lattes": "http://lattes.cnpq.br/9540347266924524"
+            "linkedin": "https://www.linkedin.com/in/cecilia-da-fonte-alves-737166370/",
+            "lattes": "http://lattes.cnpq.br/9540347266924524",
+            "desc": " "
         },
         {
             "name": "Prof. Dr. Christiane Quaresma",
@@ -785,16 +789,18 @@
         {
             "name": "Prof. Msc. Danilo Lúcio",
             "tag": "Roteiro & Som Digital",
-            "desc": "",
             "img": "assets/docentes/danilo.jpeg",
-            "lattes": "http://lattes.cnpq.br/1075233329679850"
+            "linkedin": "https://www.linkedin.com/in/danilo-paiva-lucio-52bb9438/",
+            "lattes": "http://lattes.cnpq.br/1075233329679850",
+            "desc": " "
         },
         {
             "name": "Prof. Msc. Flávio Dias",
             "tag": "Programação para Jogos",
-            "desc": "",
             "img": "assets/docentes/flavio.jpeg",
-            "lattes": "http://lattes.cnpq.br/0161156565171546"
+            "linkedin": "https://www.linkedin.com/in/flávio-dias-6246797/",
+            "lattes": "http://lattes.cnpq.br/0161156565171546",
+            "desc": " "
         },
         {
             "name": "Profa. Msc. Graziela Almeida",
@@ -821,9 +827,10 @@
         {
             "name": "Prof. Msc. Rodrigo Duguay",
             "tag": "Teoria dos Jogos",
-            "desc": "",
             "img": "assets/docentes/rodrigo.jpeg",
-            "lattes": "http://lattes.cnpq.br/9996687767861757"
+            "linkedin": "https://www.linkedin.com/in/duguay/",
+            "lattes": "http://lattes.cnpq.br/9996687767861757",
+            "desc": " "
         }
     ],
     "pesquisas": [
