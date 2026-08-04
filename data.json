@@ -559,9 +559,9 @@
         {
             "name": "Laura Santos Veloso",
             "tag": "Game Developer",
-            "desc": "Formada em 2025. Trabalhou em empresas como SENAI PE.",
             "img": "assets/egressos/laura.png",
-            "linkedin": "https://www.linkedin.com/in/laura-santos-veloso-99415536b//"
+            "linkedin": "https://www.linkedin.com/in/laura-santos-veloso-99415536b/",
+            "desc": "Formada em 2025. Trabalhou em empresas como SENAI PE."
         },
         {
             "name": "Rafael Miranda",
