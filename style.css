@@ -408,9 +408,45 @@ input[type="date"]::-webkit-calendar-picker-indicator, input[type="time"]::-webk
 /* MODAIS */
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .modal-content { border-radius: 12px; width: 100%; max-width: 800px; max-height: 90vh; overflow-y: auto; position: relative; padding: 2rem; box-shadow: 0 0 50px rgba(0, 194, 203, 0.4) !important; }
-.modal-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: #fff; cursor: pointer; }
+.modal-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: #fff; cursor: pointer; z-index: 50;}
 .modal-body h3 { font-size: 1.8rem; color: #fff; margin-bottom: 0.5rem; }
-.modal-body .badge-genre { background: var(--accent-teal); color: #000; font-weight: bold; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.8rem; display: inline-block; margin-bottom: 1.5rem; }
+
+/* 🟢 CORREÇÃO: ESPAÇAMENTO DA TAG E PLATAFORMA 🟢 */
+.modal-header-meta { 
+    display: flex; 
+    align-items: center; 
+    gap: 1rem; 
+    margin-bottom: 1.2rem; 
+    flex-wrap: wrap; 
+}
+
+.modal-body .badge-genre { 
+    background: var(--accent-teal); 
+    color: #000; 
+    font-weight: bold; 
+    padding: 0.3rem 0.8rem; 
+    border-radius: 4px; 
+    font-size: 0.8rem; 
+    display: inline-flex; 
+    align-items: center; 
+    margin-bottom: 0; 
+}
+
+.badge-platform { 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 0.4rem; 
+    font-size: 0.85rem; 
+    color: #fff; 
+    font-weight: 600; 
+}
+
+.badge-platform i { 
+    width: 16px; 
+    height: 16px; 
+    color: var(--text-muted); 
+}
+
 .modal-body p { color: var(--text-muted); margin-bottom: 1.5rem; }
 .modal-body .devs { background: rgba(15, 23, 42, 0.8); padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.05); }
 .modal-body .devs strong { color: var(--accent-yellow); }
@@ -545,18 +581,14 @@ html, body { width: 100%; max-width: 100vw; overflow-x: hidden !important; }
 
 @media (max-width: 992px) { .insta-card { flex: 0 0 calc((100% - 3rem) / 3); } }
 @media (max-width: 768px) { .insta-carousel-wrapper { padding: 0; } .insta-btn { display: none !important; } .insta-card { flex: 0 0 260px; } }
+
 /* ==================================================== */
 /* BACKGROUND GAMER (GRID TECNOLÓGICO)                  */
 /* ==================================================== */
 
 body {
     position: relative;
-    /* Certifique-se de que o z-index do main não está escondendo o body */
 }
-
-/* ==================================================== */
-/* BACKGROUND GAMER (GRID ISOMÉTRICO BRANCO E MENOR)    */
-/* ==================================================== */
 
 body::before {
     content: "";
@@ -567,45 +599,25 @@ body::before {
     height: 200vh;
     z-index: -1; 
     pointer-events: none; 
-    
-    /* Linhas BRANCAS e mais visíveis (15% de opacidade) */
     background-image: 
         linear-gradient(rgba(255, 255, 255, 0.10) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
-    
-    /* Tamanho dos quadrados reduzido (de 55px para 30px) */
     background-size: 30px 30px;
-    
-    /* Perspectiva isométrica 3D */
     transform: perspective(1000px) rotateX(60deg) rotateZ(45deg);
-    
-    /* Efeito de luz no centro escurecendo nas bordas */
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 55%);
     -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 55%);
-}/* ==================================================== */
+}
+
+/* ==================================================== */
 /* AJUSTES MOBILE: PESQUISAS (PIBIC/UNICAP)             */
 /* ==================================================== */
 
 @media (max-width: 768px) {
-    /* Empilha os itens do card verticalmente */
-    .pesquisa-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-    
-    /* Garante que a tag fique alinhada à esquerda, abaixo do texto */
-    .pesquisa-badge-wrapper {
-        width: 100%;
-        justify-content: flex-start;
-    }
-    
-    /* Reduz o tamanho do título no mobile (original era 1.05rem) */
-    .pesquisa-item h4 {
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
+    .pesquisa-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .pesquisa-badge-wrapper { width: 100%; justify-content: flex-start; }
+    .pesquisa-item h4 { font-size: 0.9rem; line-height: 1.4; }
 }
+
 /* ==================================================== */
 /* GLASSMORPHISM - CONTROLE DE TRANSPARÊNCIA            */
 /* ==================================================== */
@@ -617,48 +629,37 @@ body::before {
 .curriculum-item,
 .card-generic,
 .schedule-container {
-    /* 1. CONTROLE DE PREENCHIMENTO (Transparência da cor) */
     background-color: rgba(15, 23, 42, 0.05) !important;
-    
-    /* 2. CONTROLE DO DESFOQUE (Embaçamento do vidro) */
     backdrop-filter: blur(4px) !important;
     -webkit-backdrop-filter: blur(4px) !important;
-    
-    /* Mantém a bordinha de vidro e a sombra */
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
 }
 
-/* Garante que o item da matriz brilhe de leve ao ser clicado/aberto */
 .curriculum-item.open {
     background-color: rgba(15, 23, 42, 0.15) !important;
     border-color: rgba(0, 255, 102, 0.3) !important;
 }
+
 /* ==================================================== */
 /* GLASSMORPHISM - SEÇÕES BG-DARKER                     */
 /* ==================================================== */
 
 .bg-darker {
-    /* Troca a cor sólida por uma cor escura muito transparente (40% de opacidade) */
     background-color: rgba(9, 14, 26, 0.15) !important;
-    
-    /* Aplica o desfoque do vidro sobre as linhas do grid */
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
-    
-    /* Mantém as linhas sutis originais para separar as seções */
     border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
+
 /* ==================================================== */
 /* SISTEMA DE TRADUÇÃO (DISPLAY POR IDIOMA)             */
 /* ==================================================== */
 
-/* Por padrão, oculta inglês e espanhol (Assume que o site base é PT-BR) */
 .lang-text.lang-en, 
-.lang-text.lang-es { 
-    display: none; 
-}
+.lang-text.lang-es { display: none; }
+
 /* ==================================================== */
 /* CHATBOT FLUTUANTE (UI & EXPANSÃO)                    */
 /* ==================================================== */
@@ -710,7 +711,6 @@ body::before {
     transform-origin: bottom right;
 }
 
-/* CLASSE QUE ESTICA A JANELA */
 .chatbot-window.expanded {
     width: min(90vw, 800px);
     height: 80vh;
@@ -744,7 +744,7 @@ body::before {
     gap: 1.2rem;
 }
 
-/* BALÃO DE MENSAGEM: Regras severas para não vazar texto/link */
+/* BALÃO DE MENSAGEM */
 .chat-msg {
     max-width: 88%;
     padding: 0.9rem 1.1rem;

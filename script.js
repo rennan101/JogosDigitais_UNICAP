@@ -148,15 +148,33 @@ document.addEventListener("DOMContentLoaded", () => {
     function converterParaEmbed(url) {
         if (!url || url.trim() === "") return "";
         let videoId = "";
-        if (url.includes("youtube.com/watch?v=")) videoId = url.split("v=")[1].split("&")[0];
-        else if (url.includes("youtu.be/")) videoId = url.split("youtu.be/")[1].split("?")[0];
-        else if (url.includes("youtube.com/embed/")) return url;
-        return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : url;
+        
+        if (url.includes("youtube.com/watch?v=")) {
+            videoId = url.split("v=")[1].split("&")[0];
+        } else if (url.includes("youtu.be/")) {
+            videoId = url.split("youtu.be/")[1].split("?")[0];
+        } else if (url.includes("youtube.com/embed/")) {
+            if (!url.includes("enablejsapi=1")) {
+                url += (url.includes("?") ? "&" : "?") + "enablejsapi=1";
+            }
+            return url;
+        }
+        
+        return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}?enablejsapi=1` : url;
     }
 
+    // 🟢 ATUALIZADO: Pausar vídeo ao clicar na seta
     window.mudarSlideModal = function(direcao) {
         const track = document.getElementById("modal-track");
-        if (track) track.scrollBy({ left: direcao * track.clientWidth, behavior: 'smooth' });
+        if (track) {
+            track.scrollBy({ left: direcao * track.clientWidth, behavior: 'smooth' });
+            
+            // Força a pausa nos iframes ao mudar de slide
+            const iframes = track.querySelectorAll("iframe.modal-video-iframe");
+            iframes.forEach(iframe => {
+                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            });
+        }
     };
 
     window.verificarSlidesModal = function() {
@@ -208,17 +226,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 cart.addEventListener("click", () => {
                     if (modalBody) {
                         let carouselSection = `<div class="modal-carousel-container"><button class="modal-car-btn prev" onclick="mudarSlideModal(-1)"><i data-lucide="chevron-left"></i></button><button class="modal-car-btn next" onclick="mudarSlideModal(1)"><i data-lucide="chevron-right"></i></button><div class="modal-carousel-track" id="modal-track">`;
+                        
                         if (game.video && game.video.trim() !== "") {
                             const embedUrl = converterParaEmbed(game.video);
                             if (embedUrl) carouselSection += `<div class="modal-slide"><iframe src="${embedUrl}" class="modal-video-iframe" frameborder="0" allowfullscreen></iframe></div>`;
                         }
+                        
                         imagensPossiveis.forEach((imgSrc) => { carouselSection += `<div class="modal-slide"><img src="${imgSrc}" alt="${game.title}" onload="verificarSlidesModal()" onerror="this.parentElement.remove(); verificarSlidesModal();"></div>`; });
                         carouselSection += `</div></div>`;
 
                         let downloadBtn = game.downloadLink && game.downloadLink.trim() !== "" ? `<a href="${game.downloadLink}" target="_blank" class="btn-primary" style="margin-top:1.5rem; width:100%; justify-content:center;">BAIXAR / JOGAR AGORA <i data-lucide="download"></i></a>` : `<a href="#visita" class="btn-secondary" style="margin-top:1.5rem; text-align:center; display:block; width:100%;">EM BREVE PARA DOWNLOAD — AGENDE UMA VISITA</a>`;
 
                         modalBody.innerHTML = `
-                            <div class="modal-header-meta"><span class="badge-genre">${game.genre}</span><span class="badge-platform"><i data-lucide="monitor"></i> ${game.platform}</span></div>
+                            <div class="modal-header-meta">
+                                <span class="badge-genre">${game.genre}</span>
+                                <span class="badge-platform"><i data-lucide="monitor"></i> ${game.platform}</span>
+                            </div>
                             <h3>${game.title} <span class="modal-year">(${game.year})</span></h3>
                             ${carouselSection}
                             <div class="modal-desc"><p>${game.desc}</p></div>
@@ -227,7 +250,28 @@ document.addEventListener("DOMContentLoaded", () => {
                         `;
                     }
                     lucide.createIcons();
-                    if (modal) { modal.classList.remove("hidden"); setTimeout(window.verificarSlidesModal, 300); }
+                    
+                    if (modal) { 
+                        modal.classList.remove("hidden"); 
+                        setTimeout(() => {
+                            window.verificarSlidesModal();
+                            
+                            // 🟢 NOVO: Intercepta o scroll e pausa o vídeo do YouTube se ele sair da tela
+                            const iframes = modalBody.querySelectorAll('iframe.modal-video-iframe');
+                            iframes.forEach(iframe => {
+                                const observer = new IntersectionObserver((entries) => {
+                                    entries.forEach(entry => {
+                                        // Quando o slide não estiver mais visível, envia o comando de Pause
+                                        if (!entry.isIntersecting) {
+                                            iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                                        }
+                                    });
+                                }, { threshold: 0.5 }); // Reage quando mais de 50% sair da tela
+                                observer.observe(iframe.parentElement);
+                            });
+
+                        }, 300); 
+                    }
                 });
                 gbcGrid.appendChild(cart);
             });
@@ -351,7 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ====================================================
-    // GAME BOY EXPANDIDO MODAL (CORRIGIDO)
+    // GAME BOY EXPANDIDO MODAL
     // ====================================================
     const gameboyWrapper = document.querySelector(".gameboy-wrapper");
     const gameboyModal = document.getElementById("gameboy-modal");
@@ -552,7 +596,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => { renderizarCalendario(); }, 100);
 
     // ====================================================
-    // INSTAGRAM API (RESTAURADO E CORRIGIDO)
+    // INSTAGRAM API
     // ====================================================
     const INSTA_API_URL = "https://feeds.behold.so/w9jDypvR0WWCc6Gzvdtc";
     const instaGrid = document.getElementById("insta-grid");
