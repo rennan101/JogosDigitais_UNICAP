@@ -803,4 +803,48 @@ document.addEventListener("DOMContentLoaded", () => {
     // INICIALIZA A CARGA DE TODOS OS DADOS DA PÁGINA
     // ====================================================
     inicializarSite();
+    
+    // ====================================================
+    // MÁSCARA DE WHATSAPP E VALIDAÇÃO
+    // ====================================================
+    const inputWhatsapp = document.getElementById('whatsapp');
+    
+    if (inputWhatsapp) {
+        // Aplica a máscara enquanto o usuário digita
+        inputWhatsapp.addEventListener('input', function (e) {
+            // Remove tudo que não for número
+            let x = e.target.value.replace(/\D/g, '');
+            
+            // Aplica a formatação (XX) XXXXX-XXXX
+            let match = x.match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+            if (!match) {
+                e.target.value = '';
+                return;
+            }
+            
+            e.target.value = !match[2] ? match[1] : '(' + match[1] + ') ' + match[2] + (match[3] ? '-' + match[3] : '');
+        });
+    }
+
+    // Intercepta o envio do formulário original para validar o telefone
+    if (scheduleForm) {
+        const originalSubmit = scheduleForm.onsubmit;
+        
+        scheduleForm.addEventListener('submit', (e) => {
+            if (inputWhatsapp) {
+                // Pega só os números para contar
+                const numerosTelefone = inputWhatsapp.value.replace(/\D/g, '');
+                
+                // Exige pelo menos 10 dígitos (Ex: 81 9999-9999 ou 81 99999-9999)
+                if (numerosTelefone.length < 10) {
+                    e.preventDefault(); // Trava o envio
+                    e.stopImmediatePropagation(); // Evita que o Ajax do FormSubmit rode
+                    alert("⚠️ Por favor, digite um número de WhatsApp válido com DDD.");
+                    inputWhatsapp.focus();
+                    return false;
+                }
+            }
+        });
+    }
+    
 });

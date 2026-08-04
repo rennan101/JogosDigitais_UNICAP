@@ -293,7 +293,7 @@
                 
                 <div class="schedule-container">
                 <!-- Configurações invisíveis do FormSubmit mudar https://formsubmit.co/emaildocoordenador pedir a hash e inserir igual abaixo-->
-                  <form id="schedule-form" class="schedule-form" action="https://formsubmit.co/2dcd9e67b56e01b83ef051fa88e1520e" method="POST"> 
+                <form id="schedule-form" class="schedule-form" action="https://formsubmit.co/2dcd9e67b56e01b83ef051fa88e1520e" method="POST"> 
     
                       <!-- Configurações invisíveis do FormSubmit -->
                         <input type="hidden" name="_subject" value="Novo Agendamento de Visita - Jogos Digitais">
@@ -301,6 +301,7 @@
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_cc" value="rennan.raffaele@unicap.br">
                         
+                        <!-- Linha 1: Nome e WhatsApp -->
                         <div class="form-grid" style="margin-bottom: 1.5rem;">
                             <div class="form-group">
                                 <label for="nome"><i data-lucide="user"></i> Nome Completo *</label>
@@ -312,7 +313,13 @@
                             </div>
                         </div>
 
-                        <!-- NOVO COMPONENTE DE AGENDA -->
+                        <!-- 🟢 NOVO CAMPO: E-MAIL OBRIGATÓRIO -->
+                        <div class="form-group full-width" style="margin-bottom: 1.5rem;">
+                            <label for="email"><i data-lucide="mail"></i> E-mail *</label>
+                            <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required>
+                        </div>
+
+                        <!-- COMPONENTE DE AGENDA -->
                         <div class="custom-booking-wrapper">
                             <!-- Esquerda: Calendário -->
                             <div class="booking-calendar">
@@ -351,8 +358,7 @@
                         <div class="form-submit text-center">
                             <button type="submit" class="btn-primary" id="btn-submit-agenda">SOLICITAR AGENDAMENTO <i data-lucide="send"></i></button>
                         </div>
-                    </form>
-                </div>        
+                    </form>                </div>        
                 </section>
     </main>
 
