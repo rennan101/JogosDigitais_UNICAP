@@ -334,19 +334,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function renderizarDocentes(docentesData) {
+function renderizarDocentes(docentesData) {
         const docentesGrid = document.getElementById("docentes-grid");
         if (!docentesGrid || !docentesData) return;
         docentesGrid.innerHTML = "";
         docentesData.forEach(d => {
             const card = document.createElement("div");
             card.className = "card-generic";
+            
+            // Cria um container em coluna para organizar os botões um embaixo do outro
             card.innerHTML = `
                 <img src="${d.img}" alt="${d.name}" class="card-img" onerror="this.src='https://placehold.co/150x150/1e293b/00C2CB?text=UNICAP'">
                 <h4>${d.name}</h4>
                 <span class="sub">[${d.tag}]</span>
                 <p>${d.desc}</p>
-                <a href="${d.lattes || 'http://lattes.cnpq.br'}" target="_blank" rel="noopener noreferrer" class="btn-link"><i data-lucide="award"></i> Currículo Lattes</a>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+                    ${d.linkedin && d.linkedin.trim() !== "" ? `<a href="${d.linkedin}" target="_blank" rel="noopener noreferrer" class="btn-link" style="margin-top: 0;"><i data-lucide="linkedin"></i> LinkedIn</a>` : ''}
+                    <a href="${d.lattes || 'http://lattes.cnpq.br'}" target="_blank" rel="noopener noreferrer" class="btn-link" style="margin-top: 0;"><i data-lucide="award"></i> Currículo Lattes</a>
+                </div>
             `;
             docentesGrid.appendChild(card);
         });

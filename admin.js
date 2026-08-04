@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
             { key: 'name', label: 'Nome com Titulação', type: 'text', placeholder: 'Ex: Prof. Dr. Fulano' },
             { key: 'tag', label: 'Área de Ensino', type: 'text', placeholder: 'Ex: Game Design' },
             { key: 'img', label: 'Caminho da Foto', type: 'text', placeholder: 'Ex: assets/docentes/foto.jpg' },
+            { key: 'linkedin', label: 'Link do LinkedIn (Opcional)', type: 'text', placeholder: 'Ex: https://linkedin.com/in/...' },
             { key: 'lattes', label: 'Link do Lattes', type: 'text', placeholder: 'Ex: http://lattes.cnpq.br/...' },
             { key: 'desc', label: 'Descrição Extra (Opcional)', type: 'textarea', placeholder: '' }
         ],
@@ -413,8 +414,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     formHtml += `<option value="${opt}" ${val === opt ? 'selected' : ''}>${opt}</option>`;
                 });
                 formHtml += `</select>`;
-            } else {
-                formHtml += `<input type="${field.type}" class="adm-form-control" name="${field.key}" value="${val}" placeholder="${field.placeholder || ''}" ${field.key!=='video' && field.key!=='downloadLink' ? 'required':''}>`;
+            } } else {
+                formHtml += `<input type="${field.type}" class="adm-form-control" name="${field.key}" value="${val}" placeholder="${field.placeholder || ''}" ${!['video', 'downloadLink', 'linkedin'].includes(field.key) ? 'required':''}>`;
             }
             formHtml += `</div>`;
         });
