@@ -295,7 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
         drawGames();
     }
 
-    function renderizarEgressos(egressosData) {
+   function renderizarEgressos(egressosData) {
         const egressosGrid = document.getElementById("egressos-grid");
         if (!egressosGrid || !egressosData) return;
         egressosGrid.innerHTML = ""; 
@@ -309,6 +309,13 @@ document.addEventListener("DOMContentLoaded", () => {
         egressosData.forEach(e => {
             const card = document.createElement("div");
             card.className = "card-generic";
+            
+            // 🟢 CORREÇÃO: Força o link a ter https:// se o usuário esquecer
+            let linkedinUrl = e.linkedin && e.linkedin.trim() !== "" ? e.linkedin.trim() : "https://www.linkedin.com";
+            if (linkedinUrl !== "https://www.linkedin.com" && !linkedinUrl.startsWith("http")) {
+                linkedinUrl = "https://" + linkedinUrl;
+            }
+
             card.innerHTML = `
                 <div>
                     <img src="${e.img}" alt="${e.name}" class="card-img" onerror="this.src='https://placehold.co/150x150/1e293b/00C2CB?text=UNICAP'">
@@ -316,7 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="sub">[${e.tag}]</span>
                     <p>${e.desc}</p>
                 </div>
-                <a href="${e.linkedin || 'https://www.linkedin.com'}" target="_blank" rel="noopener noreferrer" class="btn-link"><i data-lucide="linkedin"></i> LinkedIn</a>
+                <a href="${linkedinUrl}" target="_blank" rel="noopener noreferrer" class="btn-link"><i data-lucide="linkedin"></i> LinkedIn</a>
             `;
             egressosGrid.appendChild(card);
         });
@@ -334,23 +341,34 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function renderizarDocentes(docentesData) {
+function renderizarDocentes(docentesData) {
         const docentesGrid = document.getElementById("docentes-grid");
         if (!docentesGrid || !docentesData) return;
         docentesGrid.innerHTML = "";
+        
         docentesData.forEach(d => {
             const card = document.createElement("div");
             card.className = "card-generic";
             
-            // Cria um container em coluna para organizar os botões um embaixo do outro
+            // 🟢 CORREÇÃO: Força o link a ter https:// se o usuário esquecer
+            let linkedinUrl = d.linkedin && d.linkedin.trim() !== "" ? d.linkedin.trim() : "";
+            if (linkedinUrl && !linkedinUrl.startsWith("http")) {
+                linkedinUrl = "https://" + linkedinUrl;
+            }
+
+            let lattesUrl = d.lattes && d.lattes.trim() !== "" ? d.lattes.trim() : "http://lattes.cnpq.br";
+            if (lattesUrl && !lattesUrl.startsWith("http")) {
+                lattesUrl = "http://" + lattesUrl;
+            }
+            
             card.innerHTML = `
                 <img src="${d.img}" alt="${d.name}" class="card-img" onerror="this.src='https://placehold.co/150x150/1e293b/00C2CB?text=UNICAP'">
                 <h4>${d.name}</h4>
                 <span class="sub">[${d.tag}]</span>
                 <p>${d.desc}</p>
                 <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
-                    ${d.linkedin && d.linkedin.trim() !== "" ? `<a href="${d.linkedin}" target="_blank" rel="noopener noreferrer" class="btn-link" style="margin-top: 0;"><i data-lucide="linkedin"></i> LinkedIn</a>` : ''}
-                    <a href="${d.lattes || 'http://lattes.cnpq.br'}" target="_blank" rel="noopener noreferrer" class="btn-link" style="margin-top: 0;"><i data-lucide="award"></i> Currículo Lattes</a>
+                    ${linkedinUrl !== "" ? `<a href="${linkedinUrl}" target="_blank" rel="noopener noreferrer" class="btn-link" style="margin-top: 0;"><i data-lucide="linkedin"></i> LinkedIn</a>` : ''}
+                    <a href="${lattesUrl}" target="_blank" rel="noopener noreferrer" class="btn-link" style="margin-top: 0;"><i data-lucide="award"></i> Currículo Lattes</a>
                 </div>
             `;
             docentesGrid.appendChild(card);
