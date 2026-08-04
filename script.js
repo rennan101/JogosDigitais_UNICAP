@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-function renderizarDocentes(docentesData) {
+    function renderizarDocentes(docentesData) {
         const docentesGrid = document.getElementById("docentes-grid");
         if (!docentesGrid || !docentesData) return;
         docentesGrid.innerHTML = "";

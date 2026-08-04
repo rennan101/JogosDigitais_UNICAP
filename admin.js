@@ -414,8 +414,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     formHtml += `<option value="${opt}" ${val === opt ? 'selected' : ''}>${opt}</option>`;
                 });
                 formHtml += `</select>`;
-            } } else {
-                formHtml += `<input type="${field.type}" class="adm-form-control" name="${field.key}" value="${val}" placeholder="${field.placeholder || ''}" ${!['video', 'downloadLink', 'linkedin'].includes(field.key) ? 'required':''}>`;
+            } else {
+                formHtml += `<input type="${field.type}" class="adm-form-control" name="${field.key}" value="${val}" placeholder="${field.placeholder || ''}" ${!['video', 'downloadLink', 'linkedin', 'desc'].includes(field.key) ? 'required':''}>`;
             }
             formHtml += `</div>`;
         });
