@@ -1,6 +1,6 @@
 {
     "config": {
-        "ocultarInvestimento": false,
+        "ocultarInvestimento": true,
         "agenda": {
             "diasSemana": [
                 1,
@@ -813,9 +813,10 @@
         {
             "name": "Prof. Dr. Rennan Raffaele",
             "tag": "Game Design & Level Design",
-            "desc": "",
             "img": "assets/docentes/rennan.jpeg",
-            "lattes": "http://lattes.cnpq.br/1916664448861686"
+            "linkedin": "www.linkedin.com/in/rennan-raffaele",
+            "lattes": "http://lattes.cnpq.br/1916664448861686",
+            "desc": " "
         },
         {
             "name": "Prof. Msc. Rodrigo Duguay",
